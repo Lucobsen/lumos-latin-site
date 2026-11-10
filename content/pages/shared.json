@@ -1,0 +1,138 @@
+{
+  "days": {
+    "mon": {
+      "en": "Mon",
+      "nl": "Ma"
+    },
+    "tue": {
+      "en": "Tue",
+      "nl": "Di"
+    },
+    "wed": {
+      "en": "Wed",
+      "nl": "Wo"
+    }
+  },
+  "cta": {
+    "en": "Book a try-out",
+    "nl": "Boek een proefles"
+  },
+  "nav_schedule": {
+    "en": "Schedule",
+    "nl": "Rooster"
+  },
+  "nav_prices": {
+    "en": "Prices",
+    "nl": "Prijzen"
+  },
+  "nav_studios": {
+    "en": "Studios",
+    "nl": "Studio's"
+  },
+  "nav_events": {
+    "en": "Events",
+    "nl": "Evenementen"
+  },
+  "nav_teachers": {
+    "en": "Teachers",
+    "nl": "Docenten"
+  },
+  "nav_dances": {
+    "en": "Dance styles",
+    "nl": "Dansstijlen"
+  },
+  "nav_contact": {
+    "en": "Contact",
+    "nl": "Contact"
+  },
+  "menu": {
+    "en": "Menu",
+    "nl": "Menu"
+  },
+  "days_long": {
+    "mon": {
+      "en": "Monday",
+      "nl": "maandag"
+    },
+    "tue": {
+      "en": "Tuesday",
+      "nl": "dinsdag"
+    },
+    "wed": {
+      "en": "Wednesday",
+      "nl": "woensdag"
+    }
+  },
+  "and": {
+    "en": "and",
+    "nl": "en"
+  },
+  "every": {
+    "en": "every",
+    "nl": "elke"
+  },
+  "date_to": {
+    "en": "to",
+    "nl": "t/m"
+  },
+  "teacher_tbc": {
+    "en": "Teacher to be confirmed",
+    "nl": "Docent nog niet bekend"
+  },
+  "no_levels": {
+    "en": "no levels",
+    "nl": "geen niveaus"
+  },
+  "tryout_label": {
+    "en": "Try-out €5",
+    "nl": "Proefles €5"
+  },
+  "then_course": {
+    "en": "Then the course",
+    "nl": "Daarna de cursus"
+  },
+  "then_drop_in": {
+    "en": "Then drop-in",
+    "nl": "Daarna drop-in"
+  },
+  "footer_about": {
+    "en": "Latin dance school in Amsterdam. Salsa, bachata and reggaeton, for beginners and for people who already dance.",
+    "nl": "Latin dansschool in Amsterdam. Salsa, bachata en reggaeton, voor beginners en voor wie al danst."
+  },
+  "footer_contact": {
+    "en": "Contact",
+    "nl": "Contact"
+  },
+  "footer_dances": {
+    "en": "Dance styles",
+    "nl": "Dansstijlen"
+  },
+  "footer_classes": {
+    "en": "Classes",
+    "nl": "Lessen"
+  },
+  "footer_school": {
+    "en": "School",
+    "nl": "School"
+  },
+  "footer_follow": {
+    "en": "Follow us",
+    "nl": "Volg ons"
+  },
+  "rights": {
+    "en": "© Lumos Latin Dance School",
+    "nl": "© Lumos Latin Dance School"
+  },
+  "privacy_label": {
+    "en": "Privacy policy",
+    "nl": "Privacybeleid"
+  },
+  "cta_off": {
+    "en": "Book a class",
+    "nl": "Boek een les"
+  },
+  "per_class": {
+    "en": "Or per class: punch card or single class (€17)",
+    "nl": "Of per les: strippenkaart of losse les (€17)"
+  }
+}

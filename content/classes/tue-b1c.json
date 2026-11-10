@@ -1,0 +1,16 @@
+{
+  "id": "tue-b1c",
+  "day": "tue",
+  "time": "20:10",
+  "end": "21:10",
+  "dance": "bachata",
+  "level": 1,
+  "studio": "ceintuur",
+  "teachers": [
+    "Linoy",
+    "Luke"
+  ],
+  "tryout_date": "2026-11-03",
+  "tryout_time": "20:10",
+  "bueno_tryout_id": 1821497
+}

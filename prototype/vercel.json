@@ -1,0 +1,126 @@
+{
+  "cleanUrls": false,
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/salsa",
+      "destination": "/en/salsa/",
+      "permanent": true
+    },
+    {
+      "source": "/salsa/",
+      "destination": "/en/salsa/",
+      "permanent": true
+    },
+    {
+      "source": "/bachata",
+      "destination": "/en/bachata/",
+      "permanent": true
+    },
+    {
+      "source": "/bachata/",
+      "destination": "/en/bachata/",
+      "permanent": true
+    },
+    {
+      "source": "/reggaeton",
+      "destination": "/en/reggaeton/",
+      "permanent": true
+    },
+    {
+      "source": "/reggaeton/",
+      "destination": "/en/reggaeton/",
+      "permanent": true
+    },
+    {
+      "source": "/schedule",
+      "destination": "/en/schedule/",
+      "permanent": true
+    },
+    {
+      "source": "/schedule/",
+      "destination": "/en/schedule/",
+      "permanent": true
+    },
+    {
+      "source": "/prices",
+      "destination": "/en/prices/",
+      "permanent": true
+    },
+    {
+      "source": "/prices/",
+      "destination": "/en/prices/",
+      "permanent": true
+    },
+    {
+      "source": "/locations",
+      "destination": "/en/studios/",
+      "permanent": true
+    },
+    {
+      "source": "/locations/",
+      "destination": "/en/studios/",
+      "permanent": true
+    },
+    {
+      "source": "/events",
+      "destination": "/en/events/",
+      "permanent": true
+    },
+    {
+      "source": "/events/",
+      "destination": "/en/events/",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "/en/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/contact/",
+      "destination": "/en/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-policy",
+      "destination": "/en/privacy/",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-policy/",
+      "destination": "/en/privacy/",
+      "permanent": true
+    },
+    {
+      "source": "/courses",
+      "destination": "/en/prices/",
+      "permanent": true
+    },
+    {
+      "source": "/courses/",
+      "destination": "/en/prices/",
+      "permanent": true
+    },
+    {
+      "source": "/workshops",
+      "destination": "/en/events/",
+      "permanent": true
+    },
+    {
+      "source": "/workshops/",
+      "destination": "/en/events/",
+      "permanent": true
+    },
+    {
+      "source": "/blog",
+      "destination": "/en/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/",
+      "destination": "/en/",
+      "permanent": true
+    }
+  ]
+}

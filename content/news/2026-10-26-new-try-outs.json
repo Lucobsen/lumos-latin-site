@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-26",
+  "show_from": "",
+  "hide_after": "2026-11-03",
+  "title": {
+    "en": "New try-outs",
+    "nl": "Nieuwe proeflessen"
+  },
+  "when": {
+    "en": "26 October to 3 November",
+    "nl": "26 oktober t/m 3 november"
+  },
+  "text": {
+    "en": "Salsa, bachata or reggaeton for €5 a class, for total beginners and experienced dancers. Bring a friend for free.",
+    "nl": "Salsa, bachata of reggaeton voor €5 per les, voor echte beginners en voor wie al danst. Neem gratis een vriend(in) mee."
+  },
+  "image": "",
+  "badge": {
+    "en": "€5",
+    "nl": "€5"
+  },
+  "big": true,
+  "sticker": {
+    "en": "",
+    "nl": ""
+  },
+  "button": {
+    "en": "",
+    "nl": ""
+  },
+  "link": "home#start"
+}

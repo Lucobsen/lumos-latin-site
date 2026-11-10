@@ -1,0 +1,15 @@
+# secrets and local config
+.env
+.env.*
+**/.env
+**/.env.*
+
+# Vercel project link
+prototype/.vercel/
+.vercel/
+
+# dependencies and build output
+node_modules/
+__pycache__/
+*.pyc
+build/

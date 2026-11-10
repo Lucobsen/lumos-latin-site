@@ -1,0 +1,17 @@
+{
+  "key": "tg",
+  "pin": 4,
+  "name": "TG Spaces",
+  "address": "Zeeburgerpad 22",
+  "area": {
+    "en": "East",
+    "nl": "Oost"
+  },
+  "dances": [],
+  "days": [],
+  "beginners_only": false,
+  "workshops_only": true,
+  "maps_link": "https://www.google.com/maps/search/?api=1&query=Zeeburgerpad+22,+1018+AJ+Amsterdam",
+  "map_coordinates": "52.3669776,4.9311179",
+  "bueno_location_ids": "1814"
+}

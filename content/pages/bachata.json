@@ -1,0 +1,46 @@
+{
+  "meta_title": {
+    "en": "Bachata classes in Amsterdam West",
+    "nl": "Bachatalessen in Amsterdam West"
+  },
+  "title": {
+    "en": "<span class=\"mark\">Bachata</span> classes in Amsterdam",
+    "nl": "<span class=\"mark\">Bachatalessen</span> in Amsterdam"
+  },
+  "intro": {
+    "en": "Bachata has a relaxed rhythm, smooth movements and a beautiful flow that lets you get lost in the music. It's a creative, expressive dance with basic steps that are easy to pick up and plenty of room to explore your own style. In Level 1, we teach a balanced Bachata style; from Level 2 onwards, we lean more towards Bachata Sensual. You'll dance with a partner, but partners rotate throughout the class, so you can easily join on your own.",
+    "nl": "Bachata heeft een heerlijk relaxed ritme, soepele bewegingen en een mooie flow waarin je jezelf verliest in de muziek. Het is een creatieve dans waarvan je de basispassen snel oppikt. Ook is er veel ruimte om je eigen stijl te ontdekken. In Level 1 leren we een neutrale Bachatastijl; vanaf Level 2 gaan we meer richting Bachata Sensual. Tijdens de les wissel je steeds van partner, dus je kunt gemakkelijk solo meedoen."
+  },
+  "classes_sub": {
+    "en": "Start with a trial class for €8 and decide afterwards if you'd like to become a member. You can switch between class days. From January 4 to 8, we're hosting our official Try-Out Week, where each class is only €5.",
+    "nl": "Begin met een proefles van €8 en besluit daarna of je lid wilt worden. Het is mogelijk te wisselen tussen lesdagen. Van 4 t/m 8 januari hebben we onze officiële proeflessen. In deze week is elke les slechts €5."
+  },
+  "back_to_back": {
+    "en": "In the try-out week, 4 to 8 January, you can try two levels, €5 each.",
+    "nl": "In de proeflesweek, 4 t/m 8 januari, kun je twee niveaus proberen, €5 per les."
+  },
+  "levels": [
+    {
+      "level": 1,
+      "who": {
+        "en": "you've never danced bachata, or you had classes before and forgot most of it.",
+        "nl": "je nog nooit bachata hebt gedanst, of eerder lessen had en het meeste vergeten bent."
+      },
+      "learn": {
+        "en": "You learn the basic step, easy combinations, your first turns and how leading and following work.",
+        "nl": "Je leert de basispas, makkelijke combinaties, je eerste draaien en hoe leiden en volgen werkt."
+      }
+    },
+    {
+      "level": 2,
+      "who": {
+        "en": "you can dance the bachata basics without thinking.",
+        "nl": "je de basis van bachata danst zonder erbij na te denken."
+      },
+      "learn": {
+        "en": "Leading and following with control and flow, hip movements and the famous head rolls.",
+        "nl": "Leiden en volgen met controle en flow, heupbewegingen en de bekende head rolls."
+      }
+    }
+  ]
+}

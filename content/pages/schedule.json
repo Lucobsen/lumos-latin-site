@@ -1,0 +1,46 @@
+{
+  "meta_title": {
+    "en": "Class schedule, salsa and bachata in Amsterdam",
+    "nl": "Lesrooster, salsa en bachata in Amsterdam"
+  },
+  "intro": {
+    "en": "Book your first class for €8. During our official try-out weeks you pay only €5 per class (next try-out week: 4 to 8 January).",
+    "nl": "Boek je eerste les voor €8. Tijdens onze officiële proeflesweken betaal je slechts €5 per les (eerstvolgende proeflesweek: 4 t/m 8 januari)."
+  },
+  "filter_all": {
+    "en": "All",
+    "nl": "Alles"
+  },
+  "filter_type": {
+    "en": "Type",
+    "nl": "Soort"
+  },
+  "filter_dance": {
+    "en": "Dance",
+    "nl": "Dans"
+  },
+  "filter_level": {
+    "en": "Level",
+    "nl": "Niveau"
+  },
+  "filter_studio": {
+    "en": "Studio",
+    "nl": "Studio"
+  },
+  "type_tryouts": {
+    "en": "Try-outs",
+    "nl": "Proeflessen"
+  },
+  "type_courses": {
+    "en": "Courses",
+    "nl": "Cursussen"
+  },
+  "type_events": {
+    "en": "Events",
+    "nl": "Evenementen"
+  },
+  "open_in_bueno": {
+    "en": "Open the schedule in Bueno",
+    "nl": "Open het rooster in Bueno"
+  }
+}

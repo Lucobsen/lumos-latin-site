@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light">
+<title>Lumos Latin · Editing screen</title>
+<link rel="icon" href="/assets/lumos-gem-icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<style>
+  /* The site's look for the editing screen. Only Sveltia's own colour, font and corner settings
+     (its --sui-* variables) are changed here, so an update of Sveltia keeps working.
+     "html:root" makes these win over Sveltia's own light settings. */
+  html:root[data-theme] {
+    --sui-base-hue: 40;                                   /* warm greys instead of blue-grey */
+    --sui-font-family-default: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --sui-primary-accent-color: #cf2c98;                  /* the site's pink, as on its buttons */
+    --sui-primary-accent-color-text: #b72486;
+    --sui-primary-accent-color-light: #d9479f;
+    --sui-primary-accent-color-dark: #b72486;
+    --sui-primary-accent-color-inverted: #ffffff;
+    --sui-focus-ring-color: #cf2c98;
+    --sui-selected-background-color: #fcefc4;             /* soft Lumos yellow for the open item */
+    --sui-hover-background-color: #fdf6e0;
+    --sui-primary-background-color: #ffffff;              /* white work area, as on the site */
+    --sui-secondary-background-color: #f7f5f0;            /* warm off-white side and top bars */
+    --sui-tertiary-background-color: #efece5;
+    --sui-tertiary-foreground-color: hsl(40 5% 40%);      /* small grey text, readable on the off-white */
+    --sui-secondary-border-color: hsl(40 14% 88%);        /* lighter lines and English/Dutch bars */
+    --sui-control-small-border-radius: 5px;
+    --sui-control-medium-border-radius: 6px;
+    --sui-control-large-border-radius: 7px;
+  }
+  ::selection { background: #ffe7a3; color: #141414; }
+
+  /* "You are editing" bar: the site address of the open item, at the very top of the screen.
+     The editing screen is moved down by the bar's height, so the bar never covers its buttons. */
+  #lumos-bar {
+    display: none; position: fixed; top: 0; left: 0; right: 0; z-index: 1;
+    padding: 7px 16px; background: #fbf1d3; border-bottom: 1px solid hsl(40 30% 80%);
+    font: 14px/1.45 "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif; color: #1f1b16;
+  }
+  body.lumos-bar-on #lumos-bar { display: block; }
+  /* "contain: layout" makes the editing screen's own full-screen layers (the open form, its pop-ups)
+     fit inside the moved-down area as well, instead of the whole window. */
+  body.lumos-bar-on > .app-shell { top: var(--lumos-bar-h, 0px) !important; height: auto !important; contain: layout; }
+  #lumos-bar .lb-label { font-weight: 700; margin-right: 6px; }
+  #lumos-bar .lb-addr { display: inline-block; margin-right: 10px; overflow-wrap: anywhere; }
+  #lumos-bar .lb-lang { font-size: 12px; color: hsl(40 5% 38%); margin-right: 4px; }
+  #lumos-bar a { color: #b72486; font-weight: 500; text-decoration: underline; text-underline-offset: 2px; }
+  #lumos-bar a:hover { color: #cf2c98; }
+  #lumos-bar a:focus-visible { outline: 2px solid #cf2c98; outline-offset: 2px; border-radius: 3px; }
+  #lumos-bar .lb-off { color: hsl(40 5% 30%); }
+  #lumos-bar .lb-note { display: block; font-size: 12.5px; color: hsl(40 5% 36%); }
+  /* New item: the file name it will get, then the page, then how to change the name. */
+  #lumos-bar .lb-name { display: inline-block; margin-right: 14px; }
+  #lumos-bar .lb-name b { font-weight: 700; overflow-wrap: anywhere; }
+  #lumos-bar .lb-narrow { display: none; }
+  @media (max-width: 767.98px) {
+    /* Below this width the editing screen has no side buttons; the Slug panel is in the top menu. */
+    #lumos-bar .lb-wide { display: none; }
+    #lumos-bar .lb-narrow { display: inline; }
+  }
+  @media (max-width: 600px) {
+    #lumos-bar { padding: 6px 12px; font-size: 13px; }
+    #lumos-bar .lb-label { display: block; }
+    #lumos-bar .lb-addr { display: block; }
+    #lumos-bar .lb-name { display: block; }
+    #lumos-bar .lb-name .lb-label, #lumos-bar .lb-page .lb-label { display: inline; }
+    #lumos-bar .lb-page .lb-addr { display: inline-block; }
+  }
+</style>
+<script>
+  // Always the light look, also when the computer is set to dark mode.
+  (function () {
+    var root = document.documentElement;
+    function light() { if (root.dataset.theme !== "light") root.dataset.theme = "light"; }
+    new MutationObserver(light).observe(root, { attributes: true, attributeFilter: ["data-theme"] });
+  })();
+</script>
+</head>
+<body>
+<!-- The editing screen. Its settings are in config.yml next to this file. -->
+<script src="https://unpkg.com/@sveltia/cms@0.233.1/dist/sveltia-cms.js"></script>
+<div id="lumos-bar" aria-live="polite"></div>
+<script>
+// page addresses start (written by make_config.py)
+window.LUMOS_PAGES = {"base":"https://lumos-latin.vercel.app","collections":{"events":{"pattern":{"en":"/en/events/{slug}/","nl":"/nl/evenementen/{slug}/"},"new_slug":["date","title.en"],"slug_from":"the date and the English title","off_note":"This event has no page on the site right now. If you saved it in the last few minutes, wait 2 minutes and reload this screen. Otherwise today is outside its Show from and Hide after dates, or it is an older past event (only the latest past event of each kind stays on the site)."},"news":{"all":{"en":"/en/#news","nl":"/nl/#news","note":"The Latest news cards on the home page."},"new_slug":["date","title.en"],"slug_from":"the date and the English title"},"classes":{"per":{"mon-s1":{"en":"/en/salsa/#classes","nl":"/nl/salsa/#classes","note":"Also on the Studios page."},"mon-s2":{"en":"/en/salsa/#classes","nl":"/nl/salsa/#classes","note":"Also on the Studios page."},"mon-s3":{"en":"/en/salsa/#classes","nl":"/nl/salsa/#classes","note":"Also on the Studios page."},"tue-b1c":{"en":"/en/bachata/#classes","nl":"/nl/bachata/#classes","note":"Also on the Studios page."},"tue-b2":{"en":"/en/bachata/#classes","nl":"/nl/bachata/#classes","note":"Also on the Studios page."},"tue-s1":{"en":"/en/salsa/#classes","nl":"/nl/salsa/#classes","note":"Also on the Studios page."},"wed-r":{"en":"/en/reggaeton/#classes","nl":"/nl/reggaeton/#classes","note":"Also on the Studios page."},"wed-s2":{"en":"/en/salsa/#classes","nl":"/nl/salsa/#classes","note":"Also on the Studios page."},"wed-s3":{"en":"/en/salsa/#classes","nl":"/nl/salsa/#classes","note":"Also on the Studios page."}},"new_note":"A new class shows on its dance page (Salsa, Bachata or Reggaeton) and on the Studios page.","new_slug":["id"],"slug_from":"the Code"},"teachers":{"all":{"en":"/en/teachers/","nl":"/nl/docenten/","note":"All teachers are on this one page."},"new_slug":["name"],"slug_from":"the teacher's name"},"studios":{"all":{"en":"/en/studios/","nl":"/nl/studios/","note":"All studios are on this one page."},"new_slug":["key"],"slug_from":"the Code"},"pages":{"per":{"shared":{"en":"/en/","nl":"/nl/","note":"Menu, footer and labels: these texts show on every page."},"home":{"en":"/en/","nl":"/nl/","note":"The home page."},"finder":{"en":"/en/#start","nl":"/nl/#start","note":"The questions at the top of the home page."},"start":{"en":"/en/start/beginner-salsa/","nl":"/nl/start/beginner-salsa/","note":"One of the 9 answer pages after the home page questions; the others are under /start/ too."},"salsa":{"en":"/en/salsa/","nl":"/nl/salsa/"},"bachata":{"en":"/en/bachata/","nl":"/nl/bachata/"},"reggaeton":{"en":"/en/reggaeton/","nl":"/nl/reggaeton/"},"dances":{"en":"/en/salsa/","nl":"/nl/salsa/","note":"Also on the Bachata and Reggaeton pages."},"schedule":{"en":"/en/schedule/","nl":"/nl/rooster/"},"prices":{"en":"/en/prices/","nl":"/nl/prijzen/"},"studios":{"en":"/en/studios/","nl":"/nl/studios/"},"events":{"en":"/en/events/","nl":"/nl/evenementen/"},"teachers":{"en":"/en/teachers/","nl":"/nl/docenten/"},"contact":{"en":"/en/contact/","nl":"/nl/contact/"},"privacy":{"en":"/en/privacy/","nl":"/nl/privacy/"}}},"_singletons":{"per":{"prices":{"en":"/en/prices/","nl":"/nl/prijzen/"},"reviews":{"en":"/en/","nl":"/nl/","note":"Also on the answer pages after the home page questions."},"faq":{"en":"/en/contact/","nl":"/nl/contact/"},"settings":{"en":"/en/","nl":"/nl/","note":"Phone, links and other settings used on every page."}}}}};
+// page addresses end
+// optional groups start (written by req_groups.py)
+window.LUMOS_FREE_GROUPS = {"events":["button","text"],"news":["badge","button","sticker","text","when"],"teachers":["bio","role"],"studios":["area"],"pages/shared":["and","cta","date_to","days.mon","days.tue","days.wed","days_long.mon","days_long.tue","days_long.wed","every","footer_about","footer_classes","footer_contact","footer_dances","footer_follow","footer_school","menu","nav_contact","nav_dances","nav_events","nav_prices","nav_schedule","nav_studios","nav_teachers","no_levels","per_class","privacy_label","rights","teacher_tbc","then_course","then_drop_in","tryout_label"],"pages/home":["browse_link","dance_lines.bachata","dance_lines.reggaeton","dance_lines.salsa","dances_sub","dances_title","hero_note","hero_note_label","hero_sub","hero_sub2","meta_description","meta_title","more_about","news_all_link","news_first_label","news_title","next_up_label","notices.text","reviews_line","reviews_title","studios_button","studios_text","studios_title","trust_reviews","trust_studios"],"pages/finder":["back","check.bachata","check.salsa","check_opts.no","check_opts.unsure","check_opts.yes","compare","compare_q","compare_title","one_more","q1","q1_opts.few","q1_opts.never","q1_opts.regular","q1_reggaeton.sub","q1_reggaeton.title","q1_subs.few","q1_subs.never","q1_subs.regular","q2","q2_opts.bachata","q2_opts.reggaeton","q2_opts.salsa","q2_opts.unsure","q2_subs.bachata","q2_subs.reggaeton","q2_subs.salsa","q2_subs.unsure","restart","restart_top","step","welcome","your_classes","your_next","your_start"],"pages/start":["answers.beginner_bachata.cta","answers.beginner_bachata.intro","answers.beginner_bachata.second_label","answers.beginner_bachata.title","answers.beginner_salsa.cta","answers.beginner_salsa.intro","answers.beginner_salsa.second_label","answers.beginner_salsa.title","answers.between_bachata.cta","answers.between_bachata.intro","answers.between_bachata.second_label","answers.between_bachata.title","answers.between_salsa.cta","answers.between_salsa.intro","answers.between_salsa.second_label","answers.between_salsa.title","answers.dancer_bachata.cta","answers.dancer_bachata.intro","answers.dancer_bachata.second_label","answers.dancer_bachata.title","answers.dancer_salsa.cta","answers.dancer_salsa.intro","answers.dancer_salsa.second_label","answers.dancer_salsa.title","answers.improver_bachata.cta","answers.improver_bachata.intro","answers.improver_bachata.second_label","answers.improver_bachata.title","answers.improver_salsa.cta","answers.improver_salsa.intro","answers.improver_salsa.second_label","answers.improver_salsa.title","answers.reggaeton.cta","answers.reggaeton.intro","answers.reggaeton.second_label","answers.reggaeton.title","between_link","dancer_extras.heading","dancer_extras.text","first_class_items.text","first_class_items.title","first_class_sub","first_class_title","night_extras.heading","night_extras.text","you_if.bachata_1","you_if.bachata_2","you_if.salsa_1","you_if.salsa_2","you_if.salsa_3"],"pages/salsa":["back_to_back","classes_sub","intro","levels.learn","levels.who","meta_title","title"],"pages/bachata":["back_to_back","classes_sub","intro","levels.learn","levels.who","meta_title","title"],"pages/reggaeton":["about_title","card_learn","card_title","card_who","classes_sub","intro","meta_title","price_sub","price_title","title"],"pages/dances":["classes_title","course_line","cta_title","drop_in_line","finder_button","levels_title","prices_button","schedule_button","table_headings.class","table_headings.then","table_headings.tryout","tip_label","worries.text","worries.title","worries_sub","worries_title","you_if_label"],"pages/schedule":["filter_all","filter_dance","filter_level","filter_studio","filter_type","intro","meta_title","open_in_bueno","type_courses","type_events","type_tryouts"],"pages/prices":["intro","members_start","members_sub","members_title","meta_title","note","quiz.best_for_you","quiz.clear","quiz.placeholder","quiz.questions.options.label","quiz.questions.question","quiz.results.course_months.button_label","quiz.results.course_months.line","quiz.results.course_months.name","quiz.results.course_months.per","quiz.results.course_then_member.button_label","quiz.results.course_then_member.line","quiz.results.course_then_member.name","quiz.results.course_then_member.per","quiz.results.member_essential.button_label","quiz.results.member_essential.line","quiz.results.member_essential.name","quiz.results.member_essential.per","quiz.results.member_extra_live.button_label","quiz.results.member_extra_live.line","quiz.results.member_extra_live.name","quiz.results.member_extra_live.per","quiz.results.member_extra_months.button_label","quiz.results.member_extra_months.line","quiz.results.member_extra_months.name","quiz.results.member_extra_months.per","quiz.results.punch_months.button_label","quiz.results.punch_months.line","quiz.results.punch_months.name","quiz.results.punch_months.per","quiz.results.punch_short.button_label","quiz.results.punch_short.line","quiz.results.punch_short.name","quiz.results.punch_short.per","quiz.results.tryout.button_label","quiz.results.tryout.line","quiz.results.tryout.name","quiz.results.tryout.per","quiz.results.tryout_single.button_label","quiz.results.tryout_single.line","quiz.results.tryout_single.name","quiz.results.tryout_single.per","quiz.title","table_headings.classes_a_week","table_headings.monthly","table_headings.six_months","table_headings.social_perk"],"pages/studios":["beginners_only","classes_word","directions_button","intro","map_caption","map_title","meta_title","no_weekly_classes","no_workshops","notices.note","notices.text","notices.title","tryout_label","workshops_heading","workshops_tags"],"pages/events":["back_label","earlier","empty_text","first_label","intro","kinds.label","map_hint","meta_title"],"pages/teachers":["meta_title"],"pages/contact":["email_title","faq_title","intro","meta_title","phone_title","whatsapp_note","whatsapp_title"],"pages/privacy":["intro","sections.heading","sections.note","sections.text","title"],"_singletons/prices":["cards.badge","cards.button_label","cards.buttons.label","cards.name","cards.per","cards.what","memberships.classes_a_week","memberships.per_class","memberships.social_perk","reggaeton_strip.detail","reggaeton_strip.name"],"_singletons/faq":["questions.answer","questions.question"]};
+// optional groups end
+</script>
+<script>
+  // The "You are editing" bar. It reads only the address bar of the editing screen
+  // (#/collections/<list>/entries/<item>, #/collections/<list>/new, #/collections/_singletons/entries/<file>)
+  // and the table above, so it shows nothing on the overview and the lists, and saves nothing.
+  (function () {
+    var M = window.LUMOS_PAGES, bar = document.getElementById("lumos-bar"), shown = null;
+    if (!M || !bar) return;
+    // Links go to the site this editing screen is on (the test copy, the hidden copy or the live site).
+    if (/^https?:/.test(location.origin)) M.base = location.origin;
+    // Whether an event page exists right now: asked from the site itself, once per opened item.
+    var pageState = {};
+    function checkPage(path) {
+      if (pageState[path]) return pageState[path];
+      pageState[path] = "checking";
+      fetch(M.base + path, { method: "HEAD", cache: "no-store" })
+        .then(function (r) { pageState[path] = r.ok ? "on" : "off"; shown = null; update(); })
+        .catch(function () { pageState[path] = "on"; shown = null; update(); });
+      return "checking";
+    }
+    var SAVE_NOTE = "Boxes marked * must be filled in; all others may stay empty. After you click Save, the site shows the change in about 2 minutes.";
+    var KEEP_NOTE = " The file name and page address stay the same if you change the title.";
+    var DELETE_NOTE = " To delete this item: the ⋮ button at the top right, then Delete.";
+    function esc(s) {
+      return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; });
+    }
+    function slugify(s) {
+      return s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+    }
+    function field(path) {
+      var el = document.querySelector('[data-key-path="' + path + '"] input');
+      return el ? el.value.trim() : "";
+    }
+    function addresses(pair, link) {
+      return ["en", "nl"].map(function (lang) {
+        var p = pair[lang], full = M.base + p;
+        var label = '<span class="lb-lang">' + (lang === "en" ? "English" : "Dutch") + "</span>";
+        return '<span class="lb-addr">' + label + (link
+          ? '<a href="' + esc(full) + '" target="_blank" rel="noopener" title="' + esc(full) + '">' + esc(p) + "</a>"
+          : '<span class="lb-off">' + esc(p) + "</span>") + "</span>";
+      }).join("");
+    }
+    // The name shown in the editing screen's own Slug panel (only there while the panel is open).
+    function panelSlug() {
+      var hs = document.querySelectorAll("section.panel h3");
+      for (var i = 0; i < hs.length; i++) {
+        if (hs[i].textContent.trim() !== "Slug") continue;
+        var v = hs[i].closest("section.panel").querySelector('[role="textbox"]');
+        return v ? v.textContent.trim() : "";
+      }
+      return "";
+    }
+    var custom = null, customRoute = null;
+    // A new item: the file name it will get (and for events the page address), updated while typing.
+    // If the owner changed the name in the Slug panel, that name is shown instead.
+    function newItem(h, c) {
+      var parts = c.new_slug.map(field), ready = parts.every(Boolean);
+      var auto = ready ? slugify(parts.join("-")) : "", seen = panelSlug();
+      if (h !== customRoute) { custom = null; customRoute = h; }
+      if (seen && ready) custom = seen !== auto ? seen : null;
+      var name = custom || auto, where = "";
+      if (c.pattern && name) {
+        where = '<span class="lb-page"><span class="lb-label">Page</span>' + addresses({
+          en: c.pattern.en.replace("{slug}", name), nl: c.pattern.nl.replace("{slug}", name) }, false) + "</span>";
+      } else if (c.all) {
+        where = '<span class="lb-page"><span class="lb-label">Shows on</span>' + addresses(c.all, true) + "</span>";
+      } else if (c.new_note) {
+        where = '<span class="lb-note">' + esc(c.new_note) + "</span>";
+      }
+      return '<span class="lb-name"><span class="lb-label">Will be saved as</span>' +
+        (name ? "<b>" + esc(name) + "</b>" : '<span class="lb-off">shown once you fill in ' + esc(c.slug_from) + ".</span>") +
+        "</span>" + where +
+        '<span class="lb-note">The name is made from ' + esc(c.slug_from) + ". To change it before saving, open " +
+        '<span class="lb-wide">Slug (the anchor button on the right)</span>' +
+        '<span class="lb-narrow">the ⋮ menu at the top, then Slug</span>. After saving it stays fixed.</span>' +
+        '<span class="lb-note">' + esc(SAVE_NOTE) + "</span>";
+    }
+    function view() {
+      var h = location.hash.replace(/^#/, "").split("?")[0];
+      var m = h.match(/^\/collections\/([^\/]+)\/(?:entries\/(.+)|new)$/);
+      var c = m && M.collections[m[1]];
+      if (!c) return "";
+      if (!m[2] && c.new_slug) return newItem(h, c);
+      var slug = m[2] ? decodeURIComponent(m[2]) : "", isNew = !m[2];
+      var label = isNew ? "This new item will be on" : "You are editing";
+      var pair = c.all || (c.per && c.per[slug]), note = "", link = true;
+      if (!pair && c.pattern) {
+        pair = { en: c.pattern.en.replace("{slug}", slug), nl: c.pattern.nl.replace("{slug}", slug) };
+        var st = checkPage(pair.en);
+        if (st === "off") { link = false; note = c.off_note; }
+        if (st === "checking") { link = false; note = "Checking whether this page is on the site..."; }
+      }
+      if (!pair) return '<span class="lb-label">New item:</span>' + esc(c.new_note || "its address is known after saving.");
+      note = note || pair.note || "";
+      var how = SAVE_NOTE + (c.new_slug && !isNew ? KEEP_NOTE + DELETE_NOTE : "");
+      return '<span class="lb-label">' + label + "</span>" + addresses(pair, link) +
+        (note ? '<span class="lb-note">' + esc(note) + "</span>" : "") +
+        '<span class="lb-note">' + esc(how) + "</span>";
+    }
+    function update() {
+      var html = view();
+      if (html === shown) return;
+      shown = html;
+      bar.innerHTML = html;
+      document.body.classList.toggle("lumos-bar-on", !!html);
+      document.documentElement.style.setProperty("--lumos-bar-h", html ? bar.offsetHeight + "px" : "0px");
+    }
+    window.addEventListener("hashchange", function () { pageState = {}; update(); });
+    window.addEventListener("resize", function () { shown = null; update(); });
+    setInterval(update, 700); // also picks up the date and title typed into a new event
+    update();
+  })();
+
+  // Less to trip over: hide the "now available on mobile" advert, and the two menu items that empty
+  // or reset every box of an item at once ("Restore Default", "Clear All"). Unsaved typing can still
+  // be undone with "Revert Changes", and nothing is lost until Save is clicked.
+  (function () {
+    var HIDE = ["Restore Default", "Clear All"];
+    var queued = false;
+    function tidy() {
+      queued = false;
+      document.querySelectorAll(".infobar").forEach(function (el) {
+        if (/available on mobile/i.test(el.textContent)) el.style.display = "none";
+      });
+      document.querySelectorAll('[role="menuitem"]').forEach(function (el) {
+        if (HIDE.indexOf(el.textContent.trim()) >= 0) el.style.display = "none";
+      });
+      // A group of boxes (English and Dutch, say) gets a red * from the editing screen even when
+      // nothing inside it has to be filled in. Then the group's * is hidden, so * always means
+      // "you cannot save without this".
+      // The groups come from window.LUMOS_FREE_GROUPS (written from config.yml by req_groups.py).
+      var m = location.hash.match(/^#\/collections\/([^\/?]+)\/(?:entries\/([^\/?]+)|new)/);
+      var free = m && window.LUMOS_FREE_GROUPS &&
+        (window.LUMOS_FREE_GROUPS[m[1] + "/" + decodeURIComponent(m[2] || "")] || window.LUMOS_FREE_GROUPS[m[1]]);
+      if (!free) return;
+      document.querySelectorAll("section[data-key-path]").forEach(function (sec) {
+        var star = sec.querySelector(":scope > header > .required");
+        var path = sec.dataset.keyPath.split(".").filter(function (p) { return !/^\d+$/.test(p); }).join(".");
+        if (star && free.indexOf(path) >= 0) star.style.display = "none";
+      });
+    }
+    new MutationObserver(function () {
+      if (!queued) { queued = true; requestAnimationFrame(tidy); }
+    }).observe(document.body, { childList: true, subtree: true });
+  })();
+</script>
+</body>
+</html>

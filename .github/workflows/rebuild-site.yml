@@ -1,0 +1,57 @@
+# Rebuilds the pages in prototype/ from the files in content/.
+# Runs after every save in the editing screen (/admin/), which changes content/,
+# and once every night, so dated events, news and notices appear and disappear on time.
+# If nothing changed, it commits nothing.
+
+name: Rebuild site
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "content/**"
+      - "tools/**"
+  schedule:
+    - cron: "15 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rebuild-site
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Europe/Amsterdam
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build the pages
+        run: python tools/build_prototype.py
+      - name: Save the new pages
+        run: |
+          git config user.name "Lumos site builder"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add prototype
+          if git diff --cached --quiet; then
+            echo "Nothing changed."
+          else
+            git commit -m "Rebuild pages from content"
+            git pull --rebase
+            git push
+          fi
+      # Vercel's free plan does not publish commits made by anyone other than the
+      # account owner (such as a save in the editing screen, or the commit above).
+      # A Vercel deploy hook publishes main anyway. Its address is kept in the repo
+      # secret VERCEL_DEPLOY_HOOK; without that secret this step does nothing.
+      - name: Publish on Vercel
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          if [ -n "$HOOK" ]; then curl -fsS -X POST "$HOOK"; else echo "No VERCEL_DEPLOY_HOOK secret, skipped."; fi

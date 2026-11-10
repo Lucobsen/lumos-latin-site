@@ -1,0 +1,2948 @@
+# Editing screen for lumoslatin.nl (Sveltia CMS)
+#
+# This file tells the editing screen at /admin/ which texts can be changed and where they are saved.
+# Every change is saved straight into the content/ folder of the GitHub project. The pages of the
+# site are made from those files, so a change shows on the site after the next build.
+#
+# Fields are listed in the same order as in the files, so saving does not shuffle them.
+
+backend:
+  name: github
+  repo: Lucobsen/lumos-latin-site
+  branch: main
+  # GitHub sign-in goes through a small login service (sveltia-cms-auth) on the
+  # Lumos Cloudflare account, worker "lumos-cms-login". After a save, the GitHub
+  # action in .github/workflows/rebuild-site.yml rebuilds the pages.
+  base_url: https://lumos-cms-login.blue-glade-37d7.workers.dev
+app_title: Lumos Latin
+logo:
+  src: /assets/lumos-gem-icon.svg
+# Saving publishes at once (no drafts and review step).
+publish_mode: simple
+# Photos live in prototype/assets/photos. Events and news store just the file name.
+media_folder: prototype/assets/photos
+public_folder: /assets/photos
+# Every uploaded photo is shrunk in the browser before it is saved: at most 1600 pixels
+# wide or high, saved as WebP at quality 82, so a 5 MB phone photo becomes about 200 KB.
+# A file still over 3 MB after that is refused.
+media_libraries:
+  default:
+    config:
+      max_file_size: 3000000
+      slugify_filename: true
+      transformations:
+        raster_image:
+          format: webp
+          quality: 82
+          width: 1600
+          height: 1600
+        svg:
+          optimize: true
+slug:
+  encoding: unicode
+  clean_accents: true
+  sanitize_replacement: '-'
+output:
+  omit_empty_optional_fields: false
+  json:
+    indent_style: space
+    indent_size: 2
+collections:
+- name: events
+  label: Events
+  label_singular: Event
+  icon: celebration
+  description: Socials, workshops and game nights. Each event gets its own page. After its date, an event stays
+    under Earlier until a newer one of the same kind has passed; then it leaves the site by itself.
+  folder: content/events
+  format: json
+  extension: json
+  create: true
+  identifier_field: title.en
+  thumbnail: image
+  slug:
+    template: '{{fields.date}}-{{fields.title.en}}'
+    editable:
+    - create
+    hint: The file name, made from the date and the English title. You can change it before the first save; after
+      saving it stays fixed. For an event it is also the page address.
+    pattern:
+    - ^[a-z0-9]+(-[a-z0-9]+)*$
+    - Use only small letters, numbers and dashes, with no spaces.
+  summary: '{{fields.date}} · {{fields.title.en}}'
+  sortable_fields: &newest_first
+    fields:
+    - date
+    - title.en
+    default:
+      field: date
+      direction: descending
+  fields:
+  - name: kind
+    label: Kind
+    widget: select
+    options:
+    - label: Social
+      value: socials
+    - label: Workshop
+      value: workshops
+    - label: Game night
+      value: game-nights
+    required: true
+  - name: date
+    label: Date
+    widget: datetime
+    type: date
+    format: YYYY-MM-DD
+    required: true
+    hint: The day of the event.
+  - name: show_from
+    label: Show from
+    widget: datetime
+    type: date
+    format: YYYY-MM-DD
+    required: false
+    hint: First day it shows on the site. It appears by itself early that morning (by about 6:00). Leave empty to show it straight away.
+  - name: hide_after
+    label: Hide after
+    widget: datetime
+    type: date
+    format: YYYY-MM-DD
+    required: false
+    hint: Last day it shows on the site. It disappears by itself early the next morning (by about 6:00). Leave empty to keep it.
+  - name: time
+    label: Time
+    widget: string
+    required: false
+    hint: Free text, as it should show, e.g. 20:00–00:00 or 13:00–14:15 · 14:45–16:00. Leave empty if there is no
+      time.
+    pattern: &no_quotes_rule
+    - ^[^<"]*$
+    - Please leave out < and double quotes (").
+  - name: title
+    label: Title
+    widget: object
+    fields: &english_dutch_english_required_no_quotes
+    - name: en
+      label: English
+      widget: string
+      required: true
+      pattern: *no_quotes_rule
+    - name: nl
+      label: Dutch
+      widget: string
+      required: false
+      pattern: *no_quotes_rule
+    hint: The English title also names the file.
+  - name: place
+    label: Place
+    widget: string
+    required: false
+    hint: Venue and address, e.g. TG Spaces, Zeeburgerpad 22, Amsterdam. Start with the studio name so the event
+      also shows on that studio's card.
+    pattern: *no_quotes_rule
+  - name: text
+    label: Text
+    widget: object
+    fields: &english_dutch_long
+    - name: en
+      label: English
+      widget: text
+      required: false
+    - name: nl
+      label: Dutch
+      widget: text
+      required: false
+  - name: image
+    label: Photo
+    widget: image
+    required: false
+    media_folder: /prototype/assets/photos
+    public_folder: ''
+    hint: Photos are kept in the site's photo folder. Leave empty for no photo.
+  - name: button
+    label: Button text
+    widget: object
+    fields: &english_dutch_no_quotes
+    - name: en
+      label: English
+      widget: string
+      required: false
+      pattern: *no_quotes_rule
+    - name: nl
+      label: Dutch
+      widget: string
+      required: false
+      pattern: *no_quotes_rule
+    hint: Leave both empty for no button.
+  - name: link
+    label: Link
+    widget: string
+    required: false
+    hint: 'Where the button goes. A full web address (https://...), or one of these short codes for a page of this
+      site, typed exactly: home#start, schedule, schedule?filter=tryouts, salsa, bachata, reggaeton, #members. Type
+      buy_link to use the shop link from Settings.'
+  editor:
+    preview: false
+- name: news
+  label: News
+  label_singular: News item
+  icon: newspaper
+  description: The Latest news cards on the home page.
+  folder: content/news
+  format: json
+  extension: json
+  create: true
+  identifier_field: title.en
+  thumbnail: image
+  slug:
+    template: '{{fields.date}}-{{fields.title.en}}'
+    editable:
+    - create
+    hint: The file name, made from the date and the English title. You can change it before the first save; after
+      saving it stays fixed.
+    pattern:
+    - ^[a-z0-9]+(-[a-z0-9]+)*$
+    - Use only small letters, numbers and dashes, with no spaces.
+  summary: '{{fields.date}} · {{fields.title.en}}'
+  sortable_fields: *newest_first
+  fields:
+  - name: date
+    label: Date
+    widget: datetime
+    type: date
+    format: YYYY-MM-DD
+    required: true
+    hint: The date the news is about; it sets the order.
+  - name: show_from
+    label: Show from
+    widget: datetime
+    type: date
+    format: YYYY-MM-DD
+    required: false
+    hint: First day it shows on the site. It appears by itself early that morning (by about 6:00). Leave empty to show it straight away.
+  - name: hide_after
+    label: Hide after
+    widget: datetime
+    type: date
+    format: YYYY-MM-DD
+    required: false
+    hint: Last day it shows on the site. It disappears by itself early the next morning (by about 6:00). Leave empty to keep it.
+  - name: title
+    label: Title
+    widget: object
+    fields: *english_dutch_english_required_no_quotes
+    hint: The English title also names the file.
+  - name: when
+    label: When
+    widget: object
+    fields: &english_dutch
+    - name: en
+      label: English
+      widget: string
+      required: false
+    - name: nl
+      label: Dutch
+      widget: string
+      required: false
+    hint: As it should show, e.g. 26 October to 3 November.
+  - name: text
+    label: Text
+    widget: object
+    fields: *english_dutch_long
+  - name: image
+    label: Photo
+    widget: image
+    required: false
+    media_folder: /prototype/assets/photos
+    public_folder: ''
+    hint: Photos are kept in the site's photo folder. Leave empty for no photo.
+  - name: badge
+    label: Price badge
+    widget: object
+    fields: *english_dutch_no_quotes
+    hint: Short text shown in a yellow box in the photo's place when there is no photo, e.g. €5. Leave empty for
+      no box.
+  - name: big
+    label: Big card
+    widget: boolean
+    required: false
+    hint: 'On: a big card at the front.'
+  - name: sticker
+    label: Sticker
+    widget: object
+    fields: *english_dutch_no_quotes
+    hint: A small sticker on the card. Leave both empty for none.
+  - name: button
+    label: Button text
+    widget: object
+    fields: *english_dutch_no_quotes
+    hint: Leave both empty for no button.
+  - name: link
+    label: Link
+    widget: string
+    required: false
+    hint: 'Where the button goes. A full web address (https://...), or one of these short codes for a page of this
+      site, typed exactly: home#start, schedule, schedule?filter=tryouts, salsa, bachata, reggaeton, #members. Type
+      buy_link to use the shop link from Settings.'
+  editor:
+    preview: false
+- name: classes
+  label: Classes
+  label_singular: Class
+  icon: calendar_month
+  description: The weekly classes and their try-outs.
+  folder: content/classes
+  format: json
+  extension: json
+  create: true
+  identifier_field: id
+  slug:
+    template: '{{fields.id}}'
+    editable:
+    - create
+    hint: The file name, made from the Code. Best kept the same as the Code. It stays fixed after saving.
+    pattern:
+    - ^[a-z0-9]+(-[a-z0-9]+)*$
+    - Use only small letters, numbers and dashes, with no spaces.
+  summary: '{{fields.id}} · {{fields.day}} {{fields.time}}'
+  sortable_fields:
+  - id
+  fields:
+  - name: id
+    label: Code
+    widget: string
+    required: true
+    hint: Short code, also the file name, e.g. mon-s1. The answer pages use it.
+  - name: day
+    label: Day
+    widget: select
+    options:
+    - label: Monday
+      value: mon
+    - label: Tuesday
+      value: tue
+    - label: Wednesday
+      value: wed
+    required: true
+    hint: Classes run Monday to Wednesday. Another day needs a small change to the site first.
+  - name: time
+    label: Time
+    widget: string
+    required: true
+    hint: Start, e.g. 19:00
+  - name: end
+    label: End time
+    widget: string
+    required: true
+    hint: End, e.g. 20:00
+  - name: dance
+    label: Dance
+    widget: select
+    options: &dances
+    - label: Salsa
+      value: salsa
+    - label: Bachata
+      value: bachata
+    - label: Reggaeton
+      value: reggaeton
+    required: true
+  - name: level
+    label: Level
+    widget: number
+    value_type: int
+    required: true
+    min: 0
+    max: 3
+    hint: '1, 2 or 3. Reggaeton has no levels: 0.'
+  - name: studio
+    label: Studio
+    widget: relation
+    collection: studios
+    value_field: key
+    search_fields:
+    - name
+    - key
+    display_fields:
+    - name
+    required: true
+  - name: teachers
+    label: Teachers
+    widget: relation
+    collection: teachers
+    value_field: name
+    search_fields:
+    - name
+    display_fields:
+    - name
+    multiple: true
+    required: false
+    hint: 'Leave empty if not known yet: the site then says the teacher is to be confirmed.'
+  - name: tryout_date
+    label: Try-out date
+    widget: datetime
+    type: date
+    format: YYYY-MM-DD
+    required: true
+    hint: The day of the €5 try-out.
+  - name: tryout_time
+    label: Try-out time
+    widget: string
+    required: true
+    hint: e.g. 19:00
+  - name: bueno_tryout_id
+    label: Bueno try-out number
+    widget: number
+    value_type: int
+    required: true
+    hint: The number at the end of the Bueno link of the try-out.
+  editor:
+    preview: false
+- divider: true
+- name: teachers
+  label: Teachers
+  label_singular: Teacher
+  icon: school
+  folder: content/teachers
+  format: json
+  extension: json
+  create: true
+  identifier_field: name
+  slug:
+    template: '{{fields.name}}'
+    editable:
+    - create
+    hint: The file name, made from the teacher's name. You can change it before the first save; after saving it
+      stays fixed.
+    pattern:
+    - ^[a-z0-9]+(-[a-z0-9]+)*$
+    - Use only small letters, numbers and dashes, with no spaces.
+  summary: '{{fields.name}}'
+  thumbnail: photo
+  sortable_fields:
+  - order
+  - name
+  fields:
+  - name: order
+    label: Order on the page
+    widget: number
+    value_type: int
+    required: true
+    hint: 1 shows first.
+  - name: name
+    label: Name
+    widget: string
+    required: true
+    hint: Also used on the classes, so keep it the same as there.
+  - name: role
+    label: Role
+    widget: object
+    fields: *english_dutch
+  - name: bio
+    label: About
+    widget: object
+    fields: *english_dutch_long
+  - name: photo
+    label: Photo
+    widget: image
+    required: false
+    media_folder: /prototype/assets/photos
+    public_folder: ''
+    hint: Photos are kept in the site's photo folder. Leave empty for no photo.
+  editor:
+    preview: false
+- name: studios
+  label: Studios
+  label_singular: Studio
+  icon: location_on
+  folder: content/studios
+  format: json
+  extension: json
+  create: true
+  identifier_field: name
+  slug:
+    template: '{{fields.key}}'
+    editable:
+    - create
+    hint: The file name, made from the Code. Best kept the same as the Code. It stays fixed after saving.
+    pattern:
+    - ^[a-z0-9]+(-[a-z0-9]+)*$
+    - Use only small letters, numbers and dashes, with no spaces.
+  summary: '{{fields.name}}'
+  sortable_fields:
+  - pin
+  - name
+  fields:
+  - name: key
+    label: Code
+    widget: string
+    required: true
+    hint: 'Short code, e.g. veem. Classes and notices use it: do not change it later.'
+  - name: pin
+    label: Order on the page
+    widget: number
+    value_type: int
+    required: true
+    hint: 1 shows first.
+  - name: name
+    label: Name
+    widget: string
+    required: true
+  - name: address
+    label: Address
+    widget: string
+    required: false
+  - name: area
+    label: Area
+    widget: object
+    fields: *english_dutch
+    hint: e.g. West, East, De Pijp.
+  - name: dances
+    label: Dances
+    widget: select
+    options: *dances
+    required: false
+    multiple: true
+    hint: The weekly classes here.
+  - name: days
+    label: Days
+    widget: select
+    options: &weekdays
+    - label: Monday
+      value: mon
+    - label: Tuesday
+      value: tue
+    - label: Wednesday
+      value: wed
+    - label: Thursday
+      value: thu
+    - label: Friday
+      value: fri
+    - label: Saturday
+      value: sat
+    - label: Sunday
+      value: sun
+    required: false
+    multiple: true
+    hint: The days with weekly classes here.
+  - name: beginners_only
+    label: Beginners only
+    widget: boolean
+    required: false
+  - name: workshops_only
+    label: Workshops only
+    widget: boolean
+    required: false
+    hint: 'On: no weekly classes, only workshops.'
+  - name: maps_link
+    label: Google Maps link
+    widget: string
+    required: false
+    hint: The Open in Google Maps link.
+  - name: map_coordinates
+    label: Map position (latitude,longitude)
+    widget: string
+    required: false
+    hint: For the map, e.g. 52.3526079,4.8914267. Right-click the spot in Google Maps to copy it.
+  - name: bueno_location_ids
+    label: Bueno location number
+    widget: string
+    required: false
+    hint: The location number in Bueno, e.g. 1815.
+  editor:
+    preview: false
+- name: pages
+  label: Pages
+  icon: article
+  description: The fixed texts of each page, in English and Dutch.
+  format: json
+  files:
+  - name: shared
+    label: Shared texts (menu, footer, labels)
+    file: content/pages/shared.json
+    fields:
+    - name: days
+      label: Days
+      widget: object
+      collapsed: true
+      fields:
+      - name: mon
+        label: Monday
+        widget: object
+        fields: *english_dutch
+      - name: tue
+        label: Tuesday
+        widget: object
+        fields: *english_dutch
+      - name: wed
+        label: Wednesday
+        widget: object
+        fields: *english_dutch
+    - name: cta
+      label: Main button
+      widget: object
+      fields: *english_dutch
+    - name: nav_schedule
+      label: 'Menu: Schedule'
+      widget: object
+      fields: *english_dutch
+    - name: nav_prices
+      label: 'Menu: Prices'
+      widget: object
+      fields: *english_dutch
+    - name: nav_studios
+      label: 'Menu: Studios'
+      widget: object
+      fields: *english_dutch
+    - name: nav_events
+      label: 'Menu: Events'
+      widget: object
+      fields: *english_dutch
+    - name: nav_teachers
+      label: 'Menu: Teachers'
+      widget: object
+      fields: *english_dutch
+    - name: nav_dances
+      label: 'Menu: Dances'
+      widget: object
+      fields: *english_dutch
+    - name: nav_contact
+      label: 'Menu: Contact'
+      widget: object
+      fields: *english_dutch
+    - name: menu
+      label: Menu
+      widget: object
+      fields: *english_dutch
+    - name: days_long
+      label: Days (long)
+      widget: object
+      collapsed: true
+      fields:
+      - name: mon
+        label: Monday
+        widget: object
+        fields: *english_dutch
+      - name: tue
+        label: Tuesday
+        widget: object
+        fields: *english_dutch
+      - name: wed
+        label: Wednesday
+        widget: object
+        fields: *english_dutch
+    - name: and
+      label: And
+      widget: object
+      fields: *english_dutch
+    - name: every
+      label: Every
+      widget: object
+      fields: *english_dutch
+    - name: date_to
+      label: Date to
+      widget: object
+      fields: *english_dutch
+    - name: teacher_tbc
+      label: Teacher not known yet
+      widget: object
+      fields: *english_dutch
+    - name: no_levels
+      label: No levels
+      widget: object
+      fields: *english_dutch
+    - name: tryout_label
+      label: Try-out label
+      widget: object
+      fields: *english_dutch
+    - name: then_course
+      label: Then course
+      widget: object
+      fields: *english_dutch
+    - name: then_drop_in
+      label: Then drop-in
+      widget: object
+      fields: *english_dutch
+    - name: per_class
+      label: Per class
+      widget: object
+      fields: *english_dutch
+    - name: footer_about
+      label: Footer about
+      widget: object
+      fields: *english_dutch_long
+    - name: footer_contact
+      label: Footer contact
+      widget: object
+      fields: *english_dutch
+    - name: footer_dances
+      label: Footer dances
+      widget: object
+      fields: *english_dutch
+    - name: footer_classes
+      label: Footer classes
+      widget: object
+      fields: *english_dutch
+    - name: footer_school
+      label: Footer school
+      widget: object
+      fields: *english_dutch
+    - name: footer_follow
+      label: Footer follow
+      widget: object
+      fields: *english_dutch
+    - name: rights
+      label: Rights
+      widget: object
+      fields: *english_dutch
+    - name: privacy_label
+      label: Privacy label
+      widget: object
+      fields: *english_dutch
+  - name: home
+    label: Home
+    file: content/pages/home.json
+    fields:
+    - name: meta_title
+      label: Title in Google and the browser tab
+      widget: object
+      fields: *english_dutch
+    - name: meta_description
+      label: Description in Google
+      widget: object
+      fields: *english_dutch_long
+    - name: title
+      label: Title
+      widget: string
+      required: false
+      hint: 'Keep the parts in < > (like <span class="hl"> or <b>) as they are: they set the look.'
+    - name: dances_line
+      label: Dances line
+      widget: string
+      required: false
+    - name: hero_sub
+      label: Line under the title
+      widget: object
+      fields: *english_dutch_long
+    - name: hero_sub2
+      label: Second line under the title
+      widget: object
+      fields: *english_dutch
+    - name: next_up_label
+      label: Next up label
+      widget: object
+      fields: *english_dutch
+    - name: notices
+      label: Notices
+      widget: list
+      required: false
+      fields:
+      - name: show_from
+        label: Show from
+        widget: datetime
+        type: date
+        format: YYYY-MM-DD
+        required: false
+        hint: First day it shows on the site. It appears by itself early that morning (by about 6:00). Leave empty to show it straight away.
+      - name: hide_after
+        label: Hide after
+        widget: datetime
+        type: date
+        format: YYYY-MM-DD
+        required: false
+        hint: Last day it shows on the site. It disappears by itself early the next morning (by about 6:00). Leave empty to keep it.
+      - name: place
+        label: Place
+        widget: string
+        required: true
+        hint: 'Where it shows. next_up: the Next up line under the top of the home page.'
+      - name: text
+        label: Text
+        widget: object
+        fields: *english_dutch_long
+      - name: link
+        label: Link
+        widget: string
+        required: false
+        hint: 'A full web address (https://...), or one of these short codes for a page of this site, typed exactly:
+          home#start, schedule, schedule?filter=tryouts, salsa, bachata, reggaeton, #members. Type buy_link to use
+          the shop link from Settings.'
+      summary: '{{text.en}}'
+    - name: trust_reviews
+      label: Reviews line at the top
+      widget: object
+      fields: *english_dutch
+      hint: 'Keep {count} as it is: the number is filled in there.'
+    - name: trust_studios
+      label: Studios line at the top
+      widget: object
+      fields: *english_dutch
+    - name: hero_note_label
+      label: Hero note label
+      widget: object
+      fields: *english_dutch
+    - name: hero_note
+      label: Hero note
+      widget: object
+      fields: *english_dutch
+    - name: browse_link
+      label: Browse link
+      widget: object
+      fields: *english_dutch
+    - name: news_title
+      label: News title
+      widget: object
+      fields: *english_dutch
+    - name: news_all_link
+      label: News all link
+      widget: object
+      fields: *english_dutch
+    - name: news_first_label
+      label: News first label
+      widget: object
+      fields: *english_dutch
+    - name: dances_title
+      label: Dances title
+      widget: object
+      fields: *english_dutch
+    - name: dances_sub
+      label: Dances sub
+      widget: object
+      fields: *english_dutch
+    - name: dance_lines
+      label: Dance lines
+      widget: object
+      collapsed: true
+      fields:
+      - name: salsa
+        label: Salsa
+        widget: object
+        fields: *english_dutch
+      - name: bachata
+        label: Bachata
+        widget: object
+        fields: *english_dutch
+      - name: reggaeton
+        label: Reggaeton
+        widget: object
+        fields: *english_dutch
+    - name: more_about
+      label: More about
+      widget: object
+      fields: *english_dutch
+    - name: reviews_title
+      label: Reviews title
+      widget: object
+      fields: *english_dutch
+    - name: reviews_line
+      label: Reviews line
+      widget: object
+      fields: *english_dutch
+      hint: 'Keep {count} as it is: the number is filled in there.'
+    - name: studios_title
+      label: Studios title
+      widget: object
+      fields: *english_dutch
+    - name: studios_text
+      label: Studios text
+      widget: object
+      fields: *english_dutch
+    - name: studios_button
+      label: Studios button
+      widget: object
+      fields: *english_dutch
+  - name: finder
+    label: Home questions (level finder)
+    file: content/pages/finder.json
+    fields:
+    - name: step
+      label: Step
+      widget: object
+      fields: *english_dutch
+      hint: 'Keep {n} as it is: the number is filled in there.'
+    - name: q1
+      label: Question 1
+      widget: object
+      fields: *english_dutch
+    - name: q1_opts
+      label: 'Question 1: answers'
+      widget: object
+      collapsed: true
+      fields:
+      - name: never
+        label: Never
+        widget: object
+        fields: *english_dutch
+      - name: few
+        label: Few
+        widget: object
+        fields: *english_dutch
+      - name: regular
+        label: Regular
+        widget: object
+        fields: *english_dutch
+    - name: q1_subs
+      label: 'Question 1: small lines under the answers'
+      widget: object
+      collapsed: true
+      fields:
+      - name: never
+        label: Never
+        widget: object
+        fields: *english_dutch
+      - name: few
+        label: Few
+        widget: object
+        fields: *english_dutch
+      - name: regular
+        label: Regular
+        widget: object
+        fields: *english_dutch
+    - name: q1_reggaeton
+      label: 'Question 1: reggaeton option'
+      widget: object
+      collapsed: true
+      fields:
+      - name: title
+        label: Title
+        widget: object
+        fields: *english_dutch
+      - name: sub
+        label: Sub
+        widget: object
+        fields: *english_dutch
+    - name: q2
+      label: Question 2
+      widget: object
+      fields: *english_dutch
+    - name: q2_opts
+      label: 'Question 2: answers'
+      widget: object
+      collapsed: true
+      fields:
+      - name: salsa
+        label: Salsa
+        widget: object
+        fields: *english_dutch
+      - name: bachata
+        label: Bachata
+        widget: object
+        fields: *english_dutch
+      - name: reggaeton
+        label: Reggaeton
+        widget: object
+        fields: *english_dutch
+      - name: unsure
+        label: Unsure
+        widget: object
+        fields: *english_dutch
+    - name: q2_subs
+      label: 'Question 2: small lines under the answers'
+      widget: object
+      collapsed: true
+      fields:
+      - name: salsa
+        label: Salsa
+        widget: object
+        fields: *english_dutch
+      - name: bachata
+        label: Bachata
+        widget: object
+        fields: *english_dutch
+      - name: reggaeton
+        label: Reggaeton
+        widget: object
+        fields: *english_dutch
+      - name: unsure
+        label: Unsure
+        widget: object
+        fields: *english_dutch
+    - name: one_more
+      label: One more
+      widget: object
+      fields: *english_dutch
+    - name: back
+      label: Back
+      widget: object
+      fields: *english_dutch
+    - name: check
+      label: Check question
+      widget: object
+      collapsed: true
+      fields:
+      - name: salsa
+        label: Salsa
+        widget: object
+        fields: *english_dutch
+      - name: bachata
+        label: Bachata
+        widget: object
+        fields: *english_dutch
+    - name: check_opts
+      label: 'Check question: answers'
+      widget: object
+      collapsed: true
+      fields:
+      - name: 'no'
+        label: 'No'
+        widget: object
+        fields: *english_dutch
+      - name: 'yes'
+        label: 'Yes'
+        widget: object
+        fields: *english_dutch
+      - name: unsure
+        label: Unsure
+        widget: object
+        fields: *english_dutch
+    - name: compare_title
+      label: Compare title
+      widget: object
+      fields: *english_dutch
+    - name: compare
+      label: Compare
+      widget: object
+      collapsed: true
+      fields:
+      - name: salsa
+        label: Salsa
+        widget: list
+        required: false
+        fields: *english_dutch
+        summary: '{{en}}'
+      - name: bachata
+        label: Bachata
+        widget: list
+        required: false
+        fields: *english_dutch
+        summary: '{{en}}'
+    - name: compare_q
+      label: Compare q
+      widget: object
+      fields: *english_dutch
+    - name: restart
+      label: Restart
+      widget: object
+      fields: *english_dutch
+    - name: restart_top
+      label: Restart top
+      widget: object
+      fields: *english_dutch
+    - name: welcome
+      label: Welcome
+      widget: object
+      fields: *english_dutch
+    - name: your_start
+      label: Your start
+      widget: object
+      fields: *english_dutch
+    - name: your_next
+      label: Your next
+      widget: object
+      fields: *english_dutch
+    - name: your_classes
+      label: Your classes
+      widget: object
+      fields: *english_dutch
+  - name: start
+    label: Answer pages (after the questions)
+    file: content/pages/start.json
+    fields:
+    - name: answers
+      label: Answer pages
+      widget: object
+      collapsed: true
+      fields:
+      - name: reggaeton
+        label: Reggaeton
+        widget: object
+        collapsed: true
+        fields:
+        - name: eyebrow
+          label: Small line above the title
+          widget: select
+          options:
+          - label: Start here
+            value: your_start
+          - label: Your next step
+            value: your_next
+          - label: Your classes
+            value: your_classes
+          required: true
+        - name: title
+          label: Title
+          widget: object
+          fields: *english_dutch
+        - name: intro
+          label: Intro
+          widget: object
+          fields: *english_dutch_long
+        - name: ticks
+          label: Tick lines
+          widget: list
+          required: false
+          fields: *english_dutch
+          summary: '{{en}}'
+        - name: classes
+          label: Classes
+          widget: list
+          required: false
+          field:
+            name: class
+            label: Class code
+            widget: string
+          hint: Class codes, like mon-s1 (the Code of a class under Classes).
+        - name: cta
+          label: Main button
+          widget: object
+          fields: *english_dutch
+        - name: second_label
+          label: Second button text
+          widget: object
+          fields: *english_dutch
+        - name: second_link
+          label: Second button link
+          widget: string
+          required: false
+          hint: 'A full web address (https://...), or one of these short codes for a page of this site, typed exactly:
+            home#start, schedule, schedule?filter=tryouts, salsa, bachata, reggaeton, #members. Type buy_link to
+            use the shop link from Settings.'
+        - name: extras
+          label: Extra block
+          widget: select
+          options:
+          - label: Latin Night block
+            value: night
+          - label: Punch card and membership block
+            value: dancer
+          required: true
+      - name: beginner_salsa
+        label: Beginner salsa
+        widget: object
+        collapsed: true
+        fields:
+        - name: eyebrow
+          label: Small line above the title
+          widget: select
+          options:
+          - label: Start here
+            value: your_start
+          - label: Your next step
+            value: your_next
+          - label: Your classes
+            value: your_classes
+          required: true
+        - name: title
+          label: Title
+          widget: object
+          fields: *english_dutch
+        - name: intro
+          label: Intro
+          widget: object
+          fields: *english_dutch_long
+        - name: ticks
+          label: Tick lines
+          widget: list
+          required: false
+          fields: *english_dutch_long
+          summary: '{{en}}'
+        - name: classes
+          label: Classes
+          widget: list
+          required: false
+          field:
+            name: class
+            label: Class code
+            widget: string
+          hint: Class codes, like mon-s1 (the Code of a class under Classes).
+        - name: cta
+          label: Main button
+          widget: object
+          fields: *english_dutch
+        - name: second_label
+          label: Second button text
+          widget: object
+          fields: *english_dutch
+        - name: second_link
+          label: Second button link
+          widget: string
+          required: false
+          hint: 'A full web address (https://...), or one of these short codes for a page of this site, typed exactly:
+            home#start, schedule, schedule?filter=tryouts, salsa, bachata, reggaeton, #members. Type buy_link to
+            use the shop link from Settings.'
+        - name: extras
+          label: Extra block
+          widget: select
+          options:
+          - label: Latin Night block
+            value: night
+          - label: Punch card and membership block
+            value: dancer
+          required: true
+      - name: beginner_bachata
+        label: Beginner bachata
+        widget: object
+        collapsed: true
+        fields:
+        - name: eyebrow
+          label: Small line above the title
+          widget: select
+          options:
+          - label: Start here
+            value: your_start
+          - label: Your next step
+            value: your_next
+          - label: Your classes
+            value: your_classes
+          required: true
+        - name: title
+          label: Title
+          widget: object
+          fields: *english_dutch
+        - name: intro
+          label: Intro
+          widget: object
+          fields: *english_dutch_long
+        - name: ticks
+          label: Tick lines
+          widget: list
+          required: false
+          fields: *english_dutch_long
+          summary: '{{en}}'
+        - name: classes
+          label: Classes
+          widget: list
+          required: false
+          field:
+            name: class
+            label: Class code
+            widget: string
+          hint: Class codes, like mon-s1 (the Code of a class under Classes).
+        - name: cta
+          label: Main button
+          widget: object
+          fields: *english_dutch
+        - name: second_label
+          label: Second button text
+          widget: object
+          fields: *english_dutch
+        - name: second_link
+          label: Second button link
+          widget: string
+          required: false
+          hint: 'A full web address (https://...), or one of these short codes for a page of this site, typed exactly:
+            home#start, schedule, schedule?filter=tryouts, salsa, bachata, reggaeton, #members. Type buy_link to
+            use the shop link from Settings.'
+        - name: extras
+          label: Extra block
+          widget: select
+          options:
+          - label: Latin Night block
+            value: night
+          - label: Punch card and membership block
+            value: dancer
+          required: true
+      - name: improver_salsa
+        label: Improver salsa
+        widget: object
+        collapsed: true
+        fields:
+        - name: eyebrow
+          label: Small line above the title
+          widget: select
+          options:
+          - label: Start here
+            value: your_start
+          - label: Your next step
+            value: your_next
+          - label: Your classes
+            value: your_classes
+          required: true
+        - name: title
+          label: Title
+          widget: object
+          fields: *english_dutch
+        - name: intro
+          label: Intro
+          widget: object
+          fields: *english_dutch_long
+        - name: ticks
+          label: Tick lines
+          widget: list
+          required: false
+          fields: *english_dutch_long
+          summary: '{{en}}'
+        - name: classes
+          label: Classes
+          widget: list
+          required: false
+          field:
+            name: class
+            label: Class code
+            widget: string
+          hint: Class codes, like mon-s1 (the Code of a class under Classes).
+        - name: cta
+          label: Main button
+          widget: object
+          fields: *english_dutch
+        - name: second_label
+          label: Second button text
+          widget: object
+          fields: *english_dutch
+        - name: second_link
+          label: Second button link
+          widget: string
+          required: false
+          hint: 'A full web address (https://...), or one of these short codes for a page of this site, typed exactly:
+            home#start, schedule, schedule?filter=tryouts, salsa, bachata, reggaeton, #members. Type buy_link to
+            use the shop link from Settings.'
+        - name: extras
+          label: Extra block
+          widget: select
+          options:
+          - label: Latin Night block
+            value: night
+          - label: Punch card and membership block
+            value: dancer
+          required: true
+      - name: improver_bachata
+        label: Improver bachata
+        widget: object
+        collapsed: true
+        fields:
+        - name: eyebrow
+          label: Small line above the title
+          widget: select
+          options:
+          - label: Start here
+            value: your_start
+          - label: Your next step
+            value: your_next
+          - label: Your classes
+            value: your_classes
+          required: true
+        - name: title
+          label: Title
+          widget: object
+          fields: *english_dutch
+        - name: intro
+          label: Intro
+          widget: object
+          fields: *english_dutch_long
+        - name: ticks
+          label: Tick lines
+          widget: list
+          required: false
+          fields: *english_dutch_long
+          summary: '{{en}}'
+        - name: classes
+          label: Classes
+          widget: list
+          required: false
+          field:
+            name: class
+            label: Class code
+            widget: string
+          hint: Class codes, like mon-s1 (the Code of a class under Classes).
+        - name: cta
+          label: Main button
+          widget: object
+          fields: *english_dutch
+        - name: second_label
+          label: Second button text
+          widget: object
+          fields: *english_dutch
+        - name: second_link
+          label: Second button link
+          widget: string
+          required: false
+          hint: 'A full web address (https://...), or one of these short codes for a page of this site, typed exactly:
+            home#start, schedule, schedule?filter=tryouts, salsa, bachata, reggaeton, #members. Type buy_link to
+            use the shop link from Settings.'
+        - name: extras
+          label: Extra block
+          widget: select
+          options:
+          - label: Latin Night block
+            value: night
+          - label: Punch card and membership block
+            value: dancer
+          required: true
+      - name: dancer_salsa
+        label: Dancer salsa
+        widget: object
+        collapsed: true
+        fields:
+        - name: eyebrow
+          label: Small line above the title
+          widget: select
+          options:
+          - label: Start here
+            value: your_start
+          - label: Your next step
+            value: your_next
+          - label: Your classes
+            value: your_classes
+          required: true
+        - name: title
+          label: Title
+          widget: object
+          fields: *english_dutch
+        - name: intro
+          label: Intro
+          widget: object
+          fields: *english_dutch_long
+        - name: ticks
+          label: Tick lines
+          widget: list
+          required: false
+          fields: *english_dutch_long
+          summary: '{{en}}'
+        - name: classes
+          label: Classes
+          widget: list
+          required: false
+          field:
+            name: class
+            label: Class code
+            widget: string
+          hint: Class codes, like mon-s1 (the Code of a class under Classes).
+        - name: cta
+          label: Main button
+          widget: object
+          fields: *english_dutch
+        - name: second_label
+          label: Second button text
+          widget: object
+          fields: *english_dutch
+        - name: second_link
+          label: Second button link
+          widget: string
+          required: false
+          hint: 'A full web address (https://...), or one of these short codes for a page of this site, typed exactly:
+            home#start, schedule, schedule?filter=tryouts, salsa, bachata, reggaeton, #members. Type buy_link to
+            use the shop link from Settings.'
+        - name: extras
+          label: Extra block
+          widget: select
+          options:
+          - label: Latin Night block
+            value: night
+          - label: Punch card and membership block
+            value: dancer
+          required: true
+      - name: dancer_bachata
+        label: Dancer bachata
+        widget: object
+        collapsed: true
+        fields:
+        - name: eyebrow
+          label: Small line above the title
+          widget: select
+          options:
+          - label: Start here
+            value: your_start
+          - label: Your next step
+            value: your_next
+          - label: Your classes
+            value: your_classes
+          required: true
+        - name: title
+          label: Title
+          widget: object
+          fields: *english_dutch
+        - name: intro
+          label: Intro
+          widget: object
+          fields: *english_dutch
+        - name: ticks
+          label: Tick lines
+          widget: list
+          required: false
+          fields: *english_dutch
+          summary: '{{en}}'
+        - name: classes
+          label: Classes
+          widget: list
+          required: false
+          field:
+            name: class
+            label: Class code
+            widget: string
+          hint: Class codes, like mon-s1 (the Code of a class under Classes).
+        - name: cta
+          label: Main button
+          widget: object
+          fields: *english_dutch
+        - name: second_label
+          label: Second button text
+          widget: object
+          fields: *english_dutch
+        - name: second_link
+          label: Second button link
+          widget: string
+          required: false
+          hint: 'A full web address (https://...), or one of these short codes for a page of this site, typed exactly:
+            home#start, schedule, schedule?filter=tryouts, salsa, bachata, reggaeton, #members. Type buy_link to
+            use the shop link from Settings.'
+        - name: extras
+          label: Extra block
+          widget: select
+          options:
+          - label: Latin Night block
+            value: night
+          - label: Punch card and membership block
+            value: dancer
+          required: true
+      - name: between_salsa
+        label: Between salsa
+        widget: object
+        collapsed: true
+        fields:
+        - name: eyebrow
+          label: Small line above the title
+          widget: select
+          options:
+          - label: Start here
+            value: your_start
+          - label: Your next step
+            value: your_next
+          - label: Your classes
+            value: your_classes
+          required: true
+        - name: title
+          label: Title
+          widget: object
+          fields: *english_dutch
+        - name: intro
+          label: Intro
+          widget: object
+          fields: *english_dutch_long
+        - name: ticks
+          label: Tick lines
+          widget: list
+          required: false
+          fields: *english_dutch_long
+          summary: '{{en}}'
+        - name: classes
+          label: Classes
+          widget: list
+          required: false
+          field:
+            name: class
+            label: Class code
+            widget: string
+          hint: Class codes, like mon-s1 (the Code of a class under Classes).
+        - name: cta
+          label: Main button
+          widget: object
+          fields: *english_dutch
+        - name: second_label
+          label: Second button text
+          widget: object
+          fields: *english_dutch
+        - name: second_link
+          label: Second button link
+          widget: string
+          required: false
+          hint: 'A full web address (https://...), or one of these short codes for a page of this site, typed exactly:
+            home#start, schedule, schedule?filter=tryouts, salsa, bachata, reggaeton, #members. Type buy_link to
+            use the shop link from Settings.'
+        - name: extras
+          label: Extra block
+          widget: select
+          options:
+          - label: Latin Night block
+            value: night
+          - label: Punch card and membership block
+            value: dancer
+          required: true
+      - name: between_bachata
+        label: Between bachata
+        widget: object
+        collapsed: true
+        fields:
+        - name: eyebrow
+          label: Small line above the title
+          widget: select
+          options:
+          - label: Start here
+            value: your_start
+          - label: Your next step
+            value: your_next
+          - label: Your classes
+            value: your_classes
+          required: true
+        - name: title
+          label: Title
+          widget: object
+          fields: *english_dutch
+        - name: intro
+          label: Intro
+          widget: object
+          fields: *english_dutch_long
+        - name: ticks
+          label: Tick lines
+          widget: list
+          required: false
+          fields: *english_dutch_long
+          summary: '{{en}}'
+        - name: classes
+          label: Classes
+          widget: list
+          required: false
+          field:
+            name: class
+            label: Class code
+            widget: string
+          hint: Class codes, like mon-s1 (the Code of a class under Classes).
+        - name: cta
+          label: Main button
+          widget: object
+          fields: *english_dutch
+        - name: second_label
+          label: Second button text
+          widget: object
+          fields: *english_dutch
+        - name: second_link
+          label: Second button link
+          widget: string
+          required: false
+          hint: 'A full web address (https://...), or one of these short codes for a page of this site, typed exactly:
+            home#start, schedule, schedule?filter=tryouts, salsa, bachata, reggaeton, #members. Type buy_link to
+            use the shop link from Settings.'
+        - name: extras
+          label: Extra block
+          widget: select
+          options:
+          - label: Latin Night block
+            value: night
+          - label: Punch card and membership block
+            value: dancer
+          required: true
+    - name: night_extras
+      label: Latin Night blocks
+      widget: list
+      required: false
+      fields:
+      - name: show_from
+        label: Show from
+        widget: datetime
+        type: date
+        format: YYYY-MM-DD
+        required: false
+        hint: First day it shows on the site. It appears by itself early that morning (by about 6:00). Leave empty to show it straight away.
+      - name: hide_after
+        label: Hide after
+        widget: datetime
+        type: date
+        format: YYYY-MM-DD
+        required: false
+        hint: Last day it shows on the site. It disappears by itself early the next morning (by about 6:00). Leave empty to keep it.
+      - name: heading
+        label: Heading
+        widget: object
+        fields: *english_dutch
+      - name: text
+        label: Text
+        widget: object
+        fields: *english_dutch_long
+      summary: '{{heading.en}}'
+    - name: dancer_extras
+      label: Punch card and membership blocks
+      widget: list
+      required: false
+      fields:
+      - name: show_from
+        label: Show from
+        widget: datetime
+        type: date
+        format: YYYY-MM-DD
+        required: false
+        hint: First day it shows on the site. It appears by itself early that morning (by about 6:00). Leave empty to show it straight away.
+      - name: hide_after
+        label: Hide after
+        widget: datetime
+        type: date
+        format: YYYY-MM-DD
+        required: false
+        hint: Last day it shows on the site. It disappears by itself early the next morning (by about 6:00). Leave empty to keep it.
+      - name: heading
+        label: Heading
+        widget: object
+        fields: *english_dutch
+      - name: text
+        label: Text
+        widget: object
+        fields: *english_dutch_long
+      summary: '{{heading.en}}'
+    - name: you_if
+      label: This is you if (per level)
+      widget: object
+      collapsed: true
+      fields:
+      - name: salsa_1
+        label: Salsa 1
+        widget: object
+        fields: *english_dutch
+      - name: salsa_2
+        label: Salsa 2
+        widget: object
+        fields: *english_dutch
+      - name: salsa_3
+        label: Salsa 3
+        widget: object
+        fields: *english_dutch
+      - name: bachata_1
+        label: Bachata 1
+        widget: object
+        fields: *english_dutch
+      - name: bachata_2
+        label: Bachata 2
+        widget: object
+        fields: *english_dutch
+    - name: between_link
+      label: Between link
+      widget: object
+      fields: *english_dutch
+    - name: first_class_title
+      label: 'First class: title'
+      widget: object
+      fields: *english_dutch
+    - name: first_class_sub
+      label: 'First class: line under the title'
+      widget: object
+      fields: *english_dutch
+    - name: first_class_items
+      label: 'First class: items'
+      widget: list
+      required: false
+      fields:
+      - name: title
+        label: Title
+        widget: object
+        fields: *english_dutch
+      - name: text
+        label: Text
+        widget: object
+        fields: *english_dutch_long
+      summary: '{{title.en}}'
+  - name: salsa
+    label: Salsa
+    file: content/pages/salsa.json
+    fields:
+    - name: meta_title
+      label: Title in Google and the browser tab
+      widget: object
+      fields: *english_dutch
+    - name: title
+      label: Title
+      widget: object
+      fields: *english_dutch
+      hint: 'Keep the parts in < > (like <span class="hl"> or <b>) as they are: they set the look.'
+    - name: intro
+      label: Intro
+      widget: object
+      fields: *english_dutch_long
+    - name: classes_sub
+      label: Classes sub
+      widget: object
+      fields: *english_dutch_long
+    - name: back_to_back
+      label: Back to back
+      widget: object
+      fields: *english_dutch_long
+    - name: levels
+      label: Levels
+      widget: list
+      required: false
+      fields:
+      - name: level
+        label: Level
+        widget: number
+        value_type: int
+        required: true
+      - name: who
+        label: This is you if
+        widget: object
+        fields: *english_dutch_long
+      - name: learn
+        label: What you learn
+        widget: object
+        fields: *english_dutch_long
+  - name: bachata
+    label: Bachata
+    file: content/pages/bachata.json
+    fields:
+    - name: meta_title
+      label: Title in Google and the browser tab
+      widget: object
+      fields: *english_dutch
+    - name: title
+      label: Title
+      widget: object
+      fields: *english_dutch
+      hint: 'Keep the parts in < > (like <span class="hl"> or <b>) as they are: they set the look.'
+    - name: intro
+      label: Intro
+      widget: object
+      fields: *english_dutch_long
+    - name: classes_sub
+      label: Classes sub
+      widget: object
+      fields: *english_dutch_long
+    - name: back_to_back
+      label: Back to back
+      widget: object
+      fields: *english_dutch_long
+    - name: levels
+      label: Levels
+      widget: list
+      required: false
+      fields:
+      - name: level
+        label: Level
+        widget: number
+        value_type: int
+        required: true
+      - name: who
+        label: This is you if
+        widget: object
+        fields: *english_dutch_long
+      - name: learn
+        label: What you learn
+        widget: object
+        fields: *english_dutch_long
+  - name: reggaeton
+    label: Reggaeton
+    file: content/pages/reggaeton.json
+    fields:
+    - name: meta_title
+      label: Title in Google and the browser tab
+      widget: object
+      fields: *english_dutch
+    - name: title
+      label: Title
+      widget: object
+      fields: *english_dutch
+      hint: 'Keep the parts in < > (like <span class="hl"> or <b>) as they are: they set the look.'
+    - name: intro
+      label: Intro
+      widget: object
+      fields: *english_dutch_long
+    - name: classes_sub
+      label: Classes sub
+      widget: object
+      fields: *english_dutch
+    - name: about_title
+      label: About title
+      widget: object
+      fields: *english_dutch
+    - name: card_title
+      label: Card title
+      widget: object
+      fields: *english_dutch
+    - name: card_who
+      label: Card who
+      widget: object
+      fields: *english_dutch
+    - name: card_learn
+      label: Card learn
+      widget: object
+      fields: *english_dutch
+    - name: price_title
+      label: Price title
+      widget: object
+      fields: *english_dutch
+    - name: price_sub
+      label: Price sub
+      widget: object
+      fields: *english_dutch
+  - name: dances
+    label: Dance pages (shared parts)
+    file: content/pages/dances.json
+    fields:
+    - name: schedule_button
+      label: Schedule button
+      widget: object
+      fields: *english_dutch
+    - name: prices_button
+      label: Prices button
+      widget: object
+      fields: *english_dutch
+    - name: classes_title
+      label: Classes title
+      widget: object
+      fields: *english_dutch
+    - name: table_headings
+      label: Table headings
+      widget: object
+      collapsed: true
+      fields:
+      - name: studio
+        label: Studio
+        widget: string
+        required: false
+        hint: 'Studio code: veem, flow, ceintuur or tg (the Code under Studios).'
+      - name: class
+        label: Class
+        widget: object
+        fields: *english_dutch
+      - name: tryout
+        label: Tryout
+        widget: object
+        fields: *english_dutch
+      - name: then
+        label: Then
+        widget: object
+        fields: *english_dutch
+    - name: course_line
+      label: Course line
+      widget: object
+      fields: *english_dutch
+    - name: drop_in_line
+      label: Drop in line
+      widget: object
+      fields: *english_dutch
+    - name: levels_title
+      label: Levels title
+      widget: object
+      fields: *english_dutch
+    - name: you_if_label
+      label: You if label
+      widget: object
+      fields: *english_dutch
+    - name: tip_label
+      label: Tip label
+      widget: object
+      fields: *english_dutch
+    - name: finder_button
+      label: Finder button
+      widget: object
+      fields: *english_dutch
+    - name: worries_title
+      label: Worries title
+      widget: object
+      fields: *english_dutch
+    - name: worries_sub
+      label: Worries sub
+      widget: object
+      fields: *english_dutch
+    - name: worries
+      label: Worries
+      widget: list
+      required: false
+      fields:
+      - name: title
+        label: Title
+        widget: object
+        fields: *english_dutch
+      - name: text
+        label: Text
+        widget: object
+        fields: *english_dutch_long
+      summary: '{{title.en}}'
+    - name: cta_title
+      label: Cta title
+      widget: object
+      fields: *english_dutch
+  - name: schedule
+    label: Schedule
+    file: content/pages/schedule.json
+    fields:
+    - name: meta_title
+      label: Title in Google and the browser tab
+      widget: object
+      fields: *english_dutch
+    - name: intro
+      label: Intro
+      widget: object
+      fields: *english_dutch_long
+    - name: filter_all
+      label: Filter all
+      widget: object
+      fields: *english_dutch
+    - name: filter_type
+      label: Filter type
+      widget: object
+      fields: *english_dutch
+    - name: filter_dance
+      label: Filter dance
+      widget: object
+      fields: *english_dutch
+    - name: filter_level
+      label: Filter level
+      widget: object
+      fields: *english_dutch
+    - name: filter_studio
+      label: Filter studio
+      widget: object
+      fields: *english_dutch
+    - name: type_tryouts
+      label: Type tryouts
+      widget: object
+      fields: *english_dutch
+    - name: type_courses
+      label: Type courses
+      widget: object
+      fields: *english_dutch
+    - name: type_events
+      label: Type events
+      widget: object
+      fields: *english_dutch
+    - name: open_in_bueno
+      label: Open in Bueno button
+      widget: object
+      fields: *english_dutch
+  - name: prices
+    label: Prices page
+    file: content/pages/prices.json
+    fields:
+    - name: meta_title
+      label: Title in Google and the browser tab
+      widget: object
+      fields: *english_dutch
+    - name: intro
+      label: Intro
+      widget: object
+      fields: *english_dutch
+    - name: note
+      label: Note
+      widget: object
+      fields: *english_dutch_long
+      hint: 'Keep the parts in < > (like <span class="hl"> or <b>) as they are: they set the look.'
+    - name: table_headings
+      label: Table headings
+      widget: object
+      collapsed: true
+      fields:
+      - name: classes_a_week
+        label: Classes a week
+        widget: object
+        fields: *english_dutch
+      - name: monthly
+        label: Price, cancel monthly
+        widget: object
+        fields: *english_dutch
+      - name: six_months
+        label: Price, 6 months
+        widget: object
+        fields: *english_dutch
+      - name: social_perk
+        label: Lumos Social perk
+        widget: object
+        fields: *english_dutch
+    - name: members_title
+      label: Members title
+      widget: object
+      fields: *english_dutch
+    - name: members_sub
+      label: Members sub
+      widget: object
+      fields: *english_dutch_long
+    - name: members_start
+      label: Start button in the membership table
+      widget: object
+      fields: *english_dutch
+    - name: quiz
+      label: Questionnaire above the prices
+      widget: object
+      collapsed: true
+      fields:
+      - name: title
+        label: Title
+        widget: object
+        fields: *english_dutch
+      - name: placeholder
+        label: Text before all questions are answered
+        widget: object
+        fields: *english_dutch
+      - name: best_for_you
+        label: Small tag on the matching price card
+        widget: object
+        fields: *english_dutch
+      - name: clear
+        label: Button to start over
+        widget: object
+        fields: *english_dutch
+      - name: results
+        label: Outcomes (what the visitor sees)
+        widget: object
+        collapsed: true
+        fields:
+        - name: tryout
+          label: Tryout
+          widget: object
+          collapsed: true
+          fields:
+          - name: name
+            label: Name
+            widget: object
+            fields: *english_dutch
+          - name: price
+            label: Price
+            widget: string
+            required: false
+          - name: per
+            label: Per
+            widget: object
+            fields: *english_dutch
+          - name: line
+            label: Short text under the price
+            widget: object
+            fields: *english_dutch_long
+          - name: button_label
+            label: Button text
+            widget: object
+            fields: *english_dutch
+          - name: button_link
+            label: Button link
+            widget: string
+            required: false
+            hint: 'A full web address (https://...), or one of these short codes for a page of this site, typed
+              exactly: home#start, schedule, schedule?filter=tryouts, salsa, bachata, reggaeton, #members. Type
+              buy_link to use the shop link from Settings.'
+        - name: tryout_single
+          label: 'Outcome: weeks, never danced (try-out, then single classes)'
+          widget: object
+          collapsed: true
+          fields:
+          - name: name
+            label: Name
+            widget: object
+            fields: *english_dutch
+          - name: price
+            label: Price
+            widget: string
+            required: false
+          - name: per
+            label: Per
+            widget: object
+            fields: *english_dutch
+          - name: line
+            label: Short text under the price
+            widget: object
+            fields: *english_dutch_long
+          - name: button_label
+            label: Button text
+            widget: object
+            fields: *english_dutch
+          - name: button_link
+            label: Button link
+            widget: string
+            required: false
+            hint: 'A full web address (https://...), or one of these short codes for a page of this site, typed
+              exactly: home#start, schedule, schedule?filter=tryouts, salsa, bachata, reggaeton, #members. Type
+              buy_link to use the shop link from Settings.'
+        - name: punch_short
+          label: 'Outcome: weeks, has danced (punch card)'
+          widget: object
+          collapsed: true
+          fields:
+          - name: name
+            label: Name
+            widget: object
+            fields: *english_dutch
+          - name: price
+            label: Price
+            widget: string
+            required: false
+          - name: per
+            label: Per
+            widget: object
+            fields: *english_dutch
+          - name: line
+            label: Short text under the price
+            widget: object
+            fields: *english_dutch_long
+          - name: button_label
+            label: Button text
+            widget: object
+            fields: *english_dutch
+          - name: button_link
+            label: Button link
+            widget: string
+            required: false
+            hint: 'A full web address (https://...), or one of these short codes for a page of this site, typed
+              exactly: home#start, schedule, schedule?filter=tryouts, salsa, bachata, reggaeton, #members. Type
+              buy_link to use the shop link from Settings.'
+        - name: punch_months
+          label: 'Outcome: months, dances regularly (punch card)'
+          widget: object
+          collapsed: true
+          fields:
+          - name: name
+            label: Name
+            widget: object
+            fields: *english_dutch
+          - name: price
+            label: Price
+            widget: string
+            required: false
+          - name: per
+            label: Per
+            widget: object
+            fields: *english_dutch
+          - name: line
+            label: Short text under the price
+            widget: object
+            fields: *english_dutch_long
+          - name: button_label
+            label: Button text
+            widget: object
+            fields: *english_dutch
+          - name: button_link
+            label: Button link
+            widget: string
+            required: false
+            hint: 'A full web address (https://...), or one of these short codes for a page of this site, typed
+              exactly: home#start, schedule, schedule?filter=tryouts, salsa, bachata, reggaeton, #members. Type
+              buy_link to use the shop link from Settings.'
+        - name: course_months
+          label: 'Outcome: months (course)'
+          widget: object
+          collapsed: true
+          fields:
+          - name: name
+            label: Name
+            widget: object
+            fields: *english_dutch
+          - name: price
+            label: Price
+            widget: string
+            required: false
+          - name: per
+            label: Per
+            widget: object
+            fields: *english_dutch
+          - name: line
+            label: Short text under the price
+            widget: object
+            fields: *english_dutch_long
+          - name: button_label
+            label: Button text
+            widget: object
+            fields: *english_dutch
+          - name: button_link
+            label: Button link
+            widget: string
+            required: false
+            hint: 'A full web address (https://...), or one of these short codes for a page of this site, typed
+              exactly: home#start, schedule, schedule?filter=tryouts, salsa, bachata, reggaeton, #members. Type
+              buy_link to use the shop link from Settings.'
+        - name: course_then_member
+          label: 'Outcome: lives here, never danced (course, then membership)'
+          widget: object
+          collapsed: true
+          fields:
+          - name: name
+            label: Name
+            widget: object
+            fields: *english_dutch
+          - name: price
+            label: Price
+            widget: string
+            required: false
+          - name: per
+            label: Per
+            widget: object
+            fields: *english_dutch
+          - name: line
+            label: Short text under the price
+            widget: object
+            fields: *english_dutch_long
+          - name: button_label
+            label: Button text
+            widget: object
+            fields: *english_dutch
+          - name: button_link
+            label: Button link
+            widget: string
+            required: false
+            hint: 'A full web address (https://...), or one of these short codes for a page of this site, typed
+              exactly: home#start, schedule, schedule?filter=tryouts, salsa, bachata, reggaeton, #members. Type
+              buy_link to use the shop link from Settings.'
+        - name: member_extra_months
+          label: 'Outcome: months, twice a week or more (Lumos Extra)'
+          widget: object
+          collapsed: true
+          fields:
+          - name: name
+            label: Name
+            widget: object
+            fields: *english_dutch
+          - name: price
+            label: Price
+            widget: string
+            required: false
+          - name: per
+            label: Per
+            widget: object
+            fields: *english_dutch
+          - name: line
+            label: Short text under the price
+            widget: object
+            fields: *english_dutch
+          - name: button_label
+            label: Button text
+            widget: object
+            fields: *english_dutch
+          - name: button_link
+            label: Button link
+            widget: string
+            required: false
+            hint: 'A full web address (https://...), or one of these short codes for a page of this site, typed
+              exactly: home#start, schedule, schedule?filter=tryouts, salsa, bachata, reggaeton, #members. Type
+              buy_link to use the shop link from Settings.'
+        - name: member_extra_live
+          label: 'Outcome: lives here, twice a week or more (Lumos Extra)'
+          widget: object
+          collapsed: true
+          fields:
+          - name: name
+            label: Name
+            widget: object
+            fields: *english_dutch
+          - name: price
+            label: Price
+            widget: string
+            required: false
+          - name: per
+            label: Per
+            widget: object
+            fields: *english_dutch
+          - name: line
+            label: Short text under the price
+            widget: object
+            fields: *english_dutch_long
+          - name: button_label
+            label: Button text
+            widget: object
+            fields: *english_dutch
+          - name: button_link
+            label: Button link
+            widget: string
+            required: false
+            hint: 'A full web address (https://...), or one of these short codes for a page of this site, typed
+              exactly: home#start, schedule, schedule?filter=tryouts, salsa, bachata, reggaeton, #members. Type
+              buy_link to use the shop link from Settings.'
+        - name: member_essential
+          label: 'Outcome: lives here (Lumos Essential)'
+          widget: object
+          collapsed: true
+          fields:
+          - name: name
+            label: Name
+            widget: object
+            fields: *english_dutch
+          - name: price
+            label: Price
+            widget: string
+            required: false
+          - name: per
+            label: Per
+            widget: object
+            fields: *english_dutch
+          - name: line
+            label: Short text under the price
+            widget: object
+            fields: *english_dutch_long
+          - name: button_label
+            label: Button text
+            widget: object
+            fields: *english_dutch
+          - name: button_link
+            label: Button link
+            widget: string
+            required: false
+            hint: 'A full web address (https://...), or one of these short codes for a page of this site, typed
+              exactly: home#start, schedule, schedule?filter=tryouts, salsa, bachata, reggaeton, #members. Type
+              buy_link to use the shop link from Settings.'
+      - name: questions
+        label: Questions
+        widget: list
+        required: false
+        fields:
+        - name: key
+          label: Code
+          widget: string
+          required: false
+        - name: question
+          label: Question
+          widget: object
+          fields: *english_dutch
+        - name: options
+          label: Answers
+          widget: list
+          required: false
+          fields:
+          - name: label
+            label: Label
+            widget: object
+            fields: *english_dutch
+          - name: value
+            label: Code (do not change)
+            widget: string
+            required: false
+          summary: '{{label.en}}'
+        summary: '{{question.en}}'
+  - name: studios
+    label: Studios page
+    file: content/pages/studios.json
+    fields:
+    - name: meta_title
+      label: Title in Google and the browser tab
+      widget: object
+      fields: *english_dutch
+    - name: intro
+      label: Intro
+      widget: object
+      fields: *english_dutch_long
+    - name: beginners_only
+      label: Beginners only
+      widget: object
+      fields: *english_dutch
+    - name: tryout_label
+      label: Try-out label
+      widget: object
+      fields: *english_dutch
+    - name: notices
+      label: Notices
+      widget: list
+      required: false
+      fields:
+      - name: show_from
+        label: Show from
+        widget: datetime
+        type: date
+        format: YYYY-MM-DD
+        required: false
+        hint: First day it shows on the site. It appears by itself early that morning (by about 6:00). Leave empty to show it straight away.
+      - name: hide_after
+        label: Hide after
+        widget: datetime
+        type: date
+        format: YYYY-MM-DD
+        required: false
+        hint: Last day it shows on the site. It disappears by itself early the next morning (by about 6:00). Leave empty to keep it.
+      - name: day
+        label: Day
+        widget: select
+        options: *weekdays
+        required: true
+      - name: time
+        label: Time
+        widget: string
+        required: false
+      - name: studio
+        label: Studio
+        widget: string
+        required: false
+        hint: 'Studio code: veem, flow, ceintuur or tg (the Code under Studios).'
+      - name: title
+        label: Title
+        widget: object
+        fields: *english_dutch
+      - name: place
+        label: Place
+        widget: string
+        required: true
+        hint: 'Where it shows. row: an extra row on the studio card. sticker: a sticker on the studio card.'
+      - name: text
+        label: Text
+        widget: object
+        fields: *english_dutch
+      - name: note
+        label: Note
+        widget: object
+        fields: *english_dutch
+      summary: '{{title}}'
+    - name: classes_word
+      label: Classes word
+      widget: object
+      fields: *english_dutch
+    - name: workshops_heading
+      label: Workshops heading
+      widget: object
+      fields: *english_dutch
+    - name: workshops_tags
+      label: Workshops tags
+      widget: object
+      fields: *english_dutch
+    - name: no_weekly_classes
+      label: No weekly classes
+      widget: object
+      fields: *english_dutch
+    - name: no_workshops
+      label: No workshops
+      widget: object
+      fields: *english_dutch
+    - name: map_title
+      label: Map title
+      widget: object
+      fields: *english_dutch
+    - name: map_caption
+      label: Map caption
+      widget: object
+      fields: *english_dutch
+    - name: directions_button
+      label: Directions button
+      widget: object
+      fields: *english_dutch
+  - name: events
+    label: Events page
+    file: content/pages/events.json
+    fields:
+    - name: meta_title
+      label: Title in Google and the browser tab
+      widget: object
+      fields: *english_dutch
+    - name: intro
+      label: Intro
+      widget: object
+      fields: *english_dutch_long
+    - name: first_label
+      label: First label
+      widget: object
+      fields: *english_dutch
+    - name: kinds
+      label: Kinds of events
+      widget: list
+      required: false
+      fields:
+      - name: kind
+        label: Kind
+        widget: string
+        required: false
+        hint: socials, workshops or game-nights. Must match the Kind of the events.
+      - name: label
+        label: Label
+        widget: object
+        fields: *english_dutch
+      summary: '{{label.en}}'
+    - name: empty_text
+      label: Text when nothing is planned
+      widget: object
+      fields: *english_dutch_long
+      hint: 'Keep the parts in < > (like <span class="hl"> or <b>) as they are: they set the look.'
+    - name: earlier
+      label: Earlier
+      widget: object
+      fields: *english_dutch
+    - name: back_label
+      label: Link back to all events
+      widget: object
+      fields: *english_dutch
+    - name: map_hint
+      label: Hover text on the Google Maps link
+      widget: object
+      fields: *english_dutch
+  - name: teachers
+    label: Teachers page
+    file: content/pages/teachers.json
+    fields:
+    - name: meta_title
+      label: Title in Google and the browser tab
+      widget: object
+      fields: *english_dutch
+  - name: contact
+    label: Contact
+    file: content/pages/contact.json
+    fields:
+    - name: meta_title
+      label: Title in Google and the browser tab
+      widget: object
+      fields: *english_dutch
+    - name: intro
+      label: Intro
+      widget: object
+      fields: *english_dutch
+    - name: whatsapp_title
+      label: WhatsApp title
+      widget: object
+      fields: *english_dutch
+    - name: whatsapp_note
+      label: WhatsApp note
+      widget: object
+      fields: *english_dutch
+    - name: phone_title
+      label: Phone title
+      widget: object
+      fields: *english_dutch
+    - name: email_title
+      label: Email title
+      widget: object
+      fields: *english_dutch
+    - name: faq_title
+      label: Faq title
+      widget: object
+      fields: *english_dutch
+  - name: privacy
+    label: Privacy
+    file: content/pages/privacy.json
+    fields:
+    - name: title
+      label: Title
+      widget: object
+      fields: *english_dutch
+    - name: intro
+      label: Intro
+      widget: object
+      fields: *english_dutch_long
+    - name: sections
+      label: Sections
+      widget: list
+      required: false
+      fields:
+      - name: heading
+        label: Heading
+        widget: object
+        fields: *english_dutch
+      - name: text
+        label: Text
+        widget: object
+        fields: *english_dutch_long
+      - name: items
+        label: Items
+        widget: list
+        required: false
+        fields: *english_dutch_long
+        summary: '{{en}}'
+      - name: note
+        label: Note
+        widget: object
+        fields: *english_dutch_long
+      summary: '{{heading.en}}'
+  editor:
+    preview: false
+singletons:
+- name: prices
+  label: Prices
+  icon: sell
+  file: content/prices.json
+  fields:
+  - name: cards
+    label: Cards
+    widget: list
+    required: false
+    fields:
+    - name: name
+      label: Name
+      widget: object
+      fields: *english_dutch
+    - name: price
+      label: Price
+      widget: string
+      required: false
+    - name: per
+      label: Per
+      widget: object
+      fields: *english_dutch
+    - name: what
+      label: What you get
+      widget: object
+      fields: *english_dutch
+    - name: ticks
+      label: Tick lines
+      widget: list
+      required: false
+      fields: *english_dutch
+      summary: '{{en}}'
+    - name: badge
+      label: Badge
+      widget: object
+      fields: *english_dutch
+    - name: button_label
+      label: Button text
+      widget: object
+      fields: *english_dutch
+    - name: button_link
+      label: Button link
+      widget: string
+      required: false
+      hint: 'A full web address (https://...), or one of these short codes for a page of this site, typed exactly:
+        home#start, schedule, schedule?filter=tryouts, salsa, bachata, reggaeton, #members. Type buy_link to use
+        the shop link from Settings.'
+    - name: button_style
+      label: Button style
+      widget: select
+      required: true
+      options:
+      - pink
+      - plain
+    - name: buttons
+      label: Several buttons
+      widget: list
+      required: false
+      hint: 'When this list has buttons, the card shows these instead of the one button above. Each one goes to its
+        own page, for example the Bueno page of one punch card.'
+      fields:
+      - name: label
+        label: Button text
+        widget: object
+        fields: *english_dutch
+      - name: link
+        label: Button link
+        widget: string
+        required: false
+        hint: A full web address (https://...).
+      summary: '{{label.en}}'
+    summary: '{{name.en}}'
+  - name: memberships
+    label: Memberships
+    widget: list
+    required: false
+    fields:
+    - name: name
+      label: Name
+      widget: string
+      required: false
+    - name: classes_a_week
+      label: Classes a week
+      widget: object
+      fields: *english_dutch
+    - name: monthly
+      label: Price, cancel monthly
+      widget: string
+      required: false
+    - name: monthly_link
+      label: Bueno link, cancel monthly
+      widget: string
+      required: false
+      hint: The Bueno page where this monthly membership is bought. Its Start button goes there.
+    - name: six_months
+      label: Price, 6 months
+      widget: string
+      required: false
+    - name: six_months_link
+      label: Bueno link, 6 months
+      widget: string
+      required: false
+      hint: The Bueno page where this 6-month membership is bought. Its Start button goes there.
+    - name: per_class
+      label: Price per class
+      widget: object
+      required: false
+      fields: *english_dutch
+    - name: social_perk
+      label: Lumos Social perk
+      widget: object
+      fields: *english_dutch
+    summary: '{{name}}'
+  - name: reggaeton_strip
+    label: Reggaeton strip
+    widget: list
+    required: false
+    fields:
+    - name: name
+      label: Name
+      widget: object
+      fields: *english_dutch
+    - name: price
+      label: Price
+      widget: string
+      required: false
+    - name: detail
+      label: Detail
+      widget: object
+      fields: *english_dutch
+    summary: '{{name.en}}'
+  editor:
+    preview: false
+- name: reviews
+  label: Reviews
+  icon: star
+  file: content/reviews.json
+  fields:
+  - name: reviews
+    label: Reviews
+    widget: list
+    required: false
+    fields:
+    - name: name
+      label: Name
+      widget: string
+      required: true
+    - name: quote
+      label: Review text
+      widget: text
+      required: true
+    summary: '{{name}}'
+    hint: Copied from Google. The order here is the order on the site.
+  editor:
+    preview: false
+- name: faq
+  label: Questions
+  icon: help
+  file: content/faq.json
+  fields:
+  - name: questions
+    label: Questions
+    widget: list
+    required: false
+    fields:
+    - name: question
+      label: Question
+      widget: object
+      fields: *english_dutch
+    - name: answer
+      label: Answer
+      widget: object
+      fields: *english_dutch_long
+    summary: '{{question.en}}'
+  editor:
+    preview: false
+- name: settings
+  label: Settings
+  icon: settings
+  file: content/settings.json
+  fields:
+  - name: site_url
+    label: Site address
+    widget: string
+    required: true
+    hint: Change only when the site moves.
+  - name: founded_year
+    label: Year founded
+    widget: number
+    value_type: int
+    required: true
+  - name: phone
+    label: Phone (as shown)
+    widget: string
+    required: true
+  - name: tel_link
+    label: Phone link
+    widget: string
+    required: true
+  - name: whatsapp_link
+    label: WhatsApp link
+    widget: string
+    required: true
+  - name: email
+    label: Email
+    widget: string
+    required: true
+  - name: instagram
+    label: Instagram
+    widget: string
+    required: true
+  - name: tiktok
+    label: TikTok
+    widget: string
+    required: true
+  - name: facebook
+    label: Facebook
+    widget: string
+    required: true
+  - name: tryouts_on
+    label: Try-out weeks are on
+    widget: boolean
+    required: false
+    hint: 'On: the booking buttons go to each class''s try-out in Bueno and the try-out dates show. Off: every booking
+      button goes to the schedule and the try-out dates are hidden.'
+  - name: book_fallback
+    label: Booking page
+    widget: string
+    required: true
+  - name: buy_link
+    label: Shop link
+    widget: string
+    required: true
+  - name: hl_shape
+    label: Highlight shape
+    widget: select
+    options:
+    - A
+    - B
+    - C
+    required: true
+    hint: The shape of the coloured highlight behind headings.
+  - name: hl_color
+    label: Highlight colour
+    widget: select
+    options:
+    - Pink
+    - Purple
+    - Lilac
+    - Rose
+    - Orchid
+    - Moving
+    required: true
+  - name: btn_color
+    label: Button colour
+    widget: select
+    options:
+    - Pink
+    - Purple
+    required: true
+  - name: q_bg
+    label: Questions background
+    widget: select
+    options:
+    - White
+    - Yellow
+    required: true
+  - name: gtm_id
+    label: Google Tag Manager code
+    widget: string
+    required: false
+    hint: Leave empty to switch Google Tag Manager off.
+  - name: google_rating
+    label: Google rating
+    widget: string
+    required: true
+    hint: e.g. 5.0
+  - name: review_count
+    label: Number of Google reviews
+    widget: number
+    value_type: int
+    required: true
+  - name: course_start
+    label: Course start date
+    widget: object
+    hint: Per weekday, the first (or last) class of the current 6-week course.
+    fields:
+    - name: mon
+      label: Monday
+      widget: datetime
+      type: date
+      format: YYYY-MM-DD
+      required: true
+    - name: tue
+      label: Tuesday
+      widget: datetime
+      type: date
+      format: YYYY-MM-DD
+      required: true
+    - name: wed
+      label: Wednesday
+      widget: datetime
+      type: date
+      format: YYYY-MM-DD
+      required: true
+  - name: course_end
+    label: Course end date
+    widget: object
+    hint: Per weekday, the first (or last) class of the current 6-week course.
+    fields:
+    - name: mon
+      label: Monday
+      widget: datetime
+      type: date
+      format: YYYY-MM-DD
+      required: true
+    - name: tue
+      label: Tuesday
+      widget: datetime
+      type: date
+      format: YYYY-MM-DD
+      required: true
+    - name: wed
+      label: Wednesday
+      widget: datetime
+      type: date
+      format: YYYY-MM-DD
+      required: true
+  editor:
+    preview: false

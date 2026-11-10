@@ -1,0 +1,13 @@
+{
+  "order": 2,
+  "name": "Luke",
+  "role": {
+    "en": "Teacher",
+    "nl": "Docent"
+  },
+  "bio": {
+    "en": "Luke is our favourite Irishman. He pays close attention to detail and technique, and patiently explains not only how but also why.",
+    "nl": "Luke is onze favoriete Ier. Hij let op detail en techniek en legt met veel geduld uit hoe je iets doet, en ook waarom."
+  },
+  "photo": "teacher-luke.jpg"
+}

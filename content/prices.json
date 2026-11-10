@@ -1,0 +1,270 @@
+{
+  "cards": [
+    {
+      "name": {
+        "en": "Try-out",
+        "nl": "Proefles"
+      },
+      "price": "€5",
+      "per": {
+        "en": "",
+        "nl": ""
+      },
+      "what": {
+        "en": "one class, in try-out weeks",
+        "nl": "één les, tijdens de proeflesweken"
+      },
+      "ticks": [
+        {
+          "en": "Bring a friend for free",
+          "nl": "Neem gratis een vriend(in) mee"
+        },
+        {
+          "en": "No partner needed",
+          "nl": "Geen partner nodig"
+        },
+        {
+          "en": "Outside try-out weeks: first class €8",
+          "nl": "Buiten de proeflesweken: eerste les €8"
+        }
+      ],
+      "badge": {
+        "en": "",
+        "nl": ""
+      },
+      "button_label": {
+        "en": "See the schedule",
+        "nl": "Bekijk het rooster"
+      },
+      "button_link": "tryout_link",
+      "button_style": "pink"
+    },
+    {
+      "name": {
+        "en": "Course",
+        "nl": "Cursus"
+      },
+      "price": "€95",
+      "per": {
+        "en": "",
+        "nl": ""
+      },
+      "what": {
+        "en": "6 weeks, salsa and bachata, every level",
+        "nl": "6 weken, salsa en bachata, elk niveau"
+      },
+      "ticks": [
+        {
+          "en": "A fixed group for 6 weeks",
+          "nl": "Vaste groep, 6 weken lang"
+        },
+        {
+          "en": "Switching days is possible",
+          "nl": "Van dag wisselen kan"
+        },
+        {
+          "en": "Discount if you book during your try-out",
+          "nl": "Korting als je boekt tijdens je proefles"
+        }
+      ],
+      "badge": {
+        "en": "Next step after your try-out",
+        "nl": "Volgende stap na je proefles"
+      },
+      "button_label": {
+        "en": "See the courses",
+        "nl": "Bekijk de cursussen"
+      },
+      "button_link": "schedule",
+      "button_style": "plain"
+    },
+    {
+      "name": {
+        "en": "Punch card",
+        "nl": "Strippenkaart"
+      },
+      "price": "€95",
+      "per": {
+        "en": "",
+        "nl": ""
+      },
+      "what": {
+        "en": "6 classes, valid 3 months",
+        "nl": "6 lessen, 3 maanden geldig"
+      },
+      "ticks": [
+        {
+          "en": "Or 12 classes for €175 (valid for 5 months)",
+          "nl": "Of 12 lessen voor €175 (5 maanden geldig)"
+        },
+        {
+          "en": "Pick your own day",
+          "nl": "Kies zelf je dag"
+        },
+        {
+          "en": "For Improvers, Intermediate and solo",
+          "nl": "Voor Improvers, Intermediate en sololessen"
+        }
+      ],
+      "badge": {
+        "en": "",
+        "nl": ""
+      },
+      "button_label": {
+        "en": "Buy a punch card",
+        "nl": "Koop een strippenkaart"
+      },
+      "button_link": "https://www.bueno.nu/webshop/school/764/punch-card/45998",
+      "button_style": "plain",
+      "buttons": [
+        {
+          "label": {
+            "en": "Buy 6 classes · €95",
+            "nl": "Koop 6 lessen · €95"
+          },
+          "link": "https://www.bueno.nu/webshop/school/764/punch-card/45998"
+        },
+        {
+          "label": {
+            "en": "Buy 12 classes · €175",
+            "nl": "Koop 12 lessen · €175"
+          },
+          "link": "https://www.bueno.nu/webshop/school/764/punch-card/45999"
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "Membership",
+        "nl": "Lidmaatschap"
+      },
+      "price": "€50",
+      "per": {
+        "en": "/month",
+        "nl": "/maand"
+      },
+      "what": {
+        "en": "1 class a week, cancel monthly",
+        "nl": "1 les per week, maandelijks opzegbaar"
+      },
+      "ticks": [
+        {
+          "en": "€45 a month on a 6-month plan",
+          "nl": "€45 per maand bij een lidmaatschap van 6 maanden"
+        },
+        {
+          "en": "2 classes a week: €89, unlimited: €109",
+          "nl": "2 lessen per week: €89, onbeperkt: €109"
+        },
+        {
+          "en": "Discount or free entry to the Lumos Social",
+          "nl": "Korting op Lumos Social, bij Loco gratis entree"
+        }
+      ],
+      "badge": {
+        "en": "",
+        "nl": ""
+      },
+      "button_label": {
+        "en": "All memberships",
+        "nl": "Alle lidmaatschappen"
+      },
+      "button_link": "#members",
+      "button_style": "plain"
+    }
+  ],
+  "memberships": [
+    {
+      "name": "Lumos Essential",
+      "classes_a_week": {
+        "en": "1",
+        "nl": "1"
+      },
+      "monthly": "€50",
+      "monthly_link": "https://www.bueno.nu/webshop/school/764/subscription/55251",
+      "six_months": "€45",
+      "six_months_link": "https://www.bueno.nu/webshop/school/764/subscription/55257",
+      "social_perk": {
+        "en": "10% off",
+        "nl": "10% korting"
+      },
+      "per_class": {
+        "en": "€11.54 monthly · €10.38 on 6 months",
+        "nl": "€11,54 maandelijks · €10,38 bij 6 maanden"
+      }
+    },
+    {
+      "name": "Lumos Extra",
+      "classes_a_week": {
+        "en": "2",
+        "nl": "2"
+      },
+      "monthly": "€89",
+      "monthly_link": "https://www.bueno.nu/webshop/school/764/subscription/55255",
+      "six_months": "€79",
+      "six_months_link": "https://www.bueno.nu/webshop/school/764/subscription/55258",
+      "social_perk": {
+        "en": "15% off",
+        "nl": "15% korting"
+      },
+      "per_class": {
+        "en": "€10.27 monthly · €9.12 on 6 months",
+        "nl": "€10,27 maandelijks · €9,12 bij 6 maanden"
+      }
+    },
+    {
+      "name": "Lumos Loco",
+      "classes_a_week": {
+        "en": "unlimited",
+        "nl": "onbeperkt"
+      },
+      "monthly": "€109",
+      "monthly_link": "https://www.bueno.nu/webshop/school/764/subscription/55256",
+      "six_months": "€99",
+      "six_months_link": "https://www.bueno.nu/webshop/school/764/subscription/55259",
+      "social_perk": {
+        "en": "free",
+        "nl": "gratis"
+      },
+      "per_class": {
+        "en": "Unlimited classes",
+        "nl": "Onbeperkt aantal lessen"
+      }
+    }
+  ],
+  "reggaeton_strip": [
+    {
+      "name": {
+        "en": "Try-out",
+        "nl": "Proefles"
+      },
+      "price": "",
+      "detail": {
+        "en": "During the try-out weeks: €5<br>Other weeks: €8 for your first class<br>Next try-out week: 4 to 8 January",
+        "nl": "Tijdens de proeflesweken: €5<br>De weken daarbuiten: €8 voor jouw eerste les<br>Eerstvolgende proeflesweek: 4 t/m 8 januari"
+      }
+    },
+    {
+      "name": {
+        "en": "Single class (drop-in)",
+        "nl": "Losse les (drop-in)"
+      },
+      "price": "€17",
+      "detail": {
+        "en": "Every Wednesday, new choreo",
+        "nl": "Elke woensdag, nieuwe choreo"
+      }
+    },
+    {
+      "name": {
+        "en": "Punch card",
+        "nl": "Strippenkaart"
+      },
+      "price": "€95",
+      "detail": {
+        "en": "6 classes, valid 3 months. Or a membership: €50 a month.",
+        "nl": "6 lessen, 3 maanden geldig. Of een lidmaatschap: €50 per maand."
+      }
+    }
+  ]
+}

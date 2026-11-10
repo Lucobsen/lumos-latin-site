@@ -1,0 +1,140 @@
+{
+  "title": {
+    "en": "Privacy & Cookie Policy",
+    "nl": "Privacy- en cookiebeleid"
+  },
+  "intro": {
+    "en": "This policy explains what information we collect when you use our website, why we collect it, and how we handle it. We believe it’s important that you understand how your data is used so you can make informed decisions.",
+    "nl": "In dit beleid leggen we uit welke gegevens we verzamelen wanneer je onze website gebruikt, waarom we ze verzamelen en hoe we ermee omgaan. We vinden het belangrijk dat je begrijpt hoe je gegevens worden gebruikt, zodat je weloverwogen keuzes kunt maken."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "Information We Collect",
+        "nl": "Gegevens die we verzamelen"
+      },
+      "text": {
+        "en": "During your visit, we may collect different types of information, including:",
+        "nl": "Tijdens je bezoek kunnen we verschillende soorten gegevens verzamelen, waaronder:"
+      },
+      "items": [
+        {
+          "en": "Your name and contact details (such as email address or physical address) when you choose to share them.",
+          "nl": "Je naam en contactgegevens (zoals je e-mailadres of postadres) wanneer je ervoor kiest die te delen."
+        },
+        {
+          "en": "Demographic details such as postal code, preferences, and interests.",
+          "nl": "Demografische gegevens zoals postcode, voorkeuren en interesses."
+        },
+        {
+          "en": "Information relevant to promotions, analytics, or customer research.",
+          "nl": "Gegevens die van belang zijn voor acties, analyses of klantonderzoek."
+        },
+        {
+          "en": "Online behaviour and usage data through cookies and similar technologies.",
+          "nl": "Online gedrag en gebruiksgegevens via cookies en vergelijkbare technieken."
+        }
+      ]
+    },
+    {
+      "heading": {
+        "en": "How We Use This Information",
+        "nl": "Hoe we deze gegevens gebruiken"
+      },
+      "text": {
+        "en": "We use your information to improve our services, personalize communication, and help our website function smoothly. This may include:",
+        "nl": "We gebruiken je gegevens om onze diensten te verbeteren, onze communicatie persoonlijk te maken en onze website soepel te laten werken. Dit kan onder meer gaan om:"
+      },
+      "items": [
+        {
+          "en": "Internal administration and record keeping.",
+          "nl": "Interne administratie en het bijhouden van gegevens."
+        },
+        {
+          "en": "Improving our products, services, and user experience.",
+          "nl": "Het verbeteren van onze producten, diensten en gebruikerservaring."
+        },
+        {
+          "en": "Sending updates, offers, and information we believe may be relevant to you (only if you’ve given permission).",
+          "nl": "Het sturen van updates, aanbiedingen en informatie waarvan we denken dat die voor jou relevant kan zijn (alleen als je daar toestemming voor hebt gegeven)."
+        },
+        {
+          "en": "Advertising and analytics tracking to optimize our campaigns.",
+          "nl": "Tracking voor advertenties en analyses om onze campagnes te optimaliseren."
+        },
+        {
+          "en": "Contacting you for feedback or research purposes.",
+          "nl": "Contact met je opnemen voor feedback of onderzoek."
+        },
+        {
+          "en": "Tailoring our website to match your interests and preferences.",
+          "nl": "Het afstemmen van onze website op jouw interesses en voorkeuren."
+        }
+      ]
+    },
+    {
+      "heading": {
+        "en": "Data Security",
+        "nl": "Beveiliging van gegevens"
+      },
+      "text": {
+        "en": "We take appropriate technical and organizational measures to protect your information from unauthorized access, loss, misuse, or disclosure. Only individuals who need the data for their work have access to it.",
+        "nl": "We nemen passende technische en organisatorische maatregelen om je gegevens te beschermen tegen onbevoegde toegang, verlies, misbruik of openbaarmaking. Alleen mensen die de gegevens voor hun werk nodig hebben, hebben er toegang toe."
+      }
+    },
+    {
+      "heading": {
+        "en": "How We Use Cookies",
+        "nl": "Hoe we cookies gebruiken"
+      },
+      "text": {
+        "en": "Cookies are small files stored in your browser. They help us understand how visitors use our website and enable us to:",
+        "nl": "Cookies zijn kleine bestanden die in je browser worden opgeslagen. Ze helpen ons te begrijpen hoe bezoekers onze website gebruiken en stellen ons in staat om:"
+      },
+      "items": [
+        {
+          "en": "Analyze website traffic and user behavior.",
+          "nl": "Websiteverkeer en gebruikersgedrag te analyseren."
+        },
+        {
+          "en": "Improve and personalize advertising.",
+          "nl": "Advertenties te verbeteren en persoonlijker te maken."
+        },
+        {
+          "en": "Enhance website performance and functionality.",
+          "nl": "De prestaties en functionaliteit van de website te verbeteren."
+        }
+      ],
+      "note": {
+        "en": "Advertising cookies (such as Meta Pixel, Google Ads, or similar tools) allow us to track which pages you visit and which actions you take. This helps us deliver more relevant ads and improve our marketing efforts. You can manage or disable cookies at any time through your browser settings. Please note that some parts of the website may not function properly if cookies are disabled.",
+        "nl": "Met advertentiecookies (zoals Meta Pixel, Google Ads of vergelijkbare tools) kunnen we bijhouden welke pagina's je bezoekt en welke acties je uitvoert. Zo kunnen we relevantere advertenties tonen en onze marketing verbeteren. Je kunt cookies op elk moment beheren of uitschakelen via de instellingen van je browser. Houd er rekening mee dat sommige delen van de website mogelijk niet goed werken als cookies zijn uitgeschakeld."
+      }
+    },
+    {
+      "heading": {
+        "en": "Links to Other Websites",
+        "nl": "Links naar andere websites"
+      },
+      "text": {
+        "en": "Our website may contain links to external sites. Once you leave our website, we no longer control the content or privacy practices of those websites. We recommend reviewing the privacy and cookie policies of any external sites before sharing personal information.",
+        "nl": "Onze website kan links naar externe websites bevatten. Zodra je onze website verlaat, hebben we geen invloed meer op de inhoud van die websites of op de manier waarop zij met privacy omgaan. We raden je aan het privacy- en cookiebeleid van externe websites te lezen voordat je persoonlijke gegevens deelt."
+      }
+    },
+    {
+      "heading": {
+        "en": "Contact Us",
+        "nl": "Neem contact met ons op"
+      },
+      "items": [
+        {
+          "en": "+31 6 28452492",
+          "nl": "+31 6 28452492"
+        },
+        {
+          "en": "info@lumoslatin.nl",
+          "nl": "info@lumoslatin.nl"
+        }
+      ]
+    }
+  ]
+}

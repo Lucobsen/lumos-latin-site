@@ -1,0 +1,23 @@
+{
+  "key": "veem",
+  "pin": 1,
+  "name": "De Veemvloer",
+  "address": "Van Diemenstraat 408",
+  "area": {
+    "en": "West",
+    "nl": "West"
+  },
+  "dances": [
+    "salsa",
+    "bachata"
+  ],
+  "days": [
+    "mon",
+    "tue"
+  ],
+  "beginners_only": false,
+  "workshops_only": false,
+  "maps_link": "https://www.google.com/maps/search/?api=1&query=Van+Diemenstraat+408,+1013+CR+Amsterdam",
+  "map_coordinates": "52.3902918,4.887341",
+  "bueno_location_ids": "1484,1813"
+}

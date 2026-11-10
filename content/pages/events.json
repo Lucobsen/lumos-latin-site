@@ -1,0 +1,71 @@
+{
+  "meta_title": {
+    "en": "Latin dance events in Amsterdam",
+    "nl": "Latin dansevenementen in Amsterdam"
+  },
+  "intro": {
+    "en": "Lumos Socials, Workshops and Game Nights. The next one is at the top.",
+    "nl": "Socials, Workshops en Game Nights van Lumos. Het eerstvolgende staat bovenaan."
+  },
+  "first_label": {
+    "en": "Coming up first",
+    "nl": "Eerstvolgend"
+  },
+  "kinds": [
+    {
+      "kind": "socials",
+      "label": {
+        "en": "Socials",
+        "nl": "Socials"
+      }
+    },
+    {
+      "kind": "workshops",
+      "label": {
+        "en": "Workshops",
+        "nl": "Workshops"
+      }
+    },
+    {
+      "kind": "game-nights",
+      "label": {
+        "en": "Game Nights",
+        "nl": "Game Nights"
+      }
+    }
+  ],
+  "empty_text": {
+    "en": "There is no new game night on the calendar yet. You will see the next one first on <a class=\"link\" href=\"https://www.instagram.com/lumoslatin\">Instagram</a>.",
+    "nl": "Er staat nog geen nieuwe game night op de kalender. De volgende zie je als eerste op <a class=\"link\" href=\"https://www.instagram.com/lumoslatin\">Instagram</a>."
+  },
+  "earlier": {
+    "en": "Earlier",
+    "nl": "Eerder"
+  },
+  "back_label": {
+    "en": "All events",
+    "nl": "Alle evenementen"
+  },
+  "map_hint": {
+    "en": "Open in Google Maps",
+    "nl": "Open in Google Maps"
+  },
+  "empty_texts": {
+    "game-nights": {
+      "en": "There is no new game night on the calendar yet. You will see the next one first on <a class=\"link\" href=\"https://www.instagram.com/lumoslatin\">Instagram</a>.",
+      "nl": "Er staat nog geen nieuwe game night op de kalender. De volgende zie je als eerste op <a class=\"link\" href=\"https://www.instagram.com/lumoslatin\">Instagram</a>."
+    },
+    "socials": {
+      "en": "No new social on the calendar yet. You will see the next one first on <a class=\"link\" href=\"https://www.instagram.com/lumoslatin\">Instagram</a>.",
+      "nl": "Er staat nog geen nieuwe social op de kalender. De volgende zie je als eerste op <a class=\"link\" href=\"https://www.instagram.com/lumoslatin\">Instagram</a>."
+    },
+    "workshops": {
+      "en": "We are currently organizing a new Workshop. More info soon! #excited",
+      "nl": "We zijn druk bezig met het plannen van een nieuwe Workshop. Binnenkort meer info! #spannend"
+    }
+  },
+  "up_next_label": {
+    "en": "Up next",
+    "nl": "Hierna"
+  }
+}

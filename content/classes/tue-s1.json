@@ -1,0 +1,16 @@
+{
+  "id": "tue-s1",
+  "day": "tue",
+  "time": "19:00",
+  "end": "20:00",
+  "dance": "salsa",
+  "level": 1,
+  "studio": "ceintuur",
+  "teachers": [
+    "Linoy",
+    "Luke"
+  ],
+  "tryout_date": "2026-11-03",
+  "tryout_time": "19:00",
+  "bueno_tryout_id": 1821496
+}

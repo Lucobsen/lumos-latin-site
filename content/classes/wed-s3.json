@@ -1,0 +1,16 @@
+{
+  "id": "wed-s3",
+  "day": "wed",
+  "time": "21:15",
+  "end": "22:15",
+  "dance": "salsa",
+  "level": 3,
+  "studio": "flow",
+  "teachers": [
+    "Moazam",
+    "Pauline"
+  ],
+  "tryout_date": "2026-10-28",
+  "tryout_time": "21:05",
+  "bueno_tryout_id": 1838376
+}

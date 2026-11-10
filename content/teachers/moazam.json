@@ -1,0 +1,13 @@
+{
+  "order": 3,
+  "name": "Moazam",
+  "role": {
+    "en": "Teacher",
+    "nl": "Docent"
+  },
+  "bio": {
+    "en": "Moazam's classes are about smooth body movement and flow. Expect creative combinations and personal feedback, at a pace that feels comfortable.",
+    "nl": "Bij Moazam draait het om soepel bewegen en flow. Je leert creatieve combinaties en krijgt persoonlijke feedback, in een tempo dat prettig voelt."
+  },
+  "photo": "teacher-moazam.jpg"
+}

@@ -1,0 +1,182 @@
+{
+  "step": {
+    "en": "Question {n} of 2",
+    "nl": "Vraag {n} van 2"
+  },
+  "q1": {
+    "en": "Have you taken salsa or bachata classes before?",
+    "nl": "Heb je al eerder Salsa- of Bachatalessen gevolgd?"
+  },
+  "q1_opts": {
+    "never": {
+      "en": "No, never",
+      "nl": "Nee, nog nooit"
+    },
+    "few": {
+      "en": "A few classes, or one course",
+      "nl": "Een paar lessen, of één cursus"
+    },
+    "regular": {
+      "en": "Yes, I dance regularly",
+      "nl": "Ja, ik dans regelmatig"
+    }
+  },
+  "q1_subs": {
+    "never": {
+      "en": "Also if you only danced at parties",
+      "nl": "Ook als je alleen op feestjes danste"
+    },
+    "few": {
+      "en": "Also if you forgot most of it",
+      "nl": "Ook als je het meeste bent vergeten (geen oordeel)"
+    },
+    "regular": {
+      "en": "You have had classes for a while, maybe at another school",
+      "nl": "Je volgt al een tijdje les, misschien bij een andere school"
+    }
+  },
+  "q1_reggaeton": {
+    "title": {
+      "en": "Reggaeton fan? This is the right place",
+      "nl": "Dé plek voor reggaetonfans."
+    },
+    "sub": {
+      "en": "Solo dancing, awesome choreos, it's you-time.",
+      "nl": "Solo dansen, toffe choreo's, tijd voor jezelf."
+    }
+  },
+  "q2": {
+    "en": "What sounds like you?",
+    "nl": "Wat past bij jou?"
+  },
+  "q2_opts": {
+    "salsa": {
+      "en": "Salsa",
+      "nl": "Salsa"
+    },
+    "bachata": {
+      "en": "Bachata",
+      "nl": "Bachata"
+    },
+    "reggaeton": {
+      "en": "Reggaeton",
+      "nl": "Reggaeton"
+    },
+    "unsure": {
+      "en": "Not sure yet",
+      "nl": "Weet ik nog niet"
+    }
+  },
+  "q2_subs": {
+    "salsa": {
+      "en": "Fast and playful",
+      "nl": "Snel en speels"
+    },
+    "bachata": {
+      "en": "Slower, easy first steps",
+      "nl": "Langzamer, makkelijke eerste passen"
+    },
+    "reggaeton": {
+      "en": "Solo, no partner",
+      "nl": "Solo, zonder partner"
+    },
+    "unsure": {
+      "en": "Help me choose",
+      "nl": "Help me kiezen"
+    }
+  },
+  "one_more": {
+    "en": "One more question",
+    "nl": "Nog één vraag"
+  },
+  "back": {
+    "en": "Back",
+    "nl": "Terug"
+  },
+  "check": {
+    "salsa": {
+      "en": "Can you do a cross body lead without thinking?",
+      "nl": "Kun je een cross body lead doen zonder erbij na te denken?"
+    },
+    "bachata": {
+      "en": "Can you dance the bachata basics without thinking?",
+      "nl": "Dans je de basis van bachata zonder erbij na te denken?"
+    }
+  },
+  "check_opts": {
+    "no": {
+      "en": "No, not yet",
+      "nl": "Nee, nog niet"
+    },
+    "yes": {
+      "en": "Yes",
+      "nl": "Ja"
+    },
+    "unsure": {
+      "en": "Not sure",
+      "nl": "Weet ik niet zeker"
+    }
+  },
+  "compare_title": {
+    "en": "Salsa or bachata?",
+    "nl": "Salsa of bachata?"
+  },
+  "compare": {
+    "salsa": [
+      {
+        "en": "Faster",
+        "nl": "Sneller"
+      },
+      {
+        "en": "More turns",
+        "nl": "Meer draaitjes"
+      },
+      {
+        "en": "Big social scene",
+        "nl": "Grote sociale scene"
+      }
+    ],
+    "bachata": [
+      {
+        "en": "Slower",
+        "nl": "Langzamer"
+      },
+      {
+        "en": "Closer together",
+        "nl": "Dichter bij elkaar"
+      },
+      {
+        "en": "Easier first steps",
+        "nl": "Makkelijkere eerste passen"
+      }
+    ]
+  },
+  "compare_q": {
+    "en": "Which one sounds better?",
+    "nl": "Wat spreekt je meer aan?"
+  },
+  "restart": {
+    "en": "Not right? Choose again",
+    "nl": "Past dit niet? Kies opnieuw"
+  },
+  "restart_top": {
+    "en": "Back to the questions",
+    "nl": "Terug naar de vragen"
+  },
+  "welcome": {
+    "en": "Welcome back. This is what you picked last time.",
+    "nl": "Welkom terug. Dit is je keuze van de vorige keer."
+  },
+  "your_start": {
+    "en": "Start here",
+    "nl": "Hier begin je"
+  },
+  "your_next": {
+    "en": "Your next step",
+    "nl": "Jouw volgende stap"
+  },
+  "your_classes": {
+    "en": "Your classes",
+    "nl": "Jouw lessen"
+  }
+}

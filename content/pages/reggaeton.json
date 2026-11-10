@@ -1,0 +1,74 @@
+{
+  "meta_title": {
+    "en": "Reggaeton classes in Amsterdam West",
+    "nl": "Reggaetonlessen in Amsterdam West"
+  },
+  "title": {
+    "en": "<span class=\"mark\">Reggaeton</span> classes in Amsterdam",
+    "nl": "<span class=\"mark\">Reggaetonlessen</span> in Amsterdam"
+  },
+  "intro": {
+    "en": "For party vibes, expressive choreographies and a confidence boost, you are at the right place in our Reggaeton classes. Pauline will make you feel comfortable, and within no time you love seeing yourself dancing in the mirror! (yes, you will) It's a drop-in class, so you can join any week.",
+    "nl": "Voor Party vibes, expressieve choreografieën en een flinke boost in zelfvertrouwen zit je goed bij onze Reggaetonlessen! Pauline zorgt ervoor dat je je meteen op je gemak voelt, en binnen no time ga jij het geweldig vinden om jezelf in de spiegel te zien dansen! (ja, echt) Het is een drop-in les, dus je kunt elke week instappen."
+  },
+  "classes_sub": {
+    "en": "Drop-In classes: join on any Wednesday you like.",
+    "nl": "Drop-in lessen: kom op elke woensdag die je wilt."
+  },
+  "about_title": {
+    "en": "About the class",
+    "nl": "Over de les"
+  },
+  "card_title": {
+    "en": "Solo, no levels",
+    "nl": "Solo, geen niveaus"
+  },
+  "card_who": {
+    "en": "you want to dance without a partner, with or without experience.",
+    "nl": "je wilt dansen zonder partner, met of zonder ervaring."
+  },
+  "card_learn": {
+    "en": "A new choreo every week, with Pauline.",
+    "nl": "Elke week een nieuwe choreo, met Pauline."
+  },
+  "price_title": {
+    "en": "What does reggaeton cost?",
+    "nl": "Wat kost een Reggaeton les?"
+  },
+  "price_sub": {
+    "en": "No course: you come when you like.",
+    "nl": "Geen cursus: je komt wanneer je wilt."
+  },
+  "worries": [
+    {
+      "title": {
+        "en": "No partner",
+        "nl": "Geen partner"
+      },
+      "text": {
+        "en": "We dance reggaeton solo, so you don't need a partner. First time and you don't know anyone? No worries, we got you. Pauline makes sure you get a warm welcome.",
+        "nl": "Reggaeton dansen we solo, dus je hebt geen partner nodig. Kom je voor het eerst en ken je niemand? Geen zorgen, we got you. Pauline zorgt voor een warm welkom."
+      }
+    },
+    {
+      "title": {
+        "en": "No experience",
+        "nl": "Geen ervaring"
+      },
+      "text": {
+        "en": "Nobody expects you to know it already. Reggaeton is a mix of streetdance, hip hop and dancehall, and we dance with our feelings (esoooo).",
+        "nl": "Niemand verwacht dat je het al kunt. Reggaeton is een mix van Streetdance, HipHop en Dancehall, en we dansen met ons gevoel (esoooo)."
+      }
+    },
+    {
+      "title": {
+        "en": "No dance shoes",
+        "nl": "Geen dansschoenen"
+      },
+      "text": {
+        "en": "Wear clothes you can move in and feel good in! A sporty outfit and sneakers are a good idea.",
+        "nl": "Draag kleding waarin je goed kan bewegen en je ook goed voelt! Een sporty outfit en sneakers zijn aan te raden."
+      }
+    }
+  ]
+}

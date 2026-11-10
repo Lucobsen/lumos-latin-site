@@ -1,0 +1,22 @@
+{
+  "kind": "game-nights",
+  "date": "2026-10-08",
+  "show_from": "",
+  "hide_after": "",
+  "time": "",
+  "title": {
+    "en": "Lumos Game Night",
+    "nl": "Lumos Game Night"
+  },
+  "place": "Mooie Boules West, Amsterdam",
+  "text": {
+    "en": "A chilled evening to get to know the people you normally only see in class. Jeu de boules, Giant Jenga, ping pong, karaoke, 30 Seconds and more. Taking part was free.",
+    "nl": "Een relaxte avond om de mensen te leren kennen die je anders alleen in de les ziet. Jeu de boules, reuzen-Jenga, pingpong, karaoke, 30 Seconds en meer. Meedoen was gratis."
+  },
+  "image": "gamenight.jpg",
+  "button": {
+    "en": "",
+    "nl": ""
+  },
+  "link": ""
+}

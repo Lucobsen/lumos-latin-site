@@ -1,0 +1,22 @@
+{
+  "kind": "workshops",
+  "date": "2026-07-18",
+  "show_from": "",
+  "hide_after": "",
+  "time": "",
+  "title": {
+    "en": "Festival Macumba",
+    "nl": "Festival Macumba"
+  },
+  "place": "Festival Macumba",
+  "text": {
+    "en": "Lumos hosted the workshop area, teaching Salsa LA, merengue and reggaeton.",
+    "nl": "Lumos verzorgde de workshopruimte, met lessen salsa LA, merengue en reggaeton."
+  },
+  "image": "macumba.jpg",
+  "button": {
+    "en": "",
+    "nl": ""
+  },
+  "link": ""
+}

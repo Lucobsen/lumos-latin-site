@@ -1,0 +1,74 @@
+{
+  "questions": [
+    {
+      "question": {
+        "en": "Do I need a dance partner?",
+        "nl": "Heb ik een danspartner nodig?"
+      },
+      "answer": {
+        "en": "No. Partners rotate during class, so everyone dances with someone. If there aren't enough leaders or followers, we find extra people through our WhatsApp groups. If you'd rather not switch, that's fine too.",
+        "nl": "Nee. Tijdens de les wisselen we van partner, zodat iedereen met iemand danst. Zijn er niet genoeg leaders of followers, dan regelen we extra mensen via onze WhatsApp-groepen. Wil je liever niet wisselen, dan mag dat ook."
+      }
+    },
+    {
+      "question": {
+        "en": "What should I wear?",
+        "nl": "Wat trek ik aan?"
+      },
+      "answer": {
+        "en": "Something you can move and lift your arms in, like for the gym. Smooth-soled shoes you can spin in. Coming straight from work? Bring a fresh shirt.",
+        "nl": "Iets waarin je makkelijk beweegt en je armen kunt optillen, zoals voor de sportschool. Schoenen met een gladde zool waarop je kunt draaien. Kom je direct van je werk, neem dan een schoon shirt mee."
+      }
+    },
+    {
+      "question": {
+        "en": "I dance at another school. Which level?",
+        "nl": "Ik dans al bij een andere school. Welk niveau?"
+      },
+      "answer": {
+        "en": "On the Salsa or Bachata page, read the ‘This is you if’ line for each level. Or do two try-outs back to back. Not sure? Send us a WhatsApp.",
+        "nl": "Lees bij Salsa of Bachata per niveau de regel ‘Geschikt als’. Of volg twee proeflessen direct na elkaar. Twijfel je? Stuur ons een WhatsApp."
+      }
+    },
+    {
+      "question": {
+        "en": "How does a try-out work?",
+        "nl": "Hoe werkt een proefles?"
+      },
+      "answer": {
+        "en": "In the try-out weeks (next: 4 to 8 January) you join one class for €5 and bring a friend for free. Liked it? Book the 6-week course during your try-out and get a discount.",
+        "nl": "In de proeflesweken (de volgende: 4 t/m 8 januari) doe je één les mee voor €5 en je neemt gratis een vriend(in) mee. Vond je het leuk? Boek de cursus van 6 weken tijdens je proefles, dan krijg je korting."
+      }
+    },
+    {
+      "question": {
+        "en": "Can I switch days?",
+        "nl": "Kan ik van dag wisselen?"
+      },
+      "answer": {
+        "en": "Yes. Send us a WhatsApp or email with the class you'd like to go to.",
+        "nl": "Ja. Stuur ons een WhatsApp of e-mail met de les waar je naartoe wilt."
+      }
+    },
+    {
+      "question": {
+        "en": "Can I join a course late?",
+        "nl": "Kan ik later instromen?"
+      },
+      "answer": {
+        "en": "For Beginners and Improvers you can join up to the third week. Later than that? Send us a message and we'll look together.",
+        "nl": "Bij Beginners en Improvers kan dat tot en met de derde week van de cursus. Later? Stuur ons een bericht, dan kijken we samen."
+      }
+    },
+    {
+      "question": {
+        "en": "What does a class cost outside try-out weeks?",
+        "nl": "Wat kost een les buiten de proeflesweken?"
+      },
+      "answer": {
+        "en": "Your first class at Lumos is €8. A single class is €17.",
+        "nl": "Je eerste les bij Lumos kost €8. Een losse les kost €17."
+      }
+    }
+  ]
+}

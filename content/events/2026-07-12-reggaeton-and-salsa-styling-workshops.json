@@ -1,0 +1,22 @@
+{
+  "kind": "workshops",
+  "date": "2026-07-12",
+  "show_from": "",
+  "hide_after": "",
+  "time": "",
+  "title": {
+    "en": "Reggaeton and salsa styling workshops",
+    "nl": "Reggaeton- en salsa-stylingworkshops"
+  },
+  "place": "Latin Flow Studio, Rigakade 10, Amsterdam",
+  "text": {
+    "en": "A reggaeton workshop and an elegant salsa styling hour (LA style, On1).",
+    "nl": "Een reggaetonworkshop en een elegante salsa-stylingles (LA-stijl, On1)."
+  },
+  "image": "styling.jpg",
+  "button": {
+    "en": "",
+    "nl": ""
+  },
+  "link": ""
+}

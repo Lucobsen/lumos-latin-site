@@ -1,0 +1,15 @@
+{
+  "id": "wed-r",
+  "day": "wed",
+  "time": "19:00",
+  "end": "20:00",
+  "dance": "reggaeton",
+  "level": 0,
+  "studio": "flow",
+  "teachers": [
+    "Pauline"
+  ],
+  "tryout_date": "2026-10-28",
+  "tryout_time": "19:00",
+  "bueno_tryout_id": 1821493
+}

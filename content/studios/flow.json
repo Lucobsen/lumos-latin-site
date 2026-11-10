@@ -1,0 +1,22 @@
+{
+  "key": "flow",
+  "pin": 2,
+  "name": "Latin Flow Studio",
+  "address": "Rigakade 10",
+  "area": {
+    "en": "West",
+    "nl": "West"
+  },
+  "dances": [
+    "salsa",
+    "reggaeton"
+  ],
+  "days": [
+    "wed"
+  ],
+  "beginners_only": false,
+  "workshops_only": false,
+  "maps_link": "https://www.google.com/maps/search/?api=1&query=Rigakade+10,+1013+BC+Amsterdam",
+  "map_coordinates": "52.3954,4.8749699",
+  "bueno_location_ids": "1739"
+}

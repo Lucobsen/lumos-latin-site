@@ -1,0 +1,511 @@
+{
+  "answers": {
+    "reggaeton": {
+      "eyebrow": "your_start",
+      "title": {
+        "en": "Reggaeton drop-in · no partner · €5 try-outs 4 to 8 Jan",
+        "nl": "Reggaeton-drop-in · geen partner · proefles €5 van 4 t/m 8 jan"
+      },
+      "intro": {
+        "en": "You dance solo, so just come on your own. There are no levels, so you can join any week.",
+        "nl": "Je danst solo, dus je komt gewoon alleen. Er zijn geen niveaus: je kunt elke week instappen."
+      },
+      "ticks": [
+        {
+          "en": "No partner needed.",
+          "nl": "Geen partner nodig."
+        },
+        {
+          "en": "No experience needed.",
+          "nl": "Geen ervaring nodig."
+        },
+        {
+          "en": "Bring a friend for free.",
+          "nl": "Neem gratis een vriend(in) mee."
+        }
+      ],
+      "classes": [
+        "wed-r"
+      ],
+      "cta": {
+        "en": "Book a try-out",
+        "nl": "Boek een proefles"
+      },
+      "second_label": {
+        "en": "About reggaeton",
+        "nl": "Over reggaeton"
+      },
+      "second_link": "reggaeton",
+      "extras": "night"
+    },
+    "beginner_salsa": {
+      "eyebrow": "your_start",
+      "title": {
+        "en": "Salsa 1 · Beginners · €5 try-outs 4 to 8 Jan",
+        "nl": "Salsa 1 · Beginners · proefles €5 van 4 t/m 8 jan"
+      },
+      "intro": {
+        "en": "Only danced at parties? Then this is your level. The Salsa 1 courses start on 2 and 3 November from the very first step, with other beginners. Pick the evening and studio that suit you.",
+        "nl": "Alleen op feestjes gedanst? Dan is dit je niveau. De cursussen Salsa 1 starten op 2 en 3 november bij de allereerste stap, samen met andere beginners. Kies de avond en studio die je het beste uitkomen."
+      },
+      "ticks": [
+        {
+          "en": "No partner needed: partners rotate in class.",
+          "nl": "Geen partner nodig: we wisselen tijdens de les."
+        },
+        {
+          "en": "Bring a friend for free.",
+          "nl": "Neem gratis een vriend(in) mee."
+        },
+        {
+          "en": "You pay €5 for the try-out, the next ones are 4 to 8 January. If you want to continue, the 6-week course is €95, with a discount if you book during your try-out.",
+          "nl": "Je betaalt €5 voor de proefles, de volgende zijn van 4 t/m 8 januari. Wil je verder, dan volg je de cursus van 6 weken voor €95, met korting als je boekt tijdens je proefles."
+        }
+      ],
+      "classes": [
+        "mon-s1",
+        "tue-s1"
+      ],
+      "cta": {
+        "en": "Book a try-out",
+        "nl": "Boek een proefles"
+      },
+      "second_label": {
+        "en": "All beginner classes",
+        "nl": "Alle beginnerslessen"
+      },
+      "second_link": "schedule?filter=beginners",
+      "extras": "night"
+    },
+    "beginner_bachata": {
+      "eyebrow": "your_start",
+      "title": {
+        "en": "Bachata 1 · Beginners · €5 try-outs 4 to 8 Jan",
+        "nl": "Bachata 1 · Beginners · proefles €5 van 4 t/m 8 jan"
+      },
+      "intro": {
+        "en": "Only danced at parties? Then this is your level. Bachata 1 is on Tuesdays at the Ceintuurtheater and the course starts on 3 November from the very first step, with other beginners. Level 1 is a balanced style; from level 2 it leans more towards Sensual.",
+        "nl": "Alleen op feestjes gedanst? Dan is dit je niveau. Bachata 1 is op dinsdag in het Ceintuurtheater en de cursus start op 3 november bij de allereerste stap, samen met andere beginners. In niveau 1 dans je een evenwichtige stijl, vanaf niveau 2 meer richting Sensual."
+      },
+      "ticks": [
+        {
+          "en": "No partner needed: partners rotate in class.",
+          "nl": "Geen partner nodig: we wisselen tijdens de les."
+        },
+        {
+          "en": "Bring a friend for free.",
+          "nl": "Neem gratis een vriend(in) mee."
+        },
+        {
+          "en": "You pay €5 for the try-out, the next ones are 4 to 8 January. If you want to continue, the 6-week course is €95, with a discount if you book during your try-out.",
+          "nl": "Je betaalt €5 voor de proefles, de volgende zijn van 4 t/m 8 januari. Wil je verder, dan volg je de cursus van 6 weken voor €95, met korting als je boekt tijdens je proefles."
+        }
+      ],
+      "classes": [
+        "tue-b1c"
+      ],
+      "cta": {
+        "en": "Book a try-out",
+        "nl": "Boek een proefles"
+      },
+      "second_label": {
+        "en": "All beginner classes",
+        "nl": "Alle beginnerslessen"
+      },
+      "second_link": "schedule?filter=beginners",
+      "extras": "night"
+    },
+    "improver_salsa": {
+      "eyebrow": "your_next",
+      "title": {
+        "en": "Salsa 2 · Improvers",
+        "nl": "Salsa 2 · Improvers"
+      },
+      "intro": {
+        "en": "You know the basics. Here you learn inside and outside turns, the copa and the open break.",
+        "nl": "Je kent de basis. Hier leer je inside en outside turns, de copa en de open break."
+      },
+      "ticks": [
+        {
+          "en": "€5 try-out (4 to 8 January), then the 6-week course for €95.",
+          "nl": "Proefles €5 (4 t/m 8 januari), daarna de cursus van 6 weken voor €95."
+        },
+        {
+          "en": "Or pay per class: punch card (6 classes €95) or a single class for €17. Dancing every week? Membership: €50 a month, or €45 on a 6-month plan.",
+          "nl": "Of betaal per les: strippenkaart (6 lessen €95) of een losse les van €17. Dans je elke week? Lidmaatschap: €50 per maand, of €45 bij 6 maanden."
+        },
+        {
+          "en": "Not sure? In the try-out week, 4 to 8 January, you can do the Salsa 1 and 2 try-outs, €5 each.",
+          "nl": "Twijfel je? In de proeflesweek, 4 t/m 8 januari, kun je de proeflessen Salsa 1 en 2 allebei volgen, €5 per les."
+        }
+      ],
+      "classes": [
+        "mon-s2",
+        "wed-s2"
+      ],
+      "cta": {
+        "en": "Book a try-out",
+        "nl": "Boek een proefles"
+      },
+      "second_label": {
+        "en": "All salsa levels",
+        "nl": "Alle salsaniveaus"
+      },
+      "second_link": "salsa",
+      "extras": "night"
+    },
+    "improver_bachata": {
+      "eyebrow": "your_next",
+      "title": {
+        "en": "Bachata 2 · Improvers",
+        "nl": "Bachata 2 · Improvers"
+      },
+      "intro": {
+        "en": "You know the bachata basics. Level 2 leans more towards Sensual.",
+        "nl": "Je kent de basis van bachata. In niveau 2 gaan we meer richting Sensual."
+      },
+      "ticks": [
+        {
+          "en": "€5 try-out (4 to 8 January), then the 6-week course for €95.",
+          "nl": "Proefles €5 (4 t/m 8 januari), daarna de cursus van 6 weken voor €95."
+        },
+        {
+          "en": "Or pay per class: punch card (6 classes €95) or a single class for €17. Dancing every week? Membership: €50 a month, or €45 on a 6-month plan.",
+          "nl": "Of betaal per les: strippenkaart (6 lessen €95) of een losse les van €17. Dans je elke week? Lidmaatschap: €50 per maand, of €45 bij 6 maanden."
+        },
+        {
+          "en": "Bachata 2 is our highest bachata level.",
+          "nl": "Bachata 2 is ons hoogste bachataniveau."
+        },
+        {
+          "en": "Not sure? In the try-out week, 4 to 8 January, you can do the Bachata 1 and 2 try-outs, €5 each.",
+          "nl": "Twijfel je? In de proeflesweek, 4 t/m 8 januari, kun je de proeflessen Bachata 1 en 2 allebei volgen, €5 per les."
+        }
+      ],
+      "classes": [
+        "tue-b2"
+      ],
+      "cta": {
+        "en": "Book a try-out",
+        "nl": "Boek een proefles"
+      },
+      "second_label": {
+        "en": "All bachata levels",
+        "nl": "Alle bachataniveaus"
+      },
+      "second_link": "bachata",
+      "extras": "night"
+    },
+    "dancer_salsa": {
+      "eyebrow": "your_classes",
+      "title": {
+        "en": "Salsa for people who already dance",
+        "nl": "Salsa voor wie al danst"
+      },
+      "intro": {
+        "en": "Salsa 3 (Intermediate) is on Mondays at 21:15 at De Veemvloer and Wednesdays at 21:15 at Latin Flow Studio. Salsa 2 (Improvers) is on Mondays at De Veemvloer and Wednesdays at Latin Flow Studio. We dance Salsa LA On1 (cross body).",
+        "nl": "Salsa 3 (Intermediate) is op maandag om 21:15 in De Veemvloer en op woensdag om 21:15 in Latin Flow Studio. Salsa 2 (Improvers) is op maandag in De Veemvloer en op woensdag in Latin Flow Studio. We dansen Salsa LA On1 (cross body)."
+      },
+      "ticks": [
+        {
+          "en": "Torn between 2 and 3? In the try-out week, 4 to 8 January, you can try both, €5 each.",
+          "nl": "Twijfel je tussen 2 en 3? In de proeflesweek, 4 t/m 8 januari, kun je ze allebei proberen, €5 per les."
+        },
+        {
+          "en": "No course needed: from Improvers up you can also dance per class.",
+          "nl": "Geen cursus nodig: vanaf Improvers dans je ook per les."
+        },
+        {
+          "en": "Salsa 3 is our highest salsa level.",
+          "nl": "Salsa 3 is ons hoogste salsaniveau."
+        }
+      ],
+      "classes": [
+        "mon-s2",
+        "mon-s3",
+        "wed-s2",
+        "wed-s3"
+      ],
+      "cta": {
+        "en": "Book a try-out",
+        "nl": "Boek een proefles"
+      },
+      "second_label": {
+        "en": "Buy a punch card or membership",
+        "nl": "Koop een strippenkaart of lidmaatschap"
+      },
+      "second_link": "prices",
+      "extras": "dancer"
+    },
+    "dancer_bachata": {
+      "eyebrow": "your_classes",
+      "title": {
+        "en": "Bachata for people who already dance",
+        "nl": "Bachata voor wie al danst"
+      },
+      "intro": {
+        "en": "Bachata 2 Improvers, on Tuesday at De Veemvloer.",
+        "nl": "Bachata 2 Improvers, op dinsdag in De Veemvloer."
+      },
+      "ticks": [
+        {
+          "en": "Bachata 2 is our highest bachata level.",
+          "nl": "Bachata 2 is ons hoogste bachataniveau."
+        },
+        {
+          "en": "Next Bachata 2 try-outs: 4 to 8 January.",
+          "nl": "Volgende proeflessen Bachata 2: 4 t/m 8 januari."
+        }
+      ],
+      "classes": [
+        "tue-b2"
+      ],
+      "cta": {
+        "en": "Book a try-out",
+        "nl": "Boek een proefles"
+      },
+      "second_label": {
+        "en": "Buy a punch card or membership",
+        "nl": "Koop een strippenkaart of lidmaatschap"
+      },
+      "second_link": "prices",
+      "extras": "dancer"
+    },
+    "between_salsa": {
+      "eyebrow": "your_start",
+      "title": {
+        "en": "Salsa 1 or 2? Try both",
+        "nl": "Salsa 1 of 2? Probeer ze allebei"
+      },
+      "intro": {
+        "en": "In the try-out week, 4 to 8 January, you can do the Salsa 1 and Salsa 2 try-outs. Do both and see which fits best.",
+        "nl": "In de proeflesweek, 4 t/m 8 januari, kun je de proeflessen Salsa 1 en Salsa 2 volgen. Volg ze allebei en kijk welke het beste past."
+      },
+      "ticks": [
+        {
+          "en": "€5 per try-out, so €10 for both. Bring a friend for free.",
+          "nl": "€5 per proefles, dus €10 voor allebei. Neem gratis een vriend(in) mee."
+        },
+        {
+          "en": "Then pick what fits: the 6-week course for €95, with a discount if you book during your try-out. For level 2 you can also go per class, with a punch card (6 classes €95) or membership (from €50 a month).",
+          "nl": "Daarna kies je wat past: de cursus van 6 weken voor €95, met korting als je boekt tijdens je proefles. Voor niveau 2 kan het ook per les, met een strippenkaart (6 lessen €95) of lidmaatschap (vanaf €50 per maand)."
+        }
+      ],
+      "classes": [
+        "mon-s1",
+        "mon-s2",
+        "tue-s1",
+        "wed-s2"
+      ],
+      "cta": {
+        "en": "Book a try-out",
+        "nl": "Boek een proefles"
+      },
+      "second_label": {
+        "en": "All salsa levels",
+        "nl": "Alle salsaniveaus"
+      },
+      "second_link": "salsa",
+      "extras": "night"
+    },
+    "between_bachata": {
+      "eyebrow": "your_start",
+      "title": {
+        "en": "Bachata 1 or 2? Try both",
+        "nl": "Bachata 1 of 2? Probeer ze allebei"
+      },
+      "intro": {
+        "en": "In the try-out week, 4 to 8 January, you can do the Bachata 1 and Bachata 2 try-outs. Do both and see which fits best.",
+        "nl": "In de proeflesweek, 4 t/m 8 januari, kun je de proeflessen Bachata 1 en Bachata 2 volgen. Volg ze allebei en kijk welke het beste past."
+      },
+      "ticks": [
+        {
+          "en": "€5 per try-out, so €10 for both. Bring a friend for free.",
+          "nl": "€5 per proefles, dus €10 voor allebei. Neem gratis een vriend(in) mee."
+        },
+        {
+          "en": "Then pick what fits: the 6-week course for €95, with a discount if you book during your try-out. For level 2 you can also go per class, with a punch card (6 classes €95) or membership (from €50 a month).",
+          "nl": "Daarna kies je wat past: de cursus van 6 weken voor €95, met korting als je boekt tijdens je proefles. Voor niveau 2 kan het ook per les, met een strippenkaart (6 lessen €95) of lidmaatschap (vanaf €50 per maand)."
+        }
+      ],
+      "classes": [
+        "tue-b2",
+        "tue-b1c"
+      ],
+      "cta": {
+        "en": "Book a try-out",
+        "nl": "Boek een proefles"
+      },
+      "second_label": {
+        "en": "All bachata levels",
+        "nl": "Alle bachataniveaus"
+      },
+      "second_link": "bachata",
+      "extras": "night"
+    }
+  },
+  "night_extras": [
+    {
+      "show_from": "",
+      "hide_after": "2026-10-23",
+      "heading": {
+        "en": "Next Latin Night",
+        "nl": "Volgende Latin Night"
+      },
+      "text": {
+        "en": "Friday 23 October, 20:00 to 00:00, Café CHEF, Surinameplein 33. Two beginner workshops (salsa and bachata) at 20:00. A good way to meet people.",
+        "nl": "Vrijdag 23 oktober, 20:00 tot 00:00, Café CHEF, Surinameplein 33. Om 20:00 twee beginnersworkshops (salsa en bachata). Een goede plek om mensen te leren kennen."
+      }
+    },
+    {
+      "show_from": "",
+      "hide_after": "2026-11-03",
+      "heading": {
+        "en": "Free Salsa & Bachata Social",
+        "nl": "Gratis Salsa & Bachata Social"
+      },
+      "text": {
+        "en": "Tuesday 3 November, 21:15 to 23:00, Ceintuurtheater, with DJ Abdeloo. Free entrance!",
+        "nl": "Dinsdag 3 november, 21:15 tot 23:00, Ceintuurtheater, met DJ Abdeloo. Gratis entree!"
+      }
+    }
+  ],
+  "dancer_extras": [
+    {
+      "show_from": "",
+      "hide_after": "",
+      "heading": {
+        "en": "Punch card",
+        "nl": "Strippenkaart"
+      },
+      "text": {
+        "en": "6 classes for €95 (valid 3 months) or 12 for €175 (5 months). For Improvers, Intermediate and solo classes, booked per class in the Bueno Students app. Single class: €17.",
+        "nl": "6 lessen voor €95 (3 maanden geldig) of 12 voor €175 (5 maanden). Voor Improvers, Intermediate en sololessen, je boekt per les in de Bueno Students app. Losse les: €17."
+      }
+    },
+    {
+      "show_from": "",
+      "hide_after": "",
+      "heading": {
+        "en": "Membership",
+        "nl": "Lidmaatschap"
+      },
+      "text": {
+        "en": "Cancel monthly: €50 (1 class a week), €89 (2 classes) or €109 (unlimited). On a 6-month plan: €45, €79 or €99.",
+        "nl": "Maandelijks opzegbaar: €50 (1 les per week), €89 (2 lessen) of €109 (onbeperkt). Met een lidmaatschap van 6 maanden: €45, €79 of €99."
+      }
+    },
+    {
+      "show_from": "",
+      "hide_after": "2026-10-23",
+      "heading": {
+        "en": "Next Latin Night",
+        "nl": "Volgende Latin Night"
+      },
+      "text": {
+        "en": "Friday 23 October, 20:00 to 00:00, Café CHEF, Surinameplein 33. Two beginner workshops (salsa and bachata) at 20:00.",
+        "nl": "Vrijdag 23 oktober, 20:00 tot 00:00, Café CHEF, Surinameplein 33. Om 20:00 twee beginnersworkshops (salsa en bachata)."
+      }
+    },
+    {
+      "show_from": "",
+      "hide_after": "2026-10-31",
+      "heading": {
+        "en": "Spinning Workshops by Kristina",
+        "nl": "Draaiworkshops (spins) met Kristina"
+      },
+      "text": {
+        "en": "Saturday 31 October, TG Spaces, Amsterdam East. Solo, Salsa On1: 13:00–14:15 and 14:45–16:00.",
+        "nl": "Zaterdag 31 oktober, TG Spaces, Amsterdam Oost. Solo, Salsa On1: 13:00–14:15 en 14:45–16:00."
+      }
+    },
+    {
+      "show_from": "",
+      "hide_after": "2026-11-05",
+      "heading": {
+        "en": "Next Workshops: Thursday, Nov 5",
+        "nl": "Workshops op donderdag 5 november"
+      },
+      "text": {
+        "en": "19:00 - 20:00 | Salsa Body Movement by Moazam. 20:00 - 21:00 | Salsa Ladies Styling by Pauline.",
+        "nl": "19:00 - 20:00 | Salsa Body Movement met Moazam. 20:00 - 21:00 | Salsa Ladies Styling met Pauline."
+      }
+    }
+  ],
+  "you_if": {
+    "salsa_1": {
+      "en": "You've never danced salsa, or you've forgotten most of it.",
+      "nl": "Je hebt nog nooit salsa gedanst, of je bent het meeste vergeten."
+    },
+    "salsa_2": {
+      "en": "You can do a cross body lead without thinking.",
+      "nl": "Je danst een cross body lead zonder erbij na te denken."
+    },
+    "salsa_3": {
+      "en": "You dance at socials and want more technique and styling.",
+      "nl": "Je danst al op socials en wilt meer techniek en styling."
+    },
+    "bachata_1": {
+      "en": "You've never danced bachata, or you've forgotten most of it.",
+      "nl": "Je hebt nog nooit bachata gedanst, of je bent het meeste vergeten."
+    },
+    "bachata_2": {
+      "en": "You can dance the bachata basics without thinking.",
+      "nl": "Je danst de basis van bachata zonder erbij na te denken."
+    }
+  },
+  "between_link": {
+    "en": "",
+    "nl": ""
+  },
+  "first_class_title": {
+    "en": "Your first class",
+    "nl": "Je eerste les"
+  },
+  "first_class_sub": {
+    "en": "What to expect.",
+    "nl": "Wat je kunt verwachten."
+  },
+  "first_class_items": [
+    {
+      "title": {
+        "en": "Coming alone is fine",
+        "nl": "Alleen komen is prima"
+      },
+      "text": {
+        "en": "Partners rotate during class, so everyone dances with someone.",
+        "nl": "We wisselen van partner tijdens de les, dus iedereen danst met iemand."
+      }
+    },
+    {
+      "title": {
+        "en": "Wear something you can move in",
+        "nl": "Draag kleding waarin je makkelijk beweegt"
+      },
+      "text": {
+        "en": "Like for the gym. Smooth-soled shoes you can spin in. Coming from work? Bring a fresh shirt.",
+        "nl": "Gewone sportkleding is prima. Schoenen met een gladde zool waarop je kunt draaien. Kom je van je werk? Neem een schoon shirt mee."
+      }
+    },
+    {
+      "title": {
+        "en": "You start at step one",
+        "nl": "Je begint bij stap één"
+      },
+      "text": {
+        "en": "Beginners learn the basic step. Nobody expects you to know it already.",
+        "nl": "Beginners leren de basispas. Niemand verwacht dat je het al kunt."
+      }
+    },
+    {
+      "title": {
+        "en": "Liked it?",
+        "nl": "Vond je het leuk?"
+      },
+      "text": {
+        "en": "Book the course during your try-out and get a discount. You can join until week 3.",
+        "nl": "Boek de cursus tijdens je proefles, dan krijg je korting. Instromen kan tot en met week 3."
+      }
+    }
+  ]
+}

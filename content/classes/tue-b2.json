@@ -1,0 +1,16 @@
+{
+  "id": "tue-b2",
+  "day": "tue",
+  "time": "19:00",
+  "end": "20:00",
+  "dance": "bachata",
+  "level": 2,
+  "studio": "veem",
+  "teachers": [
+    "Arda",
+    "Pauline"
+  ],
+  "tryout_date": "2026-10-27",
+  "tryout_time": "19:00",
+  "bueno_tryout_id": 1821492
+}

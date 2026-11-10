@@ -1,0 +1,82 @@
+{
+  "meta_title": {
+    "en": "Dance studios in Amsterdam West, De Pijp and East",
+    "nl": "Dansstudio's in Amsterdam West, De Pijp en Oost"
+  },
+  "intro": {
+    "en": "Four studios: two in Amsterdam West (Houthavens), one in De Pijp and one in East. TG Spaces in East hosts our workshops, not weekly classes. Open a studio to see every class there.",
+    "nl": "Vier studio's: twee in Amsterdam West (Houthavens), één in De Pijp en één in Oost. In TG Spaces (Oost) geven we workshops, geen vaste lessen. Open een studio om alle lessen daar te zien."
+  },
+  "beginners_only": {
+    "en": "beginners only",
+    "nl": "alleen beginners"
+  },
+  "tryout_label": {
+    "en": "€5 try-out",
+    "nl": "Proefles €5"
+  },
+  "notices": [
+    {
+      "show_from": "",
+      "hide_after": "2026-11-03",
+      "studio": "ceintuur",
+      "place": "sticker",
+      "text": {
+        "en": "Free Salsa & Bachata Night",
+        "nl": "Gratis Salsa & Bachata Night"
+      }
+    },
+    {
+      "show_from": "",
+      "hide_after": "2026-11-03",
+      "day": "tue",
+      "time": "21:15–23:00",
+      "studio": "ceintuur",
+      "title": {
+        "en": "Salsa &amp; Bachata Social with DJ Abdeloo",
+        "nl": "Salsa &amp; Bachata Social met DJ Abdeloo"
+      },
+      "place": "row",
+      "text": {
+        "en": "Tuesday 3 November",
+        "nl": "Dinsdag 3 november"
+      },
+      "note": {
+        "en": "Free entrance!",
+        "nl": "Gratis entree!"
+      }
+    }
+  ],
+  "classes_word": {
+    "en": "classes",
+    "nl": "lessen"
+  },
+  "workshops_heading": {
+    "en": "Workshops",
+    "nl": "Workshops"
+  },
+  "workshops_tags": {
+    "en": "Sometimes workshops",
+    "nl": "Soms workshops"
+  },
+  "no_weekly_classes": {
+    "en": "no weekly classes",
+    "nl": "geen vaste lessen"
+  },
+  "no_workshops": {
+    "en": "You will see the next workshop on the events page.",
+    "nl": "De volgende workshop zie je op de evenementenpagina."
+  },
+  "map_title": {
+    "en": "Map",
+    "nl": "Kaart"
+  },
+  "map_caption": {
+    "en": "Open in Google Maps",
+    "nl": "Open in Google Maps"
+  },
+  "directions_button": {
+    "en": "Directions in Google Maps",
+    "nl": "Route in Google Maps"
+  }
+}

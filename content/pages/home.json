@@ -1,0 +1,114 @@
+{
+  "meta_title": {
+    "en": "Lumos Latin · Salsa, bachata and reggaeton in Amsterdam West",
+    "nl": "Lumos Latin · Salsa, bachata en reggaeton in Amsterdam West"
+  },
+  "meta_description": {
+    "en": "Salsa, bachata and reggaeton classes in Amsterdam West. No partner needed. €5 try-outs from 4 to 8 January.",
+    "nl": "Salsa-, bachata- en reggaetonlessen in Amsterdam West. Zonder partner. Proeflessen van €5 van 4 t/m 8 januari."
+  },
+  "title": "We teach, <span class=\"hl\">you shine!</span>",
+  "dances_line": "Salsa - Bachata - Reggaeton",
+  "hero_sub": {
+    "en": "Feel at home on the dance floor: we are a Latin dance school in Amsterdam for beginners and experienced dancers. Welcoming, fun classes where you learn at your own pace.",
+    "nl": "Voel je thuis op de dansvloer: wij zijn een Latin dansschool in Amsterdam voor beginners en ervaren dansers. Gezellige, motiverende lessen waarin je leert op jouw tempo."
+  },
+  "hero_sub2": {
+    "en": "No partner needed. Just bring yourself.",
+    "nl": "Geen partner nodig. Neem gewoon jezelf mee."
+  },
+  "next_up_label": {
+    "en": "Next up",
+    "nl": "Eerstvolgend"
+  },
+  "notices": [
+    {
+      "show_from": "",
+      "hide_after": "2026-11-03",
+      "place": "next_up",
+      "text": {
+        "en": "Beginner Try-Outs for €5 in De Pijp: November 3, bring a friend for free!",
+        "nl": "Beginner proeflessen voor €5 in De Pijp: 3 November, neem gratis een vriend(in) mee!"
+      },
+      "link": "schedule?filter=tryouts&filter=ceintuur"
+    }
+  ],
+  "trust_reviews": {
+    "en": "on Google ({count} reviews)",
+    "nl": "op Google ({count} reviews)"
+  },
+  "trust_studios": {
+    "en": "4 studios in Amsterdam",
+    "nl": "4 studio&#39;s in Amsterdam"
+  },
+  "hero_note_label": {
+    "en": "€5 Try-Outs",
+    "nl": "Proeflessen €5"
+  },
+  "hero_note": {
+    "en": "Jan 4 - 8. Outside of our Try-Out Weeks, your first class is just €8.",
+    "nl": "4 t/m 8 jan. Buiten onze proeflesweken kost je eerste les maar €8."
+  },
+  "browse_link": {
+    "en": "Prefer to browse? See all classes",
+    "nl": "Liever zelf rondkijken? Naar het rooster"
+  },
+  "news_title": {
+    "en": "Latest news",
+    "nl": "Laatste nieuws"
+  },
+  "news_all_link": {
+    "en": "All events",
+    "nl": "Alle evenementen"
+  },
+  "news_first_label": {
+    "en": "Coming up first",
+    "nl": "Eerstvolgend"
+  },
+  "dances_title": {
+    "en": "Three dances",
+    "nl": "Drie dansstijlen"
+  },
+  "dances_sub": {
+    "en": "Pick one, or try all three.",
+    "nl": "Kies er één, of probeer ze alle drie."
+  },
+  "dance_lines": {
+    "salsa": {
+      "en": "Fast and playful, with lots of turns. We teach Salsa LA On1.",
+      "nl": "Snel en speels, met veel draaitjes. We geven Salsa LA On1."
+    },
+    "bachata": {
+      "en": "Slower and closer, with easy first steps.",
+      "nl": "Langzamer en dichter bij elkaar, met makkelijke eerste passen."
+    },
+    "reggaeton": {
+      "en": "Solo dancing. The ultimate Party-Moves class. Drop in every Wednesday.",
+      "nl": "Solo dansen. Dé ultieme Party-Moves-les. Elke woensdag drop-in."
+    }
+  },
+  "more_about": {
+    "en": "More about",
+    "nl": "Meer over"
+  },
+  "reviews_title": {
+    "en": "What students say",
+    "nl": "Wat leerlingen zeggen"
+  },
+  "reviews_line": {
+    "en": "on Google, {count} reviews",
+    "nl": "op Google, {count} reviews"
+  },
+  "studios_title": {
+    "en": "Four studios in Amsterdam",
+    "nl": "Vier studio's in Amsterdam"
+  },
+  "studios_text": {
+    "en": "De Veemvloer, Latin Flow Studio, Ceintuurtheater and TG Spaces.",
+    "nl": "De Veemvloer, Latin Flow Studio, Ceintuurtheater en TG Spaces."
+  },
+  "studios_button": {
+    "en": "See the studios",
+    "nl": "Bekijk de studio's"
+  }
+}

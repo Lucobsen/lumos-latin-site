@@ -1,0 +1,100 @@
+{
+  "schedule_button": {
+    "en": "See the schedule",
+    "nl": "Bekijk het rooster"
+  },
+  "prices_button": {
+    "en": "See prices",
+    "nl": "Bekijk de prijzen"
+  },
+  "classes_title": {
+    "en": "All classes at a glance",
+    "nl": "Alle lessen op een rij"
+  },
+  "table_headings": {
+    "studio": {
+      "en": "Studio and teacher",
+      "nl": "Studio en docent"
+    },
+    "class": {
+      "en": "Class",
+      "nl": "Les"
+    },
+    "tryout": {
+      "en": "€5 try-out",
+      "nl": "Proefles €5"
+    },
+    "then": {
+      "en": "Then",
+      "nl": "Daarna"
+    }
+  },
+  "course_line": {
+    "en": "6-week course, €95: ",
+    "nl": "Cursus 6 weken, €95: "
+  },
+  "drop_in_line": {
+    "en": "Drop-in every Wednesday, ",
+    "nl": "Elke woensdag drop-in, "
+  },
+  "levels_title": {
+    "en": "Which level are you?",
+    "nl": "Welk niveau past bij jou?"
+  },
+  "you_if_label": {
+    "en": "This is you if",
+    "nl": "Geschikt als"
+  },
+  "tip_label": {
+    "en": "Torn between two levels?",
+    "nl": "Twijfel je tussen twee niveaus?"
+  },
+  "finder_button": {
+    "en": "Not sure? Answer two questions",
+    "nl": "Twijfel je? Beantwoord twee vragen"
+  },
+  "worries_title": {
+    "en": "What you don't need",
+    "nl": "Wat je niet nodig hebt"
+  },
+  "worries_sub": {
+    "en": "Three things people worry about before a first class.",
+    "nl": "Drie dingen waar beginners zich vaak zorgen over maken."
+  },
+  "worries": [
+    {
+      "title": {
+        "en": "No partner",
+        "nl": "Geen partner"
+      },
+      "text": {
+        "en": "Everyone dances with everyone. Partners rotate during class, so you can come on your own.",
+        "nl": "Iedereen danst met iedereen. We wisselen van partner tijdens de les, dus je kunt alleen komen."
+      }
+    },
+    {
+      "title": {
+        "en": "No experience",
+        "nl": "Geen ervaring"
+      },
+      "text": {
+        "en": "Salsa 1 and Bachata 1 start from the very first step. Nobody expects you to know it already.",
+        "nl": "Salsa 1 en Bachata 1 beginnen bij de allereerste stap. Niemand verwacht dat je het al kunt."
+      }
+    },
+    {
+      "title": {
+        "en": "No dance shoes",
+        "nl": "Geen dansschoenen"
+      },
+      "text": {
+        "en": "Wear something you can move in, with smooth-soled shoes. Coming from work? Bring a fresh shirt.",
+        "nl": "Draag kleding waarin je makkelijk beweegt en schoenen met een gladde zool. Kom je van je werk? Neem een schoon shirt mee."
+      }
+    }
+  ],
+  "cta_title": {
+    "en": "Ready to start?",
+    "nl": "Klaar om te beginnen?"
+  }
+}

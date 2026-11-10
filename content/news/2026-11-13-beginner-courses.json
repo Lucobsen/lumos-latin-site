@@ -1,0 +1,32 @@
+{
+  "date": "2026-11-13",
+  "show_from": "",
+  "hide_after": "2026-11-24",
+  "title": {
+    "en": "Beginner Courses",
+    "nl": "Beginnerscursussen"
+  },
+  "when": {
+    "en": "Houthavens & De Pijp",
+    "nl": "Houthavens & De Pijp"
+  },
+  "text": {
+    "en": "You are still on time to hop in! Join our Beginner classes on Mondays or Tuesdays, and know the basics before Christmas. Need some more info? Have a chat with us!",
+    "nl": "Je kunt nog instappen! Sluit nog aan bij onze beginnerslessen op maandag of dinsdag, dan heb jij de Basics nog voor kerst in de pocket. Meer info nodig? Chat met ons :)"
+  },
+  "image": "hero-dance.jpg",
+  "badge": {
+    "en": "",
+    "nl": ""
+  },
+  "big": false,
+  "sticker": {
+    "en": "",
+    "nl": ""
+  },
+  "button": {
+    "en": "Chat with us",
+    "nl": "Chat met ons"
+  },
+  "link": "https://wa.me/31628452492"
+}

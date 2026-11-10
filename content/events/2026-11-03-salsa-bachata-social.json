@@ -1,0 +1,22 @@
+{
+  "kind": "socials",
+  "date": "2026-11-03",
+  "show_from": "",
+  "hide_after": "",
+  "time": "21:15–23:00",
+  "title": {
+    "en": "Salsa & Bachata Social",
+    "nl": "Salsa & Bachata Social"
+  },
+  "place": "Ceintuurtheater, Amsterdam De Pijp",
+  "text": {
+    "en": "Free entry. Salsa and bachata with DJ Abdeloo, for everyone, whether you've danced for years or just want a fun Tuesday night. Beginner try-outs run beforehand.",
+    "nl": "Gratis entree. Salsa en bachata met DJ Abdeloo, voor iedereen, of je nu al jaren danst of gewoon zin hebt in een leuke dinsdagavond. Vooraf zijn er proeflessen voor beginners."
+  },
+  "image": "social.jpg",
+  "button": {
+    "en": "Try-outs that evening",
+    "nl": "Proeflessen die avond"
+  },
+  "link": "schedule"
+}

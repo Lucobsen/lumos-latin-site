@@ -1,0 +1,13 @@
+{
+  "order": 1,
+  "name": "Pauline",
+  "role": {
+    "en": "Founder and teacher",
+    "nl": "Oprichter en docent"
+  },
+  "bio": {
+    "en": "Pauline is the founder of Lumos Latin and has been in the Latin scene for more than nine years. She teaches with happy vibes and an eye for detail.",
+    "nl": "Pauline is de oprichter van Lumos Latin en zit al ruim negen jaar in de latinscene. Ze geeft les met een vrolijke sfeer en oog voor detail."
+  },
+  "photo": "teacher-pauline.jpg"
+}

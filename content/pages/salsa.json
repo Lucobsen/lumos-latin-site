@@ -1,0 +1,57 @@
+{
+  "meta_title": {
+    "en": "Salsa classes in Amsterdam West",
+    "nl": "Salsalessen in Amsterdam West"
+  },
+  "title": {
+    "en": "<span class=\"mark\">Salsa</span> classes in Amsterdam",
+    "nl": "<span class=\"mark\">Salsalessen</span> in Amsterdam"
+  },
+  "intro": {
+    "en": "Salsa is fast and playful, with lots of turns. We teach Salsa LA On1, also called cross body style. You dance with a partner, and partners rotate during class, so you can come on your own.",
+    "nl": "Salsa is energiek en speels, met veel draaien. We geven Salsa LA On1, ook wel Cross Body Style genoemd. Je danst met een partner, maar tijdens de les wisselen we regelmatig van partner. Je kunt dus gewoon alleen komen!"
+  },
+  "classes_sub": {
+    "en": "Start with a trial class for €8 and decide afterwards if you'd like to become a member. You can switch between class days. From January 4 to 8, we're hosting our official Try-Out Week, where each class is only €5.",
+    "nl": "Begin met een proefles van €8 en besluit daarna of je lid wilt worden. Het is mogelijk te wisselen tussen lesdagen. Van 4 t/m 8 januari hebben we onze officiële proeflessen. In deze week is elke les slechts €5."
+  },
+  "back_to_back": {
+    "en": "In the try-out week, 4 to 8 January, you can try two levels, €5 each.",
+    "nl": "In de proeflesweek, 4 t/m 8 januari, kun je twee niveaus proberen, €5 per les."
+  },
+  "levels": [
+    {
+      "level": 1,
+      "who": {
+        "en": "you've never danced salsa, or you had classes before and forgot most of it.",
+        "nl": "je nog nooit salsa hebt gedanst, of eerder lessen had en het meeste vergeten bent."
+      },
+      "learn": {
+        "en": "You learn the basic step, the right turn and the cross body lead.",
+        "nl": "Je leert de basispas, de rechterdraai en de cross body lead."
+      }
+    },
+    {
+      "level": 2,
+      "who": {
+        "en": "you can do a cross body lead without thinking.",
+        "nl": "je een cross body lead danst zonder erbij na te denken."
+      },
+      "learn": {
+        "en": "You learn inside and outside turns, the copa and the open break.",
+        "nl": "Je leert inside en outside turns, de copa en de open break."
+      }
+    },
+    {
+      "level": 3,
+      "who": {
+        "en": "you dance at socials and want more.",
+        "nl": "je al op socials danst en verder wilt."
+      },
+      "learn": {
+        "en": "Technique, styling and musicality: double spins, 360 turns, copa variations and hammerlocks.",
+        "nl": "Techniek, styling en muzikaliteit: double spins, 360 turns, copa-variaties en hammerlocks."
+      }
+    }
+  ]
+}

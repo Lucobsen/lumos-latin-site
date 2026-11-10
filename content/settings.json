@@ -1,0 +1,31 @@
+{
+  "site_url": "https://www.lumoslatin.nl",
+  "founded_year": 2025,
+  "phone": "+31 6 28452492",
+  "tel_link": "tel:+31628452492",
+  "whatsapp_link": "https://wa.me/31628452492",
+  "email": "info@lumoslatin.nl",
+  "instagram": "https://www.instagram.com/lumoslatin",
+  "tiktok": "https://www.tiktok.com/@lumoslatindance",
+  "facebook": "https://www.facebook.com/share/1CDP3cBRsB/?mibextid=wwXIfr",
+  "book_fallback": "schedule",
+  "buy_link": "https://www.lumoslatin.nl/prices",
+  "hl_shape": "A",
+  "hl_color": "Pink",
+  "btn_color": "Pink",
+  "q_bg": "White",
+  "gtm_id": "GTM-NJ5LNLVH",
+  "google_rating": "5.0",
+  "review_count": 28,
+  "course_start": {
+    "mon": "2026-11-02",
+    "tue": "2026-11-03",
+    "wed": "2026-11-04"
+  },
+  "course_end": {
+    "mon": "2026-12-07",
+    "tue": "2026-12-08",
+    "wed": "2026-12-09"
+  },
+  "tryouts_on": false
+}

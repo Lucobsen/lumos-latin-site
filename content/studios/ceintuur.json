@@ -1,0 +1,22 @@
+{
+  "key": "ceintuur",
+  "pin": 3,
+  "name": "Ceintuurtheater",
+  "address": "Ceintuurbaan 282",
+  "area": {
+    "en": "De Pijp",
+    "nl": "De Pijp"
+  },
+  "dances": [
+    "salsa",
+    "bachata"
+  ],
+  "days": [
+    "tue"
+  ],
+  "beginners_only": true,
+  "workshops_only": false,
+  "maps_link": "https://www.google.com/maps/search/?api=1&query=Ceintuurbaan+282,+1072+GK+Amsterdam",
+  "map_coordinates": "52.3526079,4.8914267",
+  "bueno_location_ids": "1815"
+}

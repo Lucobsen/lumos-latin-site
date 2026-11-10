@@ -1,0 +1,16 @@
+{
+  "id": "mon-s1",
+  "day": "mon",
+  "time": "19:00",
+  "end": "20:00",
+  "dance": "salsa",
+  "level": 1,
+  "studio": "veem",
+  "teachers": [
+    "Luke",
+    "Pauline"
+  ],
+  "tryout_date": "2026-10-26",
+  "tryout_time": "19:00",
+  "bueno_tryout_id": 1821488
+}

@@ -1,0 +1,22 @@
+{
+  "kind": "socials",
+  "date": "2026-10-23",
+  "show_from": "",
+  "hide_after": "",
+  "time": "20:00–00:00",
+  "title": {
+    "en": "Lumos Latin Night",
+    "nl": "Lumos Latin Night"
+  },
+  "place": "Café CHEF, Surinameplein 33, Amsterdam",
+  "text": {
+    "en": "Lumos just turned one, and this is already the 5th Latin Night. An evening of salsa, bachata and a sparkle of reggaeton. At 20:00 there are two beginner workshops (salsa and bachata) with easy party moves.",
+    "nl": "Lumos bestaat 1 jaar en dit is al de 5e Latin Night. Een avond salsa, bachata en een beetje reggaeton. Om 20:00 beginnen twee workshops voor beginners (salsa en bachata) met makkelijke party moves."
+  },
+  "image": "latinnight.jpg",
+  "button": {
+    "en": "Get your early bird",
+    "nl": "Koop je early bird"
+  },
+  "link": "https://www.bueno.nu/webshop/school/764/schedule-detail/1813700"
+}

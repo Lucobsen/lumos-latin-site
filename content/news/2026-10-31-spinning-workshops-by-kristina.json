@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-31",
+  "show_from": "",
+  "hide_after": "2026-10-31",
+  "title": {
+    "en": "Spinning Workshops by Kristina",
+    "nl": "Spinningworkshops met Kristina"
+  },
+  "when": {
+    "en": "Saturday 31 October",
+    "nl": "Zaterdag 31 oktober"
+  },
+  "text": {
+    "en": "Our first guest teacher. Two solo Salsa On1 workshops at TG Spaces, Amsterdam East: Spinning Fundamentals and Boost your Spins.",
+    "nl": "Onze eerste gastdocent. Twee solo-workshops Salsa On1 in TG Spaces, Amsterdam Oost: Spinning Fundamentals en Boost your Spins."
+  },
+  "image": "kristina.jpg",
+  "badge": {
+    "en": "",
+    "nl": ""
+  },
+  "big": false,
+  "sticker": {
+    "en": "",
+    "nl": ""
+  },
+  "button": {
+    "en": "",
+    "nl": ""
+  },
+  "link": "https://www.bueno.nu/webshop/school/764/schedule?currentDate=31-10-2026&skipEmptyWeeksOnFirstLoad=NO&calendarEntryTypes=4&locations=1814&genres=&levels=&employees="
+}

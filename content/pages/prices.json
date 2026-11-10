@@ -1,0 +1,391 @@
+{
+  "meta_title": {
+    "en": "Prices of dance classes in Amsterdam",
+    "nl": "Prijzen van danslessen in Amsterdam"
+  },
+  "intro": {
+    "en": "Start with a try-out. Then choose how you keep dancing.",
+    "nl": "Begin met een proefles. Daarna kies je hoe je verder danst."
+  },
+  "note": {
+    "en": "<b>Course or punch card?</b> With the course you dance 6 weeks in the same group. With a punch card you pick your own day. Single class (drop-in): €17. You can join a running Beginners or Improvers course up to week 3.",
+    "nl": "<b>Cursus of strippenkaart?</b> Met de cursus dans je 6 weken in dezelfde groep. Met een strippenkaart kies je zelf je dag. Losse les (drop-in): €17. Instromen in een lopende Beginners- of Improverscursus kan tot en met week 3."
+  },
+  "table_headings": {
+    "classes_a_week": {
+      "en": "Classes a week",
+      "nl": "Lessen per week"
+    },
+    "monthly": {
+      "en": "Cancel monthly",
+      "nl": "Maandelijks opzegbaar"
+    },
+    "six_months": {
+      "en": "6 months, then monthly",
+      "nl": "6 maanden, daarna maandelijks"
+    },
+    "social_perk": {
+      "en": "Lumos Social",
+      "nl": "Lumos Social"
+    },
+    "per_class": {
+      "en": "Price per class",
+      "nl": "Prijs per les"
+    }
+  },
+  "members_title": {
+    "en": "Memberships",
+    "nl": "Lidmaatschappen"
+  },
+  "members_sub": {
+    "en": "For people who dance every week. You book your classes in the Bueno Students app.",
+    "nl": "Voor wie elke week danst. Je boekt je lessen in de Bueno Students app."
+  },
+  "members_start": {
+    "en": "Start",
+    "nl": "Start"
+  },
+  "quiz": {
+    "reggaeton": {
+      "title": {
+        "en": "Here for the Reggaeton?",
+        "nl": "Ben je hier voor Reggaeton?"
+      },
+      "options": [
+        {
+          "label": {
+            "en": "I need this every week",
+            "nl": "Ik wil dit elke week"
+          },
+          "link": "#members",
+          "pick": {
+            "en": "Membership Essential",
+            "nl": "Lidmaatschap Essential"
+          }
+        },
+        {
+          "label": {
+            "en": "I will join now and then",
+            "nl": "Ik kom af en toe"
+          },
+          "link": "#pc-punch",
+          "pick": {
+            "en": "Punch card",
+            "nl": "Strippenkaart"
+          }
+        }
+      ]
+    },
+    "title": {
+      "en": "Find your option",
+      "nl": "Vind wat bij je past"
+    },
+    "placeholder": {
+      "en": "👀 Pick an answer in each row and your match shows up here.",
+      "nl": "👀 Kies in elke rij een antwoord en hier zie je wat bij je past."
+    },
+    "best_for_you": {
+      "en": "Best for you",
+      "nl": "Beste keuze voor jou"
+    },
+    "clear": {
+      "en": "Clear",
+      "nl": "Wis mijn keuzes"
+    },
+    "results": {
+      "tryout": {
+        "name": {
+          "en": "Try-out",
+          "nl": "Proefles"
+        },
+        "price": "€5",
+        "per": {
+          "en": "",
+          "nl": ""
+        },
+        "line": {
+          "en": "One class in the try-out weeks, bring a friend for free. Outside try-out weeks your first class is €8; a single class after that is €17.",
+          "nl": "Eén les tijdens de proeflesweken, neem gratis een vriend(in) mee. Buiten de proeflesweken kost je eerste les €8 en een losse les daarna €17."
+        },
+        "button_label": {
+          "en": "See the schedule",
+          "nl": "Bekijk het rooster"
+        },
+        "button_link": "tryout_link"
+      },
+      "tryout_single": {
+        "name": {
+          "en": "Try-out, then single classes",
+          "nl": "Proefles, daarna losse lessen"
+        },
+        "price": "€5",
+        "per": {
+          "en": "+ €17 a class",
+          "nl": "+ €17 per les"
+        },
+        "line": {
+          "en": "Start with a €5 try-out (4 to 8 January). You can join a running Beginners course up to week 3 at €17 a class.",
+          "nl": "Begin met een proefles van €5 (4 t/m 8 januari). Instromen in een lopende Beginnerscursus kan tot en met week 3, voor €17 per les."
+        },
+        "button_label": {
+          "en": "See the schedule",
+          "nl": "Bekijk het rooster"
+        },
+        "button_link": "tryout_link"
+      },
+      "punch_short": {
+        "name": {
+          "en": "Punch card",
+          "nl": "Strippenkaart"
+        },
+        "price": "€95",
+        "per": {
+          "en": "for 6 classes",
+          "nl": "voor 6 lessen"
+        },
+        "line": {
+          "en": "Valid 3 months, pick your own day. For Improvers, Intermediate and solo classes.",
+          "nl": "3 maanden geldig, kies zelf je dag. Voor Improvers, Intermediate en sololessen."
+        },
+        "button_label": {
+          "en": "Buy a punch card",
+          "nl": "Koop een strippenkaart"
+        },
+        "button_link": "https://www.bueno.nu/webshop/school/764/punch-card/45998"
+      },
+      "punch_months": {
+        "name": {
+          "en": "Punch card",
+          "nl": "Strippenkaart"
+        },
+        "price": "€95",
+        "per": {
+          "en": "for 6 classes",
+          "nl": "voor 6 lessen"
+        },
+        "line": {
+          "en": "Valid 3 months, pick your own day. Or 12 classes for €175, valid 5 months.",
+          "nl": "3 maanden geldig, kies zelf je dag. Of 12 lessen voor €175, 5 maanden geldig."
+        },
+        "button_label": {
+          "en": "Buy a punch card",
+          "nl": "Koop een strippenkaart"
+        },
+        "button_link": "https://www.bueno.nu/webshop/school/764/punch-card/45998"
+      },
+      "course_months": {
+        "name": {
+          "en": "Course",
+          "nl": "Cursus"
+        },
+        "price": "€95",
+        "per": {
+          "en": "for 6 weeks",
+          "nl": "voor 6 weken"
+        },
+        "line": {
+          "en": "A fixed group for 6 weeks, salsa or bachata, every level. Discount if you book during your try-out.",
+          "nl": "Een vaste groep, 6 weken lang, salsa of bachata, elk niveau. Korting als je boekt tijdens je proefles."
+        },
+        "button_label": {
+          "en": "See the courses",
+          "nl": "Bekijk de cursussen"
+        },
+        "button_link": "schedule"
+      },
+      "course_then_member": {
+        "name": {
+          "en": "Course, then a membership",
+          "nl": "Cursus, daarna een lidmaatschap"
+        },
+        "price": "€95",
+        "per": {
+          "en": "for 6 weeks",
+          "nl": "voor 6 weken"
+        },
+        "line": {
+          "en": "Start in a fixed beginners group for 6 weeks. After that, Lumos Essential is €50 a month for a weekly class.",
+          "nl": "Begin in een vaste beginnersgroep van 6 weken. Daarna kost Lumos Essential €50 per maand voor 1 les per week."
+        },
+        "button_label": {
+          "en": "See the courses",
+          "nl": "Bekijk de cursussen"
+        },
+        "button_link": "schedule"
+      },
+      "member_extra_months": {
+        "name": {
+          "en": "Lumos Extra membership",
+          "nl": "Lumos Extra lidmaatschap"
+        },
+        "price": "€89",
+        "per": {
+          "en": "/month",
+          "nl": "/maand"
+        },
+        "line": {
+          "en": "2 classes a week, cancel monthly: €10.27 a class. 15% off the Lumos Social.",
+          "nl": "2 lessen per week, maandelijks opzegbaar: €10,27 per les. 15% korting op Lumos Social."
+        },
+        "button_label": {
+          "en": "See the memberships",
+          "nl": "Bekijk de lidmaatschappen"
+        },
+        "button_link": "#members",
+        "alt": {
+          "text": {
+            "en": "Or a punch card: 6 classes for €95, valid 3 months",
+            "nl": "Of een strippenkaart: 6 lessen voor €95, 3 maanden geldig"
+          },
+          "link": "https://www.bueno.nu/webshop/school/764/punch-card/45998"
+        }
+      },
+      "member_extra_live": {
+        "name": {
+          "en": "Lumos Extra membership",
+          "nl": "Lumos Extra lidmaatschap"
+        },
+        "price": "€89",
+        "per": {
+          "en": "/month",
+          "nl": "/maand"
+        },
+        "line": {
+          "en": "2 classes a week: €10.27 a class, or €79 a month on a 6-month plan (€9.12 a class). Unlimited classes: Lumos Loco, €109.",
+          "nl": "2 lessen per week: €10,27 per les, of €79 per maand bij een lidmaatschap van 6 maanden (€9,12 per les). Onbeperkt aantal lessen: Lumos Loco, €109."
+        },
+        "button_label": {
+          "en": "See the memberships",
+          "nl": "Bekijk de lidmaatschappen"
+        },
+        "button_link": "#members",
+        "alt": {
+          "text": {
+            "en": "Or a punch card: 6 classes for €95, valid 3 months",
+            "nl": "Of een strippenkaart: 6 lessen voor €95, 3 maanden geldig"
+          },
+          "link": "https://www.bueno.nu/webshop/school/764/punch-card/45998"
+        }
+      },
+      "member_essential": {
+        "name": {
+          "en": "Lumos Essential membership",
+          "nl": "Lumos Essential lidmaatschap"
+        },
+        "price": "€50",
+        "per": {
+          "en": "/month",
+          "nl": "/maand"
+        },
+        "line": {
+          "en": "1 class a week, cancel monthly: €11.54 a class. €45 a month on a 6-month plan (€10.38 a class), 10% off the Lumos Social.",
+          "nl": "1 les per week, maandelijks opzegbaar: €11,54 per les. €45 per maand bij een lidmaatschap van 6 maanden (€10,38 per les), 10% korting op Lumos Social."
+        },
+        "button_label": {
+          "en": "See the memberships",
+          "nl": "Bekijk de lidmaatschappen"
+        },
+        "button_link": "#members",
+        "alt": {
+          "text": {
+            "en": "Or a punch card: 6 classes for €95, valid 3 months",
+            "nl": "Of een strippenkaart: 6 lessen voor €95, 3 maanden geldig"
+          },
+          "link": "https://www.bueno.nu/webshop/school/764/punch-card/45998"
+        }
+      }
+    },
+    "questions": [
+      {
+        "key": "stay",
+        "question": {
+          "en": "How long are you in Amsterdam?",
+          "nl": "Hoe lang ben je in Amsterdam?"
+        },
+        "options": [
+          {
+            "label": {
+              "en": "A few weeks",
+              "nl": "Een paar weken"
+            },
+            "value": "weeks"
+          },
+          {
+            "label": {
+              "en": "A few months",
+              "nl": "Een paar maanden"
+            },
+            "value": "months"
+          },
+          {
+            "label": {
+              "en": "I live here (or nearby)",
+              "nl": "Ik woon hier (of omgeving)"
+            },
+            "value": "live"
+          }
+        ]
+      },
+      {
+        "key": "often",
+        "question": {
+          "en": "How often would you like to dance?",
+          "nl": "Hoe vaak wil je dansen?"
+        },
+        "options": [
+          {
+            "label": {
+              "en": "Just once, to try",
+              "nl": "Eén keer, om te proberen"
+            },
+            "value": "once"
+          },
+          {
+            "label": {
+              "en": "About once a week",
+              "nl": "Ongeveer 1 keer per week"
+            },
+            "value": "weekly"
+          },
+          {
+            "label": {
+              "en": "Twice a week or more",
+              "nl": "2 keer per week of vaker"
+            },
+            "value": "more"
+          }
+        ]
+      },
+      {
+        "key": "exp",
+        "question": {
+          "en": "Danced salsa or bachata before?",
+          "nl": "Heb je al eens salsa of bachata gedanst?"
+        },
+        "options": [
+          {
+            "label": {
+              "en": "Never",
+              "nl": "Nog nooit"
+            },
+            "value": "never"
+          },
+          {
+            "label": {
+              "en": "A few times",
+              "nl": "Een paar keer"
+            },
+            "value": "some"
+          },
+          {
+            "label": {
+              "en": "Regularly",
+              "nl": "Regelmatig"
+            },
+            "value": "regular"
+          }
+        ]
+      }
+    ]
+  }
+}

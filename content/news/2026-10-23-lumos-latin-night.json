@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-23",
+  "show_from": "",
+  "hide_after": "2026-10-23",
+  "title": {
+    "en": "Lumos Latin Night",
+    "nl": "Lumos Latin Night"
+  },
+  "when": {
+    "en": "Friday 23 October",
+    "nl": "Vrijdag 23 oktober"
+  },
+  "text": {
+    "en": "Our 1-year party. Salsa, bachata and a sparkle of reggaeton, 20:00 to 00:00 at Café CHEF. Two beginner workshops at 20:00.",
+    "nl": "Ons 1-jarig feest. Salsa, bachata en een beetje reggaeton, 20:00 tot 00:00 in Café CHEF. Om 20:00 twee workshops voor beginners."
+  },
+  "image": "latinnight.jpg",
+  "badge": {
+    "en": "",
+    "nl": ""
+  },
+  "big": false,
+  "sticker": {
+    "en": "",
+    "nl": ""
+  },
+  "button": {
+    "en": "Get your early bird",
+    "nl": "Koop je early bird"
+  },
+  "link": "https://www.bueno.nu/webshop/school/764/schedule-detail/1813700"
+}

@@ -1,0 +1,32 @@
+{
+  "date": "2026-11-03",
+  "show_from": "",
+  "hide_after": "2026-11-03",
+  "title": {
+    "en": "New classes in De Pijp",
+    "nl": "Nieuwe lessen in De Pijp"
+  },
+  "when": {
+    "en": "Tuesday 3 November",
+    "nl": "Dinsdag 3 november"
+  },
+  "text": {
+    "en": "On 3 November we start teaching at the Ceintuurtheater. Beginner try-outs from 19:00, then a free social with DJ Abdeloo.",
+    "nl": "Op 3 november beginnen we in het Ceintuurtheater. Proeflessen voor beginners vanaf 19:00, daarna een gratis social met DJ Abdeloo."
+  },
+  "image": "social.jpg",
+  "badge": {
+    "en": "",
+    "nl": ""
+  },
+  "big": false,
+  "sticker": {
+    "en": "Free Salsa & Bachata Night",
+    "nl": "Gratis Salsa & Bachata Night"
+  },
+  "button": {
+    "en": "Try-outs in De Pijp",
+    "nl": "Proeflessen in De Pijp"
+  },
+  "link": "schedule"
+}

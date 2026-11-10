@@ -1,0 +1,13 @@
+{
+  "order": 4,
+  "name": "Arda",
+  "role": {
+    "en": "Teacher",
+    "nl": "Docent"
+  },
+  "bio": {
+    "en": "Arda is at nearly every Bachata social in Amsterdam and competes in Jack & Jills at festivals abroad. In class he shares his leading skills with kind, personal feedback.",
+    "nl": "Arda is op bijna elke bachatasocial in Amsterdam te vinden en doet mee aan Jack & Jills op festivals in het buitenland. In de les deelt hij zijn leidtechniek met vriendelijke, persoonlijke feedback."
+  },
+  "photo": "teacher-arda.jpg"
+}

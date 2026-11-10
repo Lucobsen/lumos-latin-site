@@ -1,0 +1,22 @@
+{
+  "kind": "workshops",
+  "date": "2026-11-05",
+  "show_from": "",
+  "hide_after": "",
+  "time": "19:00–20:00 · 20:00–21:00",
+  "title": {
+    "en": "Salsa Body Movement and Salsa Ladies Styling",
+    "nl": "Salsa Body Movement en Salsa Ladies Styling"
+  },
+  "place": "TG Spaces, Zeeburgerpad 22, Amsterdam",
+  "text": {
+    "en": "19:00 - 20:00 | Salsa Body Movement by Moazam. 20:00 - 21:00 | Salsa Ladies Styling by Pauline.",
+    "nl": "19:00 - 20:00 | Salsa Body Movement met Moazam. 20:00 - 21:00 | Salsa Ladies Styling met Pauline."
+  },
+  "image": "styling.jpg",
+  "button": {
+    "en": "Book your spot",
+    "nl": "Boek je plek"
+  },
+  "link": "https://www.bueno.nu/webshop/school/764/schedule?currentDate=05-11-2026&skipEmptyWeeksOnFirstLoad=NO&calendarEntryTypes=&locations=1814&genres=&levels=&employees="
+}
