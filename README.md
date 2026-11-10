@@ -1,6 +1,6 @@
 # Lumos Latin website
 
-The new lumoslatin.nl: plain HTML, CSS and a little JavaScript, hosted on Vercel.
+The new lumoslatin.nl: plain HTML, CSS and a little JavaScript, hosted on Vercel. The editing screen is at https://www.lumoslatin.nl/admin/.
 This note says how the site is built, where to change things, and what to do at launch.
 
 ## What is in the repo
