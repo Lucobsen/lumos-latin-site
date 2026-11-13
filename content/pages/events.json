@@ -65,7 +65,11 @@
     }
   },
   "up_next_label": {
-    "en": "Up next",
-    "nl": "Hierna"
+    "en": "Our next event",
+    "nl": "Ons volgende evenement"
+  },
+  "past_note": {
+    "en": "This event has already taken place.",
+    "nl": "Dit evenement is al geweest."
   }
 }

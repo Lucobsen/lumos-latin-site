@@ -121,6 +121,31 @@
       "source": "/blog/",
       "destination": "/en/",
       "permanent": true
+    },
+    {
+      "source": "/en/start",
+      "destination": "/en/#start",
+      "permanent": true
+    },
+    {
+      "source": "/en/start/",
+      "destination": "/en/#start",
+      "permanent": true
+    },
+    {
+      "source": "/nl/start",
+      "destination": "/nl/#start",
+      "permanent": true
+    },
+    {
+      "source": "/nl/start/",
+      "destination": "/nl/#start",
+      "permanent": true
+    },
+    {
+      "source": "/favicon.ico",
+      "destination": "/assets/lumos-gem-icon.svg",
+      "permanent": true
     }
   ]
 }

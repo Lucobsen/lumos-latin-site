@@ -247,8 +247,8 @@ def url(lang, page, query=""):
 def link_href(lang, v):
     """A link from a content file: a full address or "#anchor" stays as it is, "buy_link" is the shop,
     and a page key with an optional query or anchor ("schedule?filter=beginners", "home#start") becomes that page."""
-    if v == "buy_link":
-        return BUY
+    if v == "buy_link":  # the shop; when that is our own prices page, the one in the visitor's language
+        return url(lang, "prices") if BUY.rstrip("/").endswith("lumoslatin.nl/prices") else BUY
     if v == "tryout_link":  # the try-out schedule in try-out weeks, else the regular schedule
         return url(lang, "schedule", "?filter=tryouts" if TRYOUTS else "")
     if not v or v.startswith(("http", "#", "/", "mailto:", "tel:")):
@@ -546,8 +546,10 @@ def event_page(lang, e):
     p = P("events", lang)
     kind = next((x["label"] for x in p["kinds"] if x["kind"] == e["kind"]), "")
     crumbs = f'<a href="{url(lang, "events")}">{T[lang]["nav_events"]}</a> › <a href="{url(lang, "events")}#{e["kind"]}">{kind}</a>'
+    # a past event's own page says so, since people still reach it from Google or an old link
+    past = f'<p class="ev-empty ev-past">{p["past_note"]}</p>' if e["date"] < TODAY and p.get("past_note") else ""
     body = f"""<section class="sec ev-page"><div class="wrap"><div class="crumbs">{crumbs}</div>
-  {event_item(lang, e, single=True)}
+  {past}{event_item(lang, e, single=True)}
   <p class="ev-back"><a class="link" href="{url(lang, "events")}#{e["kind"]}">{p["back_label"]}</a></p>
 </div></section>"""
     desc = tr(e["text"], lang)[:150]
@@ -1009,7 +1011,7 @@ def dance_page(lang, dance):
     cs_all = sorted([x for x in CLASSES if x["dance"] == dance], key=lambda x: (x["level"], try_key(x)))
     h = dp["table_headings"]
     # no try-out weeks: the try-out column leaves the table
-    th = [h["class"], h["tryout"], h["then"], h["studio"], ""] if TRYOUTS else [h["class"], h["then"], h["studio"], ""]
+    th = [h["class"], h["tryout"], h["then"], h["studio"], ""] if TRYOUTS else [h["class"], h.get("when") or h["then"], h["studio"], ""]
     trs = []
     for c in cs_all:
         d_, n_, m_, tt_ = c["try_"]
@@ -1361,6 +1363,11 @@ def root_files():
     # would otherwise add it first.
     redirects = [{"source": src, "destination": f"/en/{SLUGS['en'][page]}/" if SLUGS["en"][page] else "/en/", "permanent": True}
                  for old, page in OLD_URLS.items() for src in (f"/{old}", f"/{old}/")]
+    # /en/start/ and /nl/start/ only hold the answer pages: the folder itself opens the questions on the home page
+    redirects += [{"source": src, "destination": f"/{lang}/#start", "permanent": True}
+                  for lang in ("en", "nl") for src in (f"/{lang}/start", f"/{lang}/start/")]
+    # browsers that ask for /favicon.ico get the same icon the pages name
+    redirects.append({"source": "/favicon.ico", "destination": "/assets/lumos-gem-icon.svg", "permanent": True})
     vercel = {"cleanUrls": False, "trailingSlash": True, "redirects": redirects}
     if HIDDEN:
         vercel["headers"] = [{"source": "/(.*)", "headers": [{"key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive"}]}]
