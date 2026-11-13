@@ -622,6 +622,7 @@ h1, h2 { text-wrap: balance; }
 .ev-back { margin-top: 18px; }
 .ev-earlier { font-size: 16px; letter-spacing: .06em; text-transform: uppercase; margin: 24px 0 10px; color: var(--muted); }
 .ev-empty { background: #fff; border: 1px dashed var(--line); border-radius: var(--r); padding: 18px; color: var(--muted); margin: 0; }
+.ev-past { margin-bottom: 18px; }
 @media (max-width: 760px) { .ev-item, .ev-single { grid-template-columns: 66px 1fr; } .ev-item .ev-img { grid-column: 1 / -1; order: -1; aspect-ratio: 16 / 9; } }
 .news-card .nc-price { display: grid; place-items: center; background: var(--yellow-soft); border-bottom: 1px solid var(--yellow-line); }
 .news-card .nc-price span { font: 700 64px/1 var(--head); }

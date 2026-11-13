@@ -1896,6 +1896,11 @@ collections:
         label: Then
         widget: object
         fields: *english_dutch
+      - name: when
+        label: When (used outside try-out weeks)
+        widget: object
+        required: false
+        fields: *english_dutch
     - name: course_line
       label: Course line
       widget: object
@@ -2532,6 +2537,15 @@ collections:
     - name: back_label
       label: Link back to all events
       widget: object
+      fields: *english_dutch
+    - name: up_next_label
+      label: Label above the next event, in a section with nothing planned
+      widget: object
+      fields: *english_dutch
+    - name: past_note
+      label: Line on the page of an event that has already taken place
+      widget: object
+      required: false
       fields: *english_dutch
     - name: map_hint
       label: Hover text on the Google Maps link

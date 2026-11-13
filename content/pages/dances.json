@@ -16,6 +16,10 @@
       "en": "Studio and teacher",
       "nl": "Studio en docent"
     },
+    "when": {
+      "en": "When",
+      "nl": "Wanneer"
+    },
     "class": {
       "en": "Class",
       "nl": "Les"

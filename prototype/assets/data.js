@@ -360,7 +360,7 @@ window.LUMOS = {
    "beginner-salsa": {
     "eyebrow": "Hier begin je",
     "title": "Salsa 1 · Beginners · proefles €5 van 4 t/m 8 jan",
-    "intro": "Alleen op feestjes gedanst? Dan is dit je niveau. De cursussen Salsa 1 starten op 2 en 3 november bij de allereerste stap, samen met andere beginners. Kies de avond en studio die je het beste uitkomen.",
+    "intro": "Alleen op feestjes gedanst? Dan is dit je niveau. Salsa 1 begint bij de allereerste stap, samen met andere beginners. Je kunt tot en met week 3 instappen in een lopende cursus, of begin met een proefles van €5 van 4 t/m 8 januari. Kies de avond en studio die je het beste uitkomen.",
     "ticks": [
      "Geen partner nodig: we wisselen tijdens de les.",
      "Neem gratis een vriend(in) mee.",
@@ -381,7 +381,7 @@ window.LUMOS = {
    "beginner-bachata": {
     "eyebrow": "Hier begin je",
     "title": "Bachata 1 · Beginners · proefles €5 van 4 t/m 8 jan",
-    "intro": "Alleen op feestjes gedanst? Dan is dit je niveau. Bachata 1 is op dinsdag in het Ceintuurtheater en de cursus start op 3 november bij de allereerste stap, samen met andere beginners. In niveau 1 dans je een evenwichtige stijl, vanaf niveau 2 meer richting Sensual.",
+    "intro": "Alleen op feestjes gedanst? Dan is dit je niveau. Bachata 1 is op dinsdag in het Ceintuurtheater en begint bij de allereerste stap, samen met andere beginners. Je kunt tot en met week 3 instappen in een lopende cursus, of begin met een proefles van €5 van 4 t/m 8 januari. In niveau 1 dans je een evenwichtige stijl, vanaf niveau 2 meer richting Sensual.",
     "ticks": [
      "Geen partner nodig: we wisselen tijdens de les.",
      "Neem gratis een vriend(in) mee.",
@@ -649,7 +649,7 @@ window.LUMOS = {
    "beginner-salsa": {
     "eyebrow": "Start here",
     "title": "Salsa 1 · Beginners · €5 try-outs 4 to 8 Jan",
-    "intro": "Only danced at parties? Then this is your level. The Salsa 1 courses start on 2 and 3 November from the very first step, with other beginners. Pick the evening and studio that suit you.",
+    "intro": "Only danced at parties? Then this is your level. Salsa 1 starts from the very first step, with other beginners. You can join a running course up to week 3, or start with a €5 try-out from 4 to 8 January. Pick the evening and studio that suit you.",
     "ticks": [
      "No partner needed: partners rotate in class.",
      "Bring a friend for free.",
@@ -670,7 +670,7 @@ window.LUMOS = {
    "beginner-bachata": {
     "eyebrow": "Start here",
     "title": "Bachata 1 · Beginners · €5 try-outs 4 to 8 Jan",
-    "intro": "Only danced at parties? Then this is your level. Bachata 1 is on Tuesdays at the Ceintuurtheater and the course starts on 3 November from the very first step, with other beginners. Level 1 is a balanced style; from level 2 it leans more towards Sensual.",
+    "intro": "Only danced at parties? Then this is your level. Bachata 1 is on Tuesdays at the Ceintuurtheater and starts from the very first step, with other beginners. You can join a running course up to week 3, or start with a €5 try-out from 4 to 8 January. Level 1 is a balanced style; from level 2 it leans more towards Sensual.",
     "ticks": [
      "No partner needed: partners rotate in class.",
      "Bring a friend for free.",
