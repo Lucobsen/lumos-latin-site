@@ -360,7 +360,7 @@ window.LUMOS = {
    "beginner-salsa": {
     "eyebrow": "Hier begin je",
     "title": "Salsa 1 · Beginners · proefles €5 van 4 t/m 8 jan",
-    "intro": "Alleen op feestjes gedanst? Dan is dit je niveau. Salsa 1 begint bij de allereerste stap, samen met andere beginners. Je kunt tot en met week 3 instappen in een lopende cursus, of begin met een proefles van €5 van 4 t/m 8 januari. Kies de avond en studio die je het beste uitkomen.",
+    "intro": "Alleen op feestjes gedanst? Dan is dit je niveau. Salsa 1 begint bij de allereerste stap, samen met andere beginners. Je kunt tot en met week 3 instappen in een lopende cursus, of beginnen met een proefles van €5 (4 t/m 8 januari). Kies de avond en studio die je het beste uitkomen.",
     "ticks": [
      "Geen partner nodig: we wisselen tijdens de les.",
      "Neem gratis een vriend(in) mee.",
@@ -381,7 +381,7 @@ window.LUMOS = {
    "beginner-bachata": {
     "eyebrow": "Hier begin je",
     "title": "Bachata 1 · Beginners · proefles €5 van 4 t/m 8 jan",
-    "intro": "Alleen op feestjes gedanst? Dan is dit je niveau. Bachata 1 is op dinsdag in het Ceintuurtheater en begint bij de allereerste stap, samen met andere beginners. Je kunt tot en met week 3 instappen in een lopende cursus, of begin met een proefles van €5 van 4 t/m 8 januari. In niveau 1 dans je een evenwichtige stijl, vanaf niveau 2 meer richting Sensual.",
+    "intro": "Alleen op feestjes gedanst? Dan is dit je niveau. Bachata 1 is op dinsdag in het Ceintuurtheater en begint bij de allereerste stap, samen met andere beginners. Je kunt tot en met week 3 instappen in een lopende cursus, of beginnen met een proefles van €5 (4 t/m 8 januari). In niveau 1 dans je een evenwichtige stijl, vanaf niveau 2 meer richting Sensual.",
     "ticks": [
      "Geen partner nodig: we wisselen tijdens de les.",
      "Neem gratis een vriend(in) mee.",
