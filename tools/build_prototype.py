@@ -116,12 +116,24 @@ HL_COLOR = S["hl_color"]    # Pink, Purple, Lilac, Rose, Orchid or Moving
 BTN_COLOR = S["btn_color"]  # Pink or Purple
 Q_BG = S["q_bg"]            # White or Yellow
 GTM_ID = S["gtm_id"]        # empty drops the Tag Manager snippet
-GTM_HEAD = ("<!-- Google Tag Manager -->\n<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});"
-            "var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;"
-            "j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','"
-            + GTM_ID + "');</script>\n<!-- End Google Tag Manager -->") if GTM_ID else ""
-GTM_BODY = ('<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=' + GTM_ID
-            + '" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>\n') if GTM_ID else ""
+# Tag Manager (Google Analytics, Google Ads, Meta pixel) loads only after the visitor clicks OK on the small
+# cookie bar; "No" keeps it off. The choice is kept in localStorage under "lumos-cookies" (yes/no).
+# Dutch law: tracking cookies need a yes first, and "No" must be as easy as "OK".
+GTM_HEAD = ("<!-- Google Tag Manager, only after consent -->\n<script>(function(w,d){var K='lumos-cookies',I='" + GTM_ID + "',v=null;"
+            "function load(){if(w.lumosGtm)return;w.lumosGtm=1;w.dataLayer=w.dataLayer||[];"
+            "w.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});"
+            "var j=d.createElement('script');j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+I;d.head.appendChild(j);}"
+            "function keep(x){try{localStorage.setItem(K,x)}catch(e){}}"
+            "try{v=localStorage.getItem(K)}catch(e){}"
+            "if(v==='yes'){load();return}if(v==='no')return;"
+            "d.addEventListener('DOMContentLoaded',function(){var h=d.documentElement,nl=h.lang==='nl',b=d.createElement('div');"
+            "b.className='ck';b.setAttribute('role','region');b.setAttribute('aria-label','Cookies');"
+            "b.innerHTML='<p>'+(nl?'We gebruiken cookies voor advertenties en statistieken.':'We use cookies for ads and statistics.')"
+            "+' <a href=\"'+(h.getAttribute('data-base')||'')+'/'+(nl?'nl':'en')+'/privacy/\">'+(nl?'Meer':'More')+'</a></p>'"
+            "+'<span class=\"ck-b\"><button type=\"button\" data-ck=\"no\">'+(nl?'Nee':'No')+'</button><button type=\"button\" data-ck=\"yes\">OK</button></span>';"
+            "b.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('[data-ck]'),c=t&&t.getAttribute('data-ck');if(!c)return;keep(c);if(c==='yes')load();b.remove();});"
+            "d.body.insertBefore(b,d.body.firstChild);});})(window,document);</script>")  # first in <body>, so Tab reaches it first if GTM_ID else ""
+GTM_BODY = ""  # the <noscript> Tag Manager frame is gone: without JavaScript nobody can say yes
 SHOW_SWITCHES = "--switches" in sys.argv  # True shows the small switches under the title, for picking
 
 # ---------------------------------------------------------------- data
