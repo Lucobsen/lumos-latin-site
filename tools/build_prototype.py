@@ -558,7 +558,8 @@ def event_item(lang, e, single=False):
            if e["btn"] and not past else "")
     title = f'<h1>{tr(e["title"], lang)}</h1>' if single else f'<h3><a href="{event_url(lang, e)}">{tr(e["title"], lang)}</a></h3>'
     # an event with a video shows a silent loop in the photo's place, the photo as its poster (Amin, 18 Nov 2026)
-    img = (f'<video class="ev-img autoloop" autoplay muted loop playsinline preload="metadata" poster="/assets/photos/{e["img"]}" '
+    poster = f' poster="/assets/photos/{e["img"]}"' if e["img"] else ""
+    img = (f'<video class="ev-img autoloop" autoplay muted loop playsinline preload="metadata"{poster} '
            f'aria-label="{tr(e["title"], lang)}"><source src="/assets/loops/{e["video"]}" type="video/mp4"></video>' if e["video"]
            else f'<div class="ev-img" style="background-image:url(/assets/photos/{e["img"]})" role="img" aria-label="{tr(e["title"], lang)}"></div>')
     return f"""<article class="ev-item{' past' if past else ''}{' ev-single' if single else ''}"><div class="date-box"><div class="m">{MONTH_SHORT[lang][d.month - 1]}</div><div class="d">{d.day}</div><div class="w">{WEEKDAY[lang][d.weekday()]}</div></div>
