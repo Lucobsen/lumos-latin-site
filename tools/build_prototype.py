@@ -440,8 +440,8 @@ def _event(e):
 
 
 def _news(n):
-    return dict(when=n.get("when", ""), title=n.get("title", ""), img=n.get("image", ""), text=n.get("text", ""),
-                btn=_filled(n.get("button")), link=n.get("link", ""), big=bool(n.get("big")),
+    return dict(when=n.get("when", ""), title=n.get("title", ""), img=n.get("image", ""), video=n.get("video", ""),
+                text=n.get("text", ""), btn=_filled(n.get("button")), link=n.get("link", ""), big=bool(n.get("big")),
                 sticker=_filled(n.get("sticker")), badge=_filled(n.get("badge")))
 
 
@@ -516,7 +516,11 @@ def news_section(lang):
                 nl='<button type="button" class="nc-more" hidden aria-expanded="false" data-alt="Minder tonen">Lees meer</button>')[lang]
     cards = []
     for i, n in enumerate(NEWS_ITEMS):
-        img = (f'<div class="nc-img" style="background-image:url(/assets/photos/{n["img"]})" role="img" aria-label="{tr(n["title"], lang)}"></div>' if n["img"]
+        # A card with a video shows a silent loop in the photo's place; the photo is its poster (Amin, 18 Nov 2026).
+        poster = f' poster="/assets/photos/{n["img"]}"' if n["img"] else ""
+        img = (f'<video class="nc-img autoloop" autoplay muted loop playsinline preload="metadata"{poster} aria-label="{tr(n["title"], lang)}">'
+               f'<source src="/assets/loops/{n["video"]}" type="video/mp4"></video>' if n["video"]
+               else f'<div class="nc-img" style="background-image:url(/assets/photos/{n["img"]})" role="img" aria-label="{tr(n["title"], lang)}"></div>' if n["img"]
                else f'<div class="nc-img nc-price" aria-hidden="true"><span>{esc(tr(n["badge"], lang))}</span></div>'
                if n["badge"] and tr(n["badge"], lang) else "")
         href = link_href(lang, n["link"])
