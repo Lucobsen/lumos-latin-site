@@ -967,7 +967,8 @@ def teachers_page(lang):
         pic = (f'<img class="t-photo" src="/assets/photos/{esc(photo)}" alt="{esc(n)}" width="400" height="500" loading="lazy">' if photo
                else f'<div class="ph" aria-hidden="true">{n[0]}</div>')
         taught = teacher_classes(lang, n)
-        cards.append(f'<div class="card teacher">{pic}<div class="t-text"><h2 class="card-h">{n}</h2><div class="role">{r}</div>'
+        # data-teacher: app.js matches it to the first name of the teachers in Bueno's feed
+        cards.append(f'<div class="card teacher" data-teacher="{esc(n)}">{pic}<div class="t-text"><h2 class="card-h">{n}</h2><div class="role">{r}</div>'
                      + (f'<p class="line">{bio}</p>' if bio else "")
                      + (f'<div class="t-foot"><div class="t-label">{T[lang]["foot_classes"]}</div>{taught}</div>' if taught else "") + '</div></div>')
     sec = f'<section class="sec"><div class="wrap"><div class="grid team">{"".join(cards)}</div></div></section>'

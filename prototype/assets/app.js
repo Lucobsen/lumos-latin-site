@@ -311,7 +311,8 @@
   var D = window.LUMOS;
   var folds = document.querySelectorAll(".studio-fold[data-locs]");
   var onAnswer = /\/start\/[a-z-]+\/?$/.test(location.pathname) || document.getElementById("flow");
-  if (!D || (!folds.length && !onAnswer) || !window.fetch) return;
+  var tcards = document.querySelectorAll(".card.teacher[data-teacher]");
+  if (!D || (!folds.length && !onAnswer && !tcards.length) || !window.fetch) return;
   var lang = document.documentElement.lang === "nl" ? "nl" : "en";
   var TZ = "Europe/Amsterdam";
   var DAYS = { en: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], nl: ["Zo", "Ma", "Di", "Wo", "Do", "Vr", "Za"] };
@@ -361,6 +362,7 @@
     var list = entries.map(function (e) {
       return { e: e, a: local(e.startDateTime), b: local(e.endDateTime), studio: LOC[e.location && e.location.schoolLocationId], g: genre(e), lv: levelNo(e) };
     }).filter(function (x) { return x.a && x.b && x.studio; }).sort(function (x, y) { return x.a.t - y.a.t; });
+    teachersLive(list);
     var used = [];
     /* answer pages: the classes the flow draws (window.LUMOS.classes) get Bueno's try-out */
     D.classes.forEach(function (c) {
@@ -413,6 +415,35 @@
     try { window.dispatchEvent(new CustomEvent("lumos:feed")); } catch (e) {}
   }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+
+  /* teachers page: each teacher's classes in the next 7 days from Bueno take the place of the typed weekly list.
+     A teacher with nothing in Bueno this week keeps the typed list. Teachers match on first name. */
+  var STUDIO_NAME = { veem: "De Veemvloer", flow: "Latin Flow Studio", ceintuur: "Ceintuurtheater", tg: "TG Spaces" };
+  function teachersLive(list) {
+    tcards.forEach(function (card) {
+      var name = card.getAttribute("data-teacher");
+      var now = Date.now();
+      var mine = list.filter(function (x) {
+        return x.b.t.getTime() > now && (x.e.employees || []).some(function (p) { return (p.firstName || "").trim() === name; });
+      });
+      if (!mine.length) return;
+      var rows = mine.map(function (x) {
+        var what = x.g === "reggaeton" ? "Reggaeton drop-in"
+          : x.g && x.lv ? x.g.charAt(0).toUpperCase() + x.g.slice(1) + " " + x.lv
+          : (x.e.formattedTitle || "").replace(/\s+/g, " ").trim();
+        var trial = x.e.calendarEntryType === "TRY_OUT" ? " · " + (lang === "nl" ? "proefles" : "try-out") : "";
+        return '<li class="is-live"><b>' + esc(what) + "</b>" + trial + "<span>" + dayLabel(x.a) + " · " + x.a.hm + "–" + x.b.hm + " · " + esc(STUDIO_NAME[x.studio] || "") + "</span>" +
+          '<a class="link" href="' + DETAIL + x.e.calendarEntryId + '">' + (lang === "nl" ? "Boek" : "Book") + "</a></li>";
+      }).join("");
+      var foot = card.querySelector(".t-foot");
+      if (!foot) {
+        foot = document.createElement("div");
+        foot.className = "t-foot";
+        card.querySelector(".t-text").appendChild(foot);
+      }
+      foot.innerHTML = '<div class="t-label">' + (lang === "nl" ? "Komende 7 dagen" : "Next 7 days") + '</div><ul class="t-classes t-live">' + rows + "</ul>";
+    });
+  }
 
   getWeek().then(apply).catch(function () { document.documentElement.setAttribute("data-bueno", "fallback"); });
 })();
