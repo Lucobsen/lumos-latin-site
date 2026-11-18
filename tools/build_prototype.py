@@ -127,7 +127,7 @@ GTM_HEAD = ("<!-- Google Tag Manager, only after consent -->\n<script>(function(
             # "Change cookie choice" (privacy page): forget the choice, remove the Google and Meta cookies, show the card again.
             "d.addEventListener('click',function(e){var r=e.target.closest&&e.target.closest('[data-ck-reset]');if(!r)return;e.preventDefault();"
             "try{localStorage.removeItem(K)}catch(x){}var x='=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/',m=location.hostname.replace(/^www\\./,'');"
-            "d.cookie.split(';').forEach(function(c){var n=c.split('=')[0].trim();if(/^(_ga|_gid|_gcl|_fbp|_fbc)/.test(n)){d.cookie=n+x;d.cookie=n+x+';domain=.'+m;}});"
+            "d.cookie.split(';').forEach(function(c){var n=c.split('=')[0].trim();if(/^(_ga|_gid|_gat|_gac|_gcl|_dc_gtm|_fbp|_fbc)/.test(n)){d.cookie=n+x;d.cookie=n+x+';domain=.'+m;}});"
             "location.reload();});"
             "try{v=localStorage.getItem(K)}catch(e){}"
             "if(v==='yes'){load();return}if(v==='no')return;"
