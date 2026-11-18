@@ -504,6 +504,8 @@ def next_up(lang):
 
 def news_section(lang):
     p = P("home", lang)
+    if not NEWS_ITEMS:
+        return ""  # no news shown right now: leave the whole section out, not an empty heading
     cards = []
     for i, n in enumerate(NEWS_ITEMS):
         img = (f'<div class="nc-img" style="background-image:url(/assets/photos/{n["img"]})" role="img" aria-label="{tr(n["title"], lang)}"></div>' if n["img"]
@@ -520,7 +522,7 @@ def news_section(lang):
   <div class="nc-actions"><a class="btn btn-pink" href="{href}">{btn}</a>{sticker}</div></div></article>""")
     return f"""<section class="sec news" id="news"><div class="wrap">
   <div class="sec-title sec-title-row"><h2><span class="hl">{p['news_title']}</span></h2><a class="more-link" href="{url(lang, 'events')}">{p['news_all_link']}</a></div>
-  <div class="news-grid">{''.join(cards)}</div>
+  <div class="news-grid{' news-n' + str(len(cards)) if len(cards) < 3 else ''}">{''.join(cards)}</div>
 </div></section>"""
 
 
@@ -593,7 +595,11 @@ def events(lang):
             none = f'<p class="ev-empty">{p.get("empty_texts", {}).get(k) or p["empty_text"]}</p>'
             nxt = upcoming_events()
             if nxt:
-                none += f'<p class="ev-upnext"><b>{p["up_next_label"]}:</b></p><div class="ev-list">{event_item(lang, nxt[0])}</div>'
+                # one line with a link, not the whole card again: that card already shows in its own section
+                e = nxt[0]
+                d = e["date"]
+                short = f"{d.day} {MONTH_SHORT[lang][d.month - 1]}" if nl else f"{MONTH_SHORT[lang][d.month - 1]} {d.day}"
+                none += f'<p class="ev-upnext"><b>{p["up_next_label"]}:</b> <a href="#{e["kind"]}">{tr(e["title"], lang)}, {short}</a></p>'
         earlier = (f'<h3 class="ev-earlier">{p["earlier"]}</h3><div class="ev-list">{"".join(event_item(lang, e) for e in past)}</div>' if past else "")
         secs.append(f"""<section class="sec ev-sec{' sec-soft' if len(secs) % 2 else ''}" id="{k}"><div class="wrap">
   <div class="sec-title"><h2><span class="hl">{x['label']}</span></h2></div>

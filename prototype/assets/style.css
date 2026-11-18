@@ -834,6 +834,14 @@ html[data-color="Orchid"] { --pink: #9f4ab4; --pink-hover: #8a3e9d; --fade-a: #e
 .news-card.nc-big .nc-body:first-child { padding: 24px 24px 26px; justify-content: center; }
 .news-card.nc-big .nc-body:first-child p { flex: none; margin-bottom: 14px; }
 @media (max-width: 900px) { .news-grid { grid-template-columns: 1fr; } .news-card.nc-big .nc-price { min-height: 150px; } .news-card.nc-big .nc-price span { font-size: 92px; } }
+/* Fewer than 3 news cards: 2 share the row, 1 lies wide with the photo on the left, so no empty columns. */
+.news-grid.news-n2 { grid-template-columns: 1fr 1fr; }
+.news-grid.news-n1 { grid-template-columns: 1fr; }
+.news-grid.news-n1 .news-card { flex-direction: row; }
+.news-grid.news-n1 .nc-img { flex: 0 0 44%; aspect-ratio: auto; min-height: 260px; border-bottom: 0; }
+.news-grid.news-n1 .nc-body { padding: 24px 26px; justify-content: center; }
+.news-grid.news-n1 .nc-body p { flex: none; margin-bottom: 14px; }
+@media (max-width: 900px) { .news-grid.news-n2 { grid-template-columns: 1fr; } .news-grid.news-n1 .news-card { flex-direction: column; } .news-grid.news-n1 .nc-img { flex: none; aspect-ratio: 16 / 9; min-height: 0; } }
 /* a fun "Free Salsa & Bachata Night" sticker */
 .nc-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
 .fun-sticker { display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; background: #ffe58f; color: var(--ink); font: 700 13px/1.15 var(--head); letter-spacing: .02em; text-transform: uppercase; border: 1.5px solid var(--ink); border-radius: 8px; transform: rotate(-4deg); box-shadow: 3px 3px 0 var(--ink); }
