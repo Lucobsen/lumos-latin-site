@@ -1045,8 +1045,8 @@ video { display: block; width: 100%; height: 100%; object-fit: cover; }
    On phones it spans the width and sits above the WhatsApp button (bottom 16px + 52px high). */
 .ck { position: fixed; left: 20px; bottom: 20px; z-index: 8001; width: 330px; max-width: calc(100% - 32px); box-sizing: border-box;
   display: flex; flex-direction: column; align-items: stretch; gap: 12px; padding: 16px 16px 16px 64px;
-  background: #fff; color: #1f1d1a; border: 1px solid #e6e3df; border-radius: var(--r);
-  box-shadow: 0 8px 24px rgba(0,0,0,.12); font: 14px/1.4 var(--body); }
+  background: #fff; color: #1f1d1a; border: 2px solid #ffdb6e; border-radius: var(--r);
+  box-shadow: 0 10px 30px rgba(0,0,0,.18); font: 14px/1.4 var(--body); }
 @media (max-width: 640px) { .ck { left: 16px; right: 16px; bottom: 84px; width: auto; max-width: none; } }
 .ck p { margin: 0; font-size: 15px; font-weight: 500; }
 .ck p::before { content: "\1F36A"; position: absolute; left: 14px; top: 14px; display: grid; place-items: center;
@@ -1055,7 +1055,7 @@ video { display: block; width: 100%; height: 100%; object-fit: cover; }
 .ck-b { display: flex; gap: 8px; }
 .ck-b button { flex: 1; font: 600 14px/1 var(--body); padding: 9px 16px; border-radius: 6px; cursor: pointer;
   background: #fff; border: 1px solid #d8d4cf; color: #1f1d1a; }
-/* OK is dark, not pink, so it does not look like the pink booking buttons (Amin, 18 Nov 2026). */
-.ck button[data-ck="yes"] { background: #2b2925; border-color: #2b2925; color: #fff; }
-.ck button[data-ck="yes"]:hover { background: #141414; border-color: #141414; }
+/* Yellow card edge and yellow OK: easy to see, and not pink like the booking buttons (Amin's pick, option 2, 18 Nov 2026). */
+.ck button[data-ck="yes"] { background: #ffdb6e; border-color: #e8b730; color: #141414; font-weight: 700; }
+.ck button[data-ck="yes"]:hover { background: #ffd04a; border-color: #d9a520; }
 .ck button:focus-visible { outline: 2px solid #1f1d1a; outline-offset: 2px; }
