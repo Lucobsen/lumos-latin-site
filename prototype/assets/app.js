@@ -427,21 +427,25 @@
         return x.b.t.getTime() > now && (x.e.employees || []).some(function (p) { return (p.firstName || "").trim() === name; });
       });
       if (!mine.length) return;
-      var rows = mine.map(function (x) {
+      /* one block per day and studio, then one line per class: time, class, Book, in fixed columns */
+      var groups = [], last = null;
+      mine.forEach(function (x) {
+        var k = dayLabel(x.a) + "|" + x.studio;
+        if (!last || last.k !== k) { last = { k: k, head: dayLabel(x.a) + " · " + (STUDIO_NAME[x.studio] || ""), rows: [] }; groups.push(last); }
         var what = x.g === "reggaeton" ? "Reggaeton drop-in"
           : x.g && x.lv ? x.g.charAt(0).toUpperCase() + x.g.slice(1) + " " + x.lv
           : (x.e.formattedTitle || "").replace(/\s+/g, " ").trim();
-        var trial = x.e.calendarEntryType === "TRY_OUT" ? " · " + (lang === "nl" ? "proefles" : "try-out") : "";
-        return '<li class="is-live"><b>' + esc(what) + "</b>" + trial + "<span>" + dayLabel(x.a) + " · " + x.a.hm + "–" + x.b.hm + " · " + esc(STUDIO_NAME[x.studio] || "") + "</span>" +
-          '<a class="link" href="' + DETAIL + x.e.calendarEntryId + '">' + (lang === "nl" ? "Boek" : "Book") + "</a></li>";
+        if (x.e.calendarEntryType === "TRY_OUT") what += " · " + (lang === "nl" ? "proefles" : "try-out");
+        last.rows.push('<li><span class="t-time">' + x.a.hm + "–" + x.b.hm + '</span><b>' + esc(what) + '</b><a class="link" href="' + DETAIL + x.e.calendarEntryId + '">' +
+          (lang === "nl" ? "Boek" : "Book") + "</a></li>");
+      });
+      var old = card.querySelector(".t-foot");
+      if (old) old.remove();  /* the typed weekly list: Bueno's dates take its place */
+      var box = card.querySelector(".t-week") || card.appendChild(document.createElement("div"));
+      box.className = "t-week";
+      box.innerHTML = '<div class="t-label">' + (lang === "nl" ? "Komende 7 dagen" : "Next 7 days") + "</div>" + groups.map(function (g) {
+        return '<div class="t-day">' + esc(g.head) + '</div><ul class="t-rows">' + g.rows.join("") + "</ul>";
       }).join("");
-      var foot = card.querySelector(".t-foot");
-      if (!foot) {
-        foot = document.createElement("div");
-        foot.className = "t-foot";
-        card.querySelector(".t-text").appendChild(foot);
-      }
-      foot.innerHTML = '<div class="t-label">' + (lang === "nl" ? "Komende 7 dagen" : "Next 7 days") + '</div><ul class="t-classes t-live">' + rows + "</ul>";
     });
   }
 
