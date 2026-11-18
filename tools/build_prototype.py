@@ -124,6 +124,11 @@ GTM_HEAD = ("<!-- Google Tag Manager, only after consent -->\n<script>(function(
             "w.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});"
             "var j=d.createElement('script');j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+I;d.head.appendChild(j);}"
             "function keep(x){try{localStorage.setItem(K,x)}catch(e){}}"
+            # "Change cookie choice" (privacy page): forget the choice, remove the Google and Meta cookies, show the card again.
+            "d.addEventListener('click',function(e){var r=e.target.closest&&e.target.closest('[data-ck-reset]');if(!r)return;e.preventDefault();"
+            "try{localStorage.removeItem(K)}catch(x){}var x='=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/',m=location.hostname.replace(/^www\\./,'');"
+            "d.cookie.split(';').forEach(function(c){var n=c.split('=')[0].trim();if(/^(_ga|_gid|_gcl|_fbp|_fbc)/.test(n)){d.cookie=n+x;d.cookie=n+x+';domain=.'+m;}});"
+            "location.reload();});"
             "try{v=localStorage.getItem(K)}catch(e){}"
             "if(v==='yes'){load();return}if(v==='no')return;"
             "d.addEventListener('DOMContentLoaded',function(){var h=d.documentElement,nl=h.lang==='nl',b=d.createElement('div');"
@@ -132,7 +137,7 @@ GTM_HEAD = ("<!-- Google Tag Manager, only after consent -->\n<script>(function(
             "+' <a href=\"'+(h.getAttribute('data-base')||'')+'/'+(nl?'nl':'en')+'/privacy/\">'+(nl?'Meer':'More')+'</a></p>'"
             "+'<span class=\"ck-b\"><button type=\"button\" data-ck=\"no\">'+(nl?'Nee':'No')+'</button><button type=\"button\" data-ck=\"yes\">OK</button></span>';"
             "b.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('[data-ck]'),c=t&&t.getAttribute('data-ck');if(!c)return;keep(c);if(c==='yes')load();b.remove();});"
-            "d.body.insertBefore(b,d.body.firstChild);});})(window,document);</script>")  # first in <body>, so Tab reaches it first if GTM_ID else ""
+            "d.body.insertBefore(b,d.body.firstChild);});})(window,document);</script>") if GTM_ID else ""  # card goes first in <body>, so Tab reaches it first
 GTM_BODY = ""  # the <noscript> Tag Manager frame is gone: without JavaScript nobody can say yes
 SHOW_SWITCHES = "--switches" in sys.argv  # True shows the small switches under the title, for picking
 
@@ -1351,6 +1356,8 @@ def privacy(lang):
         li = "".join(f"<li>{item(x)}</li>" for x in s.get("items", []) if x)
         ul = f"<ul>{li}</ul>" if li else ""
         n = f'<p>{s["note"]}</p>' if s.get("note") else ""
+        if GTM_ID and "ookie" in s["heading"]:  # the cookie section (EN "Cookies", NL "cookies")
+            n += f'<p><button type="button" class="btn ck-reset" data-ck-reset>{dict(en="Change cookie choice", nl="Cookiekeuze wijzigen")[lang]}</button></p>'
         secs.append(f'<section class="policy-sec">{h}{t}{ul}{n}</section>')
     body = page_head(p["title"], p["intro"]) + f"""
 <section class="sec"><div class="wrap policy" style="max-width:820px">{"".join(secs)}</div></section>"""

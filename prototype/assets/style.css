@@ -1041,21 +1041,20 @@ video { display: block; width: 100%; height: 100%; object-fit: cover; }
 .wa-float--up { bottom: 72px; width: 46px; height: 46px; }
 .wa-float--up .ico { width: 24px; height: 24px; }
 
-/* Small cookie bar, centred at the bottom. Tag Manager loads only after OK.
-   On phones it sits above the WhatsApp button (bottom 16px + 52px high) instead of beside it. */
-.ck { position: fixed; left: 50%; transform: translateX(-50%); bottom: 16px; z-index: 8001;
-  width: max-content; max-width: min(440px, calc(100% - 32px)); box-sizing: border-box;
-  display: flex; align-items: center; flex-wrap: wrap; gap: 8px 10px; padding: 10px 12px; background: var(--yellow-soft);
-  color: var(--ink); border: 1px solid var(--yellow-line); border-left: 4px solid var(--btn); border-radius: var(--r);
-  box-shadow: 0 6px 22px rgba(0,0,0,.18); font: 14px/1.4 var(--body); }
-@media (max-width: 640px) { .ck { bottom: 80px; width: calc(100% - 32px); } }
-@media (min-width: 641px) { .ck { max-width: none; } .ck p { white-space: nowrap; } }
-.ck p { margin: 0; flex: 1 1 180px; }
-.ck p::before { content: "🍪 "; }
-.ck-b { display: flex; gap: 8px; margin-left: auto; }
+/* Small cookie card, bottom left: Pauline's pick, design 4 (18 Nov 2026). Tag Manager loads only after OK.
+   On phones it spans the width and sits above the WhatsApp button (bottom 16px + 52px high). */
+.ck { position: fixed; left: 20px; bottom: 20px; z-index: 8001; width: 330px; max-width: calc(100% - 32px); box-sizing: border-box;
+  display: flex; flex-direction: column; align-items: stretch; gap: 12px; padding: 16px 16px 16px 64px;
+  background: #fff; color: #1f1d1a; border: 1px solid #e6e3df; border-radius: var(--r);
+  box-shadow: 0 8px 24px rgba(0,0,0,.12); font: 14px/1.4 var(--body); }
+@media (max-width: 640px) { .ck { left: 16px; right: 16px; bottom: 84px; width: auto; max-width: none; } }
+.ck p { margin: 0; font-size: 15px; font-weight: 500; }
+.ck p::before { content: "\1F36A"; position: absolute; left: 14px; top: 14px; display: grid; place-items: center;
+  width: 38px; height: 38px; border-radius: 50%; background: #fff1c9; font-size: 20px; }
 .ck a { color: inherit; text-decoration: underline; }
-.ck button { font: 600 14px/1 var(--body); padding: 8px 14px; border-radius: var(--r); cursor: pointer;
-  border: 1px solid var(--line); background: var(--white); color: var(--ink); }
-.ck button[data-ck="yes"] { background: var(--btn); border-color: var(--btn); color: #fff; }
-.ck button[data-ck="yes"]:hover { background: var(--btn-hover); }
-.ck button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.ck-b { display: flex; gap: 8px; }
+.ck-b button { flex: 1; font: 600 14px/1 var(--body); padding: 9px 16px; border-radius: 6px; cursor: pointer;
+  background: #fff; border: 1px solid #d8d4cf; color: #1f1d1a; }
+.ck button[data-ck="yes"] { background: #cf2c98; border-color: #cf2c98; color: #fff; }
+.ck button[data-ck="yes"]:hover { background: #b52583; border-color: #b52583; }
+.ck button:focus-visible { outline: 2px solid #1f1d1a; outline-offset: 2px; }
