@@ -429,7 +429,11 @@
       if (!mine.length) return;
       /* one block per day and studio, then one line per class: time, class, Book, in fixed columns */
       var groups = [], last = null;
-      mine.forEach(function (x) {
+      /* at most the next 3 classes, so the cards side by side stay about the same height;
+         the rest is one link to Bueno's schedule filtered on this teacher */
+      var MAX = 3, total = mine.length, emp = null;
+      (mine[0].e.employees || []).forEach(function (p) { if ((p.firstName || "").trim() === name) emp = p.employeeId; });
+      mine.slice(0, MAX).forEach(function (x) {
         var k = dayLabel(x.a) + "|" + x.studio;
         if (!last || last.k !== k) { last = { k: k, head: dayLabel(x.a) + " · " + (STUDIO_NAME[x.studio] || ""), rows: [] }; groups.push(last); }
         var what = x.g === "reggaeton" ? "Reggaeton drop-in"
@@ -445,7 +449,8 @@
       box.className = "t-week";
       box.innerHTML = '<div class="t-label">' + (lang === "nl" ? "Komende 7 dagen" : "Next 7 days") + "</div>" + groups.map(function (g) {
         return '<div class="t-day">' + esc(g.head) + '</div><ul class="t-rows">' + g.rows.join("") + "</ul>";
-      }).join("");
+      }).join("") + (total > MAX && emp ? '<a class="t-all link" href="https://www.bueno.nu/webshop/school/764/schedule?employees=' + emp + '">' +
+        (lang === "nl" ? "Alle " + total + " lessen in Bueno" : "All " + total + " classes in Bueno") + " →</a>" : "");
     });
   }
 

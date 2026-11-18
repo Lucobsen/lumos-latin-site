@@ -865,6 +865,7 @@ html[data-color="Orchid"] { --pink: #9f4ab4; --pink-hover: #8a3e9d; --fade-a: #e
 .teacher .t-time { color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .teacher .t-rows b { font-weight: 600; }
 .teacher .t-rows .link { font-weight: 700; white-space: nowrap; }
+.teacher .t-all { display: inline-block; margin-top: 10px; font-size: 14px; font-weight: 700; }
 @media (max-width: 520px) { .teacher .t-rows li { grid-template-columns: 88px 1fr auto; font-size: 14px; } }
 .fun-sticker { display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; background: #ffe58f; color: var(--ink); font: 700 13px/1.15 var(--head); letter-spacing: .02em; text-transform: uppercase; border: 1.5px solid var(--ink); border-radius: 8px; transform: rotate(-4deg); box-shadow: 3px 3px 0 var(--ink); }
 .fun-sticker::before { content: "\2726"; font-size: 14px; }
