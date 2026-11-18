@@ -676,3 +676,22 @@
     if (mq.addEventListener) mq.addEventListener("change", off); else if (mq.addListener) mq.addListener(off);
   }
 })();
+
+/* ---------- news cards: "Read more" shows only when the text is cut off, and opens the whole text in the card ---------- */
+(function () {
+  document.querySelectorAll(".news-card .nc-text").forEach(function (p) {
+    var b = p.nextElementSibling;
+    if (!b || !b.classList.contains("nc-more")) return;
+    var check = function () { if (!p.classList.contains("open")) b.hidden = p.scrollHeight <= p.clientHeight + 1; };
+    check();
+    window.addEventListener("resize", check);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(check);
+    b.addEventListener("click", function () {
+      var open = p.classList.toggle("open");
+      var t = b.textContent;
+      b.textContent = b.getAttribute("data-alt");
+      b.setAttribute("data-alt", t);
+      b.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+  });
+})();

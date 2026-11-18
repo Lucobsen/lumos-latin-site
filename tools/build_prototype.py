@@ -511,6 +511,9 @@ def news_section(lang):
     p = P("home", lang)
     if not NEWS_ITEMS:
         return ""  # no news shown right now: leave the whole section out, not an empty heading
+    # app.js shows this button only when the text is cut off, and swaps its label when the text opens
+    more = dict(en='<button type="button" class="nc-more" hidden aria-expanded="false" data-alt="Show less">Read more</button>',
+                nl='<button type="button" class="nc-more" hidden aria-expanded="false" data-alt="Minder tonen">Lees meer</button>')[lang]
     cards = []
     for i, n in enumerate(NEWS_ITEMS):
         img = (f'<div class="nc-img" style="background-image:url(/assets/photos/{n["img"]})" role="img" aria-label="{tr(n["title"], lang)}"></div>' if n["img"]
@@ -523,7 +526,7 @@ def news_section(lang):
         sticker = f'<span class="fun-sticker">{tr(n["sticker"], lang)}</span>' if n["sticker"] else ""
         dfirst = f' data-first="{p["news_first_label"]}"' if i == 0 else ""  # the CSS label reads it from here
         cards.append(f"""<article class="news-card{big}{first}">{img}<div class="nc-body"><div class="nc-when"{dfirst}>{ICONS['calendar']}{tr(n['when'], lang)}</div>
-  <h3>{tr(n['title'], lang)}</h3><p class="nc-text">{teaser(n['text'], lang)}</p>
+  <h3>{tr(n['title'], lang)}</h3><p class="nc-text">{teaser(n['text'], lang)}</p>{more}
   <div class="nc-actions"><a class="btn btn-pink" href="{href}">{btn}</a>{sticker}</div></div></article>""")
     return f"""<section class="sec news" id="news"><div class="wrap">
   <div class="sec-title sec-title-row"><h2><span class="hl">{p['news_title']}</span></h2><a class="more-link" href="{url(lang, 'events')}">{p['news_all_link']}</a></div>
