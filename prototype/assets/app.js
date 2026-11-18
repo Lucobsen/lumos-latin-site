@@ -363,7 +363,8 @@
   function apply(entries) {
     var list = entries.map(function (e) {
       return { e: e, a: local(e.startDateTime), b: local(e.endDateTime), studio: LOC[e.location && e.location.schoolLocationId], g: genre(e), lv: levelNo(e) };
-    }).filter(function (x) { return x.a && x.b && x.studio; }).sort(function (x, y) { return x.a.t - y.a.t; });
+    }).filter(function (x) { return x.a && x.b && x.studio && x.b.t.getTime() > Date.now(); })  /* classes that already ended today are left out */
+      .sort(function (x, y) { return x.a.t - y.a.t; });
     teachersLive(list);
     var used = [];
     /* answer pages: the classes the flow draws (window.LUMOS.classes) get Bueno's try-out */

@@ -457,8 +457,17 @@ def _news(n):
 
 DATED = dict(required=("date",), dates=("show_from", "hide_after"))
 # Events and news cards outside their show_from / hide_after window are left out of the whole build.
+# An event's hide_after on or after its own date is ignored: a past event stays as the one "Earlier" event of its kind
+# until the next one of that kind has happened (shown_events). Without this, the editing screen's habit of setting
+# hide_after to the day after made an event two months old come back as "Earlier" (review, 18 Nov 2026).
+# A hide_after before the event's date still takes the event off the site, for example when it is cancelled.
+def _event_shown(e):
+    h = day(e.get("hide_after"))
+    return shown(dict(e, hide_after="") if h and h >= day(e["date"]) else e)
+
+
 EVENT_ITEMS = [_event(e) for e in sorted(load_list("events", plain=("title", "time", "place", "button"), **DATED),
-                                         key=lambda e: (e["date"], e["slug"])) if shown(e)]
+                                         key=lambda e: (e["date"], e["slug"])) if _event_shown(e)]
 # Home page news cards, in the order of their "date" field.
 NEWS_ITEMS = [_news(n) for n in sorted(load_list("news", plain=("title", "sticker", "badge", "button"), **DATED),
                                        key=lambda n: (n["date"], n["slug"])) if shown(n)]
