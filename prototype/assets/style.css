@@ -399,7 +399,8 @@ p { margin: 0 0 .75em; }
   .mtable td { display: flex; justify-content: space-between; gap: 12px; }
   .mtable td::before { content: attr(data-label); color: var(--muted); }
   .mtable tr td { text-align: right; }
-  .mtable td::before { text-align: left; flex: none; }
+  .mtable td::before { text-align: left; flex: 0 1 auto; min-width: 0; }  /* a long label (Dutch "6 maanden, daarna maandelijks") wraps instead of pushing the price off the screen */
+  .mtable td { align-items: center; }
 }
 .mtable th, .mtable td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); }
 .mtable thead th { font: 600 13px/1.2 var(--body); color: var(--muted); }
