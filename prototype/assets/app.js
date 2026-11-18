@@ -337,10 +337,12 @@
   function levelNo(e) { var m = /^(\d)/.exec((e.level && e.level.level) || ""); return m ? +m[1] : 0; }
   function genre(e) { return ((e.genre && e.genre.genre) || "").trim().toLowerCase(); }
 
+  /* the teachers page reads two weeks ahead; every other page one week, because the studios page lists "this week" */
+  var SPAN = tcards.length && !folds.length ? 13 : 6;
   function getWeek() {
-    var now = new Date(), end = new Date(now.getTime() + 6 * 864e5);
+    var now = new Date(), end = new Date(now.getTime() + SPAN * 864e5);
     var url = "https://api.bueno.nu/webshop/school/764/schedule?calendarEntryId=0&startDateTime=" + ddmmyyyy(now) + "&endDateTime=" + ddmmyyyy(end);
-    var key = "bueno-feed:" + ddmmyyyy(now);
+    var key = "bueno-feed:" + SPAN + ":" + ddmmyyyy(now);
     try {
       var c = JSON.parse(sessionStorage.getItem(key) || "null");
       if (c && Date.now() - c.at < 30 * 60 * 1000) return Promise.resolve(c.entries);
@@ -416,7 +418,7 @@
   }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
 
-  /* teachers page: each teacher's classes in the next 7 days from Bueno take the place of the typed weekly list.
+  /* teachers page: each teacher's classes in the next 2 weeks from Bueno take the place of the typed weekly list.
      A teacher with nothing in Bueno this week keeps the typed list. Teachers match on first name. */
   var STUDIO_NAME = { veem: "De Veemvloer", flow: "Latin Flow Studio", ceintuur: "Ceintuurtheater", tg: "TG Spaces" };
   function teachersLive(list) {
@@ -447,10 +449,10 @@
       if (old) old.remove();  /* the typed weekly list: Bueno's dates take its place */
       var box = card.querySelector(".t-week") || card.appendChild(document.createElement("div"));
       box.className = "t-week";
-      box.innerHTML = '<div class="t-label">' + (lang === "nl" ? "Komende 7 dagen" : "Next 7 days") + "</div>" + groups.map(function (g) {
+      box.innerHTML = '<div class="t-label">' + (lang === "nl" ? "Komende lessen" : "Upcoming classes") + "</div>" + groups.map(function (g) {
         return '<div class="t-day">' + esc(g.head) + '</div><ul class="t-rows">' + g.rows.join("") + "</ul>";
       }).join("") + (total > MAX && emp ? '<a class="t-all link" href="https://www.bueno.nu/webshop/school/764/schedule?employees=' + emp + '">' +
-        (lang === "nl" ? "Alle " + total + " lessen in Bueno" : "All " + total + " classes in Bueno") + " →</a>" : "");
+        (lang === "nl" ? "Alle lessen in Bueno" : "All classes in Bueno") + " →</a>" : "");
     });
   }
 
