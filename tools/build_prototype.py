@@ -134,9 +134,11 @@ GTM_HEAD = ("<!-- Google Tag Manager, only after consent -->\n<script>(function(
             "d.addEventListener('DOMContentLoaded',function(){var h=d.documentElement,nl=h.lang==='nl',b=d.createElement('div');"
             "b.className='ck';b.setAttribute('role','region');b.setAttribute('aria-label','Cookies');"
             "b.innerHTML='<p>'+(nl?'We gebruiken cookies voor advertenties en statistieken.':'We use cookies for ads and statistics.')"
-            "+' <a href=\"'+(h.getAttribute('data-base')||'')+'/'+(nl?'nl':'en')+'/privacy/\">'+(nl?'Meer':'More')+'</a></p>'"
+            "+' <a href=\"'+(h.getAttribute('data-base')||'')+'/'+(nl?'nl':'en')+'/privacy/\" aria-label=\"'+(nl?'Meer over cookies':'More about cookies')+'\">'+(nl?'Meer':'More')+'</a></p>'"
             "+'<span class=\"ck-b\"><button type=\"button\" data-ck=\"no\">'+(nl?'Nee':'No')+'</button><button type=\"button\" data-ck=\"yes\">OK</button></span>';"
-            "b.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('[data-ck]'),c=t&&t.getAttribute('data-ck');if(!c)return;keep(c);if(c==='yes')load();b.remove();});"
+            "b.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('[data-ck]'),c=t&&t.getAttribute('data-ck');if(!c)return;keep(c);if(c==='yes')load();b.remove();"
+            # keyboard users keep their place: focus moves to the page content, not back to the top of the document
+            "var m=d.querySelector('main')||d.body;m.setAttribute('tabindex','-1');m.focus({preventScroll:true});});"
             "d.body.insertBefore(b,d.body.firstChild);});})(window,document);</script>") if GTM_ID else ""  # card goes first in <body>, so Tab reaches it first
 GTM_BODY = ""  # the <noscript> Tag Manager frame is gone: without JavaScript nobody can say yes
 SHOW_SWITCHES = "--switches" in sys.argv  # True shows the small switches under the title, for picking
@@ -433,14 +435,22 @@ def _filled(v):
     return v or None
 
 
+def _loop(x, folder):
+    """The item's video loop file name; a name typed in the editing screen that is not on disk stops the build."""
+    v = x.get("video", "")
+    if v and not os.path.exists(os.path.join(ROOT, "assets", "loops", v)):
+        raise SystemExit(f"{where(folder, x.get('slug', '?') + '.json')}: video {v!r} is not in prototype/assets/loops")
+    return v
+
+
 def _event(e):
     return dict(kind=e.get("kind", ""), slug=e["slug"], date=day(e["date"]), title=e.get("title", ""), img=e.get("image", ""),
-                video=e.get("video", ""), time=e.get("time", ""), place=e.get("place", ""), link=e.get("link", ""),
+                video=_loop(e, "events"), time=e.get("time", ""), place=e.get("place", ""), link=e.get("link", ""),
                 btn=_filled(e.get("button")), text=e.get("text", ""))
 
 
 def _news(n):
-    return dict(when=n.get("when", ""), title=n.get("title", ""), img=n.get("image", ""), video=n.get("video", ""),
+    return dict(when=n.get("when", ""), title=n.get("title", ""), img=n.get("image", ""), video=_loop(n, "news"),
                 text=n.get("text", ""), btn=_filled(n.get("button")), link=n.get("link", ""), big=bool(n.get("big")),
                 sticker=_filled(n.get("sticker")), badge=_filled(n.get("badge")))
 
@@ -801,6 +811,7 @@ def page(lang, key, title, desc, body, other_href=None, nav_page=None, path=None
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {GTM_HEAD}
+<noscript><style>.news-card .nc-text{{display:block;-webkit-line-clamp:unset;line-clamp:unset}}</style></noscript>
 {ROBOTS_META}<title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
 <link rel="canonical" href="{SITE}{canonical}">
