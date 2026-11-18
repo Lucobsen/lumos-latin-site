@@ -844,6 +844,9 @@ html[data-color="Orchid"] { --pink: #9f4ab4; --pink-hover: #8a3e9d; --fade-a: #e
 @media (max-width: 900px) { .news-grid.news-n2 { grid-template-columns: 1fr; } .news-grid.news-n1 .news-card { flex-direction: column; } .news-grid.news-n1 .nc-img { flex: none; aspect-ratio: 16 / 9; min-height: 0; } }
 /* a fun "Free Salsa & Bachata Night" sticker */
 .nc-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+/* News card text: at most 5 lines (the full text is on the event page), buttons on one line at the bottom of every card. */
+.news-card .nc-text { flex: none; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 5; line-clamp: 5; overflow: hidden; }
+.news-card .nc-actions { margin-top: auto; padding-top: 16px; }
 .fun-sticker { display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; background: #ffe58f; color: var(--ink); font: 700 13px/1.15 var(--head); letter-spacing: .02em; text-transform: uppercase; border: 1.5px solid var(--ink); border-radius: 8px; transform: rotate(-4deg); box-shadow: 3px 3px 0 var(--ink); }
 .fun-sticker::before { content: "\2726"; font-size: 14px; }
 .sf-main .fun-sticker--sm { display: inline-flex; width: auto; color: var(--ink); }
