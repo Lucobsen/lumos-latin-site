@@ -1431,6 +1431,19 @@ def root_files():
                   for lang in ("en", "nl") for src in (f"/{lang}/start", f"/{lang}/start/")]
     # browsers that ask for /favicon.ico get the same icon the pages name
     redirects.append({"source": "/favicon.ico", "destination": "/assets/lumos-gem-icon.svg", "permanent": True})
+    # An event page the build no longer makes (an older past event, or a future one before its show_from) goes to the
+    # events page instead of "page not found", so old shared and Google links keep working. Not permanent: the page
+    # can come back. Only for pages that do not exist, because a Vercel redirect wins over a file.
+    ev_dir = os.path.join(ROOT, "..", "content", "events")
+    for name in sorted(os.listdir(ev_dir)):
+        if not name.endswith(".json"):
+            continue
+        slug = name[:-5]
+        for lang in ("en", "nl"):
+            folder = SLUGS[lang]["events"]
+            if not os.path.exists(os.path.join(ROOT, lang, folder, slug, "index.html")):
+                redirects += [{"source": f"/{lang}/{folder}/{slug}{end}", "destination": f"/{lang}/{folder}/", "permanent": False}
+                              for end in ("", "/")]
     vercel = {"cleanUrls": False, "trailingSlash": True, "redirects": redirects}
     if HIDDEN:
         vercel["headers"] = [{"source": "/(.*)", "headers": [{"key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive"}]}]

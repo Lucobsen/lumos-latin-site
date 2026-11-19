@@ -146,6 +146,166 @@
       "source": "/favicon.ico",
       "destination": "/assets/lumos-gem-icon.svg",
       "permanent": true
+    },
+    {
+      "source": "/en/events/2026-07-12-reggaeton-and-salsa-styling-workshops",
+      "destination": "/en/events/",
+      "permanent": false
+    },
+    {
+      "source": "/en/events/2026-07-12-reggaeton-and-salsa-styling-workshops/",
+      "destination": "/en/events/",
+      "permanent": false
+    },
+    {
+      "source": "/nl/evenementen/2026-07-12-reggaeton-and-salsa-styling-workshops",
+      "destination": "/nl/evenementen/",
+      "permanent": false
+    },
+    {
+      "source": "/nl/evenementen/2026-07-12-reggaeton-and-salsa-styling-workshops/",
+      "destination": "/nl/evenementen/",
+      "permanent": false
+    },
+    {
+      "source": "/en/events/2026-07-18-festival-macumba",
+      "destination": "/en/events/",
+      "permanent": false
+    },
+    {
+      "source": "/en/events/2026-07-18-festival-macumba/",
+      "destination": "/en/events/",
+      "permanent": false
+    },
+    {
+      "source": "/nl/evenementen/2026-07-18-festival-macumba",
+      "destination": "/nl/evenementen/",
+      "permanent": false
+    },
+    {
+      "source": "/nl/evenementen/2026-07-18-festival-macumba/",
+      "destination": "/nl/evenementen/",
+      "permanent": false
+    },
+    {
+      "source": "/en/events/2026-10-23-lumos-latin-night",
+      "destination": "/en/events/",
+      "permanent": false
+    },
+    {
+      "source": "/en/events/2026-10-23-lumos-latin-night/",
+      "destination": "/en/events/",
+      "permanent": false
+    },
+    {
+      "source": "/nl/evenementen/2026-10-23-lumos-latin-night",
+      "destination": "/nl/evenementen/",
+      "permanent": false
+    },
+    {
+      "source": "/nl/evenementen/2026-10-23-lumos-latin-night/",
+      "destination": "/nl/evenementen/",
+      "permanent": false
+    },
+    {
+      "source": "/en/events/2026-10-31-spinning-workshops-by-kristina",
+      "destination": "/en/events/",
+      "permanent": false
+    },
+    {
+      "source": "/en/events/2026-10-31-spinning-workshops-by-kristina/",
+      "destination": "/en/events/",
+      "permanent": false
+    },
+    {
+      "source": "/nl/evenementen/2026-10-31-spinning-workshops-by-kristina",
+      "destination": "/nl/evenementen/",
+      "permanent": false
+    },
+    {
+      "source": "/nl/evenementen/2026-10-31-spinning-workshops-by-kristina/",
+      "destination": "/nl/evenementen/",
+      "permanent": false
+    },
+    {
+      "source": "/en/events/2026-11-03-salsa-bachata-social",
+      "destination": "/en/events/",
+      "permanent": false
+    },
+    {
+      "source": "/en/events/2026-11-03-salsa-bachata-social/",
+      "destination": "/en/events/",
+      "permanent": false
+    },
+    {
+      "source": "/nl/evenementen/2026-11-03-salsa-bachata-social",
+      "destination": "/nl/evenementen/",
+      "permanent": false
+    },
+    {
+      "source": "/nl/evenementen/2026-11-03-salsa-bachata-social/",
+      "destination": "/nl/evenementen/",
+      "permanent": false
+    },
+    {
+      "source": "/en/events/2026-12-22-tuesday-social",
+      "destination": "/en/events/",
+      "permanent": false
+    },
+    {
+      "source": "/en/events/2026-12-22-tuesday-social/",
+      "destination": "/en/events/",
+      "permanent": false
+    },
+    {
+      "source": "/nl/evenementen/2026-12-22-tuesday-social",
+      "destination": "/nl/evenementen/",
+      "permanent": false
+    },
+    {
+      "source": "/nl/evenementen/2026-12-22-tuesday-social/",
+      "destination": "/nl/evenementen/",
+      "permanent": false
+    },
+    {
+      "source": "/en/events/2027-01-05-tuesday-social",
+      "destination": "/en/events/",
+      "permanent": false
+    },
+    {
+      "source": "/en/events/2027-01-05-tuesday-social/",
+      "destination": "/en/events/",
+      "permanent": false
+    },
+    {
+      "source": "/nl/evenementen/2027-01-05-tuesday-social",
+      "destination": "/nl/evenementen/",
+      "permanent": false
+    },
+    {
+      "source": "/nl/evenementen/2027-01-05-tuesday-social/",
+      "destination": "/nl/evenementen/",
+      "permanent": false
+    },
+    {
+      "source": "/en/events/2027-01-19-tuesday-social",
+      "destination": "/en/events/",
+      "permanent": false
+    },
+    {
+      "source": "/en/events/2027-01-19-tuesday-social/",
+      "destination": "/en/events/",
+      "permanent": false
+    },
+    {
+      "source": "/nl/evenementen/2027-01-19-tuesday-social",
+      "destination": "/nl/evenementen/",
+      "permanent": false
+    },
+    {
+      "source": "/nl/evenementen/2027-01-19-tuesday-social/",
+      "destination": "/nl/evenementen/",
+      "permanent": false
     }
   ]
 }
