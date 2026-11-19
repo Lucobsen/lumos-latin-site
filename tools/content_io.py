@@ -118,7 +118,7 @@ KEY_ORDER = [
     "address", "area", "dances", "days", "beginners_only", "workshops_only",
     "maps_link", "map_coordinates", "bueno_location_ids",
     "price", "per", "what", "detail", "line", "ticks", "classes_a_week", "monthly", "monthly_link", "six_months", "six_months_link", "social_perk",
-    "image", "badge", "photo", "big", "sticker", "button", "button_label", "button_link", "button_style", "buttons", "link",
+    "image", "video", "badge", "photo", "big", "sticker", "button", "button_label", "button_link", "button_style", "buttons", "link",
     "classes", "cta", "second_label", "second_link", "extras",
     "who", "learn", "sub",
     # settings

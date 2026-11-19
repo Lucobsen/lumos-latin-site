@@ -311,7 +311,8 @@
   var D = window.LUMOS;
   var folds = document.querySelectorAll(".studio-fold[data-locs]");
   var onAnswer = /\/start\/[a-z-]+\/?$/.test(location.pathname) || document.getElementById("flow");
-  if (!D || (!folds.length && !onAnswer) || !window.fetch) return;
+  var tcards = document.querySelectorAll(".card.teacher[data-teacher]");
+  if (!D || (!folds.length && !onAnswer && !tcards.length) || !window.fetch) return;
   var lang = document.documentElement.lang === "nl" ? "nl" : "en";
   var TZ = "Europe/Amsterdam";
   var DAYS = { en: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], nl: ["Zo", "Ma", "Di", "Wo", "Do", "Vr", "Za"] };
@@ -336,10 +337,12 @@
   function levelNo(e) { var m = /^(\d)/.exec((e.level && e.level.level) || ""); return m ? +m[1] : 0; }
   function genre(e) { return ((e.genre && e.genre.genre) || "").trim().toLowerCase(); }
 
+  /* the teachers page reads two weeks ahead; every other page one week, because the studios page lists "this week" */
+  var SPAN = tcards.length && !folds.length ? 13 : 6;
   function getWeek() {
-    var now = new Date(), end = new Date(now.getTime() + 6 * 864e5);
+    var now = new Date(), end = new Date(now.getTime() + SPAN * 864e5);
     var url = "https://api.bueno.nu/webshop/school/764/schedule?calendarEntryId=0&startDateTime=" + ddmmyyyy(now) + "&endDateTime=" + ddmmyyyy(end);
-    var key = "bueno-feed:" + ddmmyyyy(now);
+    var key = "bueno-feed:" + SPAN + ":" + ddmmyyyy(now);
     try {
       var c = JSON.parse(sessionStorage.getItem(key) || "null");
       if (c && Date.now() - c.at < 30 * 60 * 1000) return Promise.resolve(c.entries);
@@ -360,7 +363,9 @@
   function apply(entries) {
     var list = entries.map(function (e) {
       return { e: e, a: local(e.startDateTime), b: local(e.endDateTime), studio: LOC[e.location && e.location.schoolLocationId], g: genre(e), lv: levelNo(e) };
-    }).filter(function (x) { return x.a && x.b && x.studio; }).sort(function (x, y) { return x.a.t - y.a.t; });
+    }).filter(function (x) { return x.a && x.b && x.studio && x.b.t.getTime() > Date.now(); })  /* classes that already ended today are left out */
+      .sort(function (x, y) { return x.a.t - y.a.t; });
+    teachersLive(list);
     var used = [];
     /* answer pages: the classes the flow draws (window.LUMOS.classes) get Bueno's try-out */
     D.classes.forEach(function (c) {
@@ -413,6 +418,44 @@
     try { window.dispatchEvent(new CustomEvent("lumos:feed")); } catch (e) {}
   }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+
+  /* teachers page: each teacher's classes in the next 2 weeks from Bueno take the place of the typed weekly list.
+     A teacher with nothing in Bueno this week keeps the typed list. Teachers match on first name. */
+  var STUDIO_NAME = { veem: "De Veemvloer", flow: "Latin Flow Studio", ceintuur: "Ceintuurtheater", tg: "TG Spaces" };
+  function teachersLive(list) {
+    tcards.forEach(function (card) {
+      var name = card.getAttribute("data-teacher");
+      var now = Date.now();
+      var mine = list.filter(function (x) {
+        return x.b.t.getTime() > now && (x.e.employees || []).some(function (p) { return (p.firstName || "").trim() === name; });
+      });
+      if (!mine.length) return;
+      /* one block per day and studio, then one line per class: time, class, Book, in fixed columns */
+      var groups = [], last = null;
+      /* at most the next 3 classes, so the cards side by side stay about the same height;
+         the rest is one link to Bueno's schedule filtered on this teacher */
+      var MAX = 3, total = mine.length, emp = null;
+      (mine[0].e.employees || []).forEach(function (p) { if ((p.firstName || "").trim() === name) emp = p.employeeId; });
+      mine.slice(0, MAX).forEach(function (x) {
+        var k = dayLabel(x.a) + "|" + x.studio;
+        if (!last || last.k !== k) { last = { k: k, head: dayLabel(x.a) + " · " + (STUDIO_NAME[x.studio] || ""), rows: [] }; groups.push(last); }
+        var what = x.g === "reggaeton" ? "Reggaeton drop-in"
+          : x.g && x.lv ? x.g.charAt(0).toUpperCase() + x.g.slice(1) + " " + x.lv
+          : (x.e.formattedTitle || "").replace(/\s+/g, " ").trim();
+        if (x.e.calendarEntryType === "TRY_OUT") what += " · " + (lang === "nl" ? "proefles" : "try-out");
+        last.rows.push('<li><span class="t-time">' + x.a.hm + "–" + x.b.hm + '</span><b>' + esc(what) + '</b><a class="link" href="' + DETAIL + x.e.calendarEntryId + '">' +
+          (lang === "nl" ? "Boek" : "Book") + "</a></li>");
+      });
+      var old = card.querySelector(".t-foot");
+      if (old) old.remove();  /* the typed weekly list: Bueno's dates take its place */
+      var box = card.querySelector(".t-week") || card.appendChild(document.createElement("div"));
+      box.className = "t-week";
+      box.innerHTML = '<div class="t-label">' + (lang === "nl" ? "Komende lessen" : "Upcoming classes") + "</div>" + groups.map(function (g) {
+        return '<div class="t-day">' + esc(g.head) + '</div><ul class="t-rows">' + g.rows.join("") + "</ul>";
+      }).join("") + (total > MAX && emp ? '<a class="t-all link" href="https://www.bueno.nu/webshop/school/764/schedule?employees=' + emp + '">' +
+        (lang === "nl" ? "Alle lessen in Bueno" : "All classes in Bueno") + " →</a>" : "");
+    });
+  }
 
   getWeek().then(apply).catch(function () { document.documentElement.setAttribute("data-bueno", "fallback"); });
 })();
@@ -675,4 +718,23 @@
     };
     if (mq.addEventListener) mq.addEventListener("change", off); else if (mq.addListener) mq.addListener(off);
   }
+})();
+
+/* ---------- news cards: "Read more" shows only when the text is cut off, and opens the whole text in the card ---------- */
+(function () {
+  document.querySelectorAll(".news-card .nc-text").forEach(function (p) {
+    var b = p.nextElementSibling;
+    if (!b || !b.classList.contains("nc-more")) return;
+    var check = function () { if (!p.classList.contains("open")) b.hidden = p.scrollHeight <= p.clientHeight + 1; };
+    check();
+    window.addEventListener("resize", check);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(check);
+    b.addEventListener("click", function () {
+      var open = p.classList.toggle("open");
+      var t = b.textContent;
+      b.textContent = b.getAttribute("data-alt");
+      b.setAttribute("data-alt", t);
+      b.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+  });
 })();

@@ -116,12 +116,31 @@ HL_COLOR = S["hl_color"]    # Pink, Purple, Lilac, Rose, Orchid or Moving
 BTN_COLOR = S["btn_color"]  # Pink or Purple
 Q_BG = S["q_bg"]            # White or Yellow
 GTM_ID = S["gtm_id"]        # empty drops the Tag Manager snippet
-GTM_HEAD = ("<!-- Google Tag Manager -->\n<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});"
-            "var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;"
-            "j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','"
-            + GTM_ID + "');</script>\n<!-- End Google Tag Manager -->") if GTM_ID else ""
-GTM_BODY = ('<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=' + GTM_ID
-            + '" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>\n') if GTM_ID else ""
+# Tag Manager (Google Analytics, Google Ads, Meta pixel) loads only after the visitor clicks OK on the small
+# cookie bar; "No" keeps it off. The choice is kept in localStorage under "lumos-cookies" (yes/no).
+# Dutch law: tracking cookies need a yes first, and "No" must be as easy as "OK".
+GTM_HEAD = ("<!-- Google Tag Manager, only after consent -->\n<script>(function(w,d){var K='lumos-cookies',I='" + GTM_ID + "',v=null;"
+            "function load(){if(w.lumosGtm)return;w.lumosGtm=1;w.dataLayer=w.dataLayer||[];"
+            "w.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});"
+            "var j=d.createElement('script');j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+I;d.head.appendChild(j);}"
+            "function keep(x){try{localStorage.setItem(K,x)}catch(e){}}"
+            # "Change cookie choice" (privacy page): forget the choice, remove the Google and Meta cookies, show the card again.
+            "d.addEventListener('click',function(e){var r=e.target.closest&&e.target.closest('[data-ck-reset]');if(!r)return;e.preventDefault();"
+            "try{localStorage.removeItem(K)}catch(x){}var x='=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/',m=location.hostname.replace(/^www\\./,'');"
+            "d.cookie.split(';').forEach(function(c){var n=c.split('=')[0].trim();if(/^(_ga|_gid|_gat|_gac|_gcl|_dc_gtm|_fbp|_fbc)/.test(n)){d.cookie=n+x;d.cookie=n+x+';domain=.'+m;}});"
+            "location.reload();});"
+            "try{v=localStorage.getItem(K)}catch(e){}"
+            "if(v==='yes'){load();return}if(v==='no')return;"
+            "d.addEventListener('DOMContentLoaded',function(){var h=d.documentElement,nl=h.lang==='nl',b=d.createElement('div');"
+            "b.className='ck';b.setAttribute('role','region');b.setAttribute('aria-label','Cookies');"
+            "b.innerHTML='<p>'+(nl?'We gebruiken cookies voor advertenties en statistieken.':'We use cookies for ads and statistics.')"
+            "+' <a href=\"'+(h.getAttribute('data-base')||'')+'/'+(nl?'nl':'en')+'/privacy/\" aria-label=\"'+(nl?'Meer over cookies':'More about cookies')+'\">'+(nl?'Meer':'More')+'</a></p>'"
+            "+'<span class=\"ck-b\"><button type=\"button\" data-ck=\"no\">'+(nl?'Nee':'No')+'</button><button type=\"button\" data-ck=\"yes\">OK</button></span>';"
+            "b.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('[data-ck]'),c=t&&t.getAttribute('data-ck');if(!c)return;keep(c);if(c==='yes')load();b.remove();"
+            # keyboard users keep their place: focus moves to the page content, not back to the top of the document
+            "var m=d.querySelector('main')||d.body;m.setAttribute('tabindex','-1');m.focus({preventScroll:true});});"
+            "d.body.insertBefore(b,d.body.firstChild);});})(window,document);</script>") if GTM_ID else ""  # card goes first in <body>, so Tab reaches it first
+GTM_BODY = ""  # the <noscript> Tag Manager frame is gone: without JavaScript nobody can say yes
 SHOW_SWITCHES = "--switches" in sys.argv  # True shows the small switches under the title, for picking
 
 # ---------------------------------------------------------------- data
@@ -416,22 +435,39 @@ def _filled(v):
     return v or None
 
 
+def _loop(x, folder):
+    """The item's video loop file name; a name typed in the editing screen that is not on disk stops the build."""
+    v = x.get("video", "")
+    if v and not os.path.exists(os.path.join(ROOT, "assets", "loops", v)):
+        raise SystemExit(f"{where(folder, x.get('slug', '?') + '.json')}: video {v!r} is not in prototype/assets/loops")
+    return v
+
+
 def _event(e):
     return dict(kind=e.get("kind", ""), slug=e["slug"], date=day(e["date"]), title=e.get("title", ""), img=e.get("image", ""),
-                time=e.get("time", ""), place=e.get("place", ""), link=e.get("link", ""),
+                video=_loop(e, "events"), time=e.get("time", ""), place=e.get("place", ""), link=e.get("link", ""),
                 btn=_filled(e.get("button")), text=e.get("text", ""))
 
 
 def _news(n):
-    return dict(when=n.get("when", ""), title=n.get("title", ""), img=n.get("image", ""), text=n.get("text", ""),
-                btn=_filled(n.get("button")), link=n.get("link", ""), big=bool(n.get("big")),
+    return dict(when=n.get("when", ""), title=n.get("title", ""), img=n.get("image", ""), video=_loop(n, "news"),
+                text=n.get("text", ""), btn=_filled(n.get("button")), link=n.get("link", ""), big=bool(n.get("big")),
                 sticker=_filled(n.get("sticker")), badge=_filled(n.get("badge")))
 
 
 DATED = dict(required=("date",), dates=("show_from", "hide_after"))
 # Events and news cards outside their show_from / hide_after window are left out of the whole build.
+# An event's hide_after on or after its own date is ignored: a past event stays as the one "Earlier" event of its kind
+# until the next one of that kind has happened (shown_events). Without this, the editing screen's habit of setting
+# hide_after to the day after made an event two months old come back as "Earlier" (review, 18 Nov 2026).
+# A hide_after before the event's date still takes the event off the site, for example when it is cancelled.
+def _event_shown(e):
+    h = day(e.get("hide_after"))
+    return shown(dict(e, hide_after="") if h and h >= day(e["date"]) else e)
+
+
 EVENT_ITEMS = [_event(e) for e in sorted(load_list("events", plain=("title", "time", "place", "button"), **DATED),
-                                         key=lambda e: (e["date"], e["slug"])) if shown(e)]
+                                         key=lambda e: (e["date"], e["slug"])) if _event_shown(e)]
 # Home page news cards, in the order of their "date" field.
 NEWS_ITEMS = [_news(n) for n in sorted(load_list("news", plain=("title", "sticker", "badge", "button"), **DATED),
                                        key=lambda n: (n["date"], n["slug"])) if shown(n)]
@@ -485,11 +521,25 @@ def next_up(lang):
     return f'<a class="next-up" href="{url(lang, "events")}#{e["kind"]}"><i>{label}</i><span><b>{tr(e["title"], lang)}</b> · {when}</span></a>'
 
 
+def teaser(v, lang):
+    """A news card shows its text as one paragraph; the CSS cuts it at a few lines so the cards stay even."""
+    return " ".join(x.strip() for x in tr(v, lang).replace("\r", "").split("\n") if x.strip())
+
+
 def news_section(lang):
     p = P("home", lang)
+    if not NEWS_ITEMS:
+        return ""  # no news shown right now: leave the whole section out, not an empty heading
+    # app.js shows this button only when the text is cut off, and swaps its label when the text opens
+    more = dict(en='<button type="button" class="nc-more" hidden aria-expanded="false" data-alt="Show less">Read more</button>',
+                nl='<button type="button" class="nc-more" hidden aria-expanded="false" data-alt="Minder tonen">Lees meer</button>')[lang]
     cards = []
     for i, n in enumerate(NEWS_ITEMS):
-        img = (f'<div class="nc-img" style="background-image:url(/assets/photos/{n["img"]})" role="img" aria-label="{tr(n["title"], lang)}"></div>' if n["img"]
+        # A card with a video shows a silent loop in the photo's place; the photo is its poster (Amin, 18 Nov 2026).
+        poster = f' poster="/assets/photos/{n["img"]}"' if n["img"] else ""
+        img = (f'<video class="nc-img autoloop" autoplay muted loop playsinline preload="metadata"{poster} aria-label="{tr(n["title"], lang)}">'
+               f'<source src="/assets/loops/{n["video"]}" type="video/mp4"></video>' if n["video"]
+               else f'<div class="nc-img" style="background-image:url(/assets/photos/{n["img"]})" role="img" aria-label="{tr(n["title"], lang)}"></div>' if n["img"]
                else f'<div class="nc-img nc-price" aria-hidden="true"><span>{esc(tr(n["badge"], lang))}</span></div>'
                if n["badge"] and tr(n["badge"], lang) else "")
         href = link_href(lang, n["link"])
@@ -499,11 +549,11 @@ def news_section(lang):
         sticker = f'<span class="fun-sticker">{tr(n["sticker"], lang)}</span>' if n["sticker"] else ""
         dfirst = f' data-first="{p["news_first_label"]}"' if i == 0 else ""  # the CSS label reads it from here
         cards.append(f"""<article class="news-card{big}{first}">{img}<div class="nc-body"><div class="nc-when"{dfirst}>{ICONS['calendar']}{tr(n['when'], lang)}</div>
-  <h3>{tr(n['title'], lang)}</h3>{paras(n['text'], lang)}
+  <h3>{tr(n['title'], lang)}</h3><p class="nc-text">{teaser(n['text'], lang)}</p>{more}
   <div class="nc-actions"><a class="btn btn-pink" href="{href}">{btn}</a>{sticker}</div></div></article>""")
     return f"""<section class="sec news" id="news"><div class="wrap">
   <div class="sec-title sec-title-row"><h2><span class="hl">{p['news_title']}</span></h2><a class="more-link" href="{url(lang, 'events')}">{p['news_all_link']}</a></div>
-  <div class="news-grid">{''.join(cards)}</div>
+  <div class="news-grid{' news-n' + str(len(cards)) if len(cards) < 3 else ''}">{''.join(cards)}</div>
 </div></section>"""
 
 
@@ -526,9 +576,14 @@ def event_item(lang, e, single=False):
     btn = (f'<div class="answer-actions"><a class="btn{" btn-yellow" if e["kind"] == "socials" else ""}" href="{e["link"]}">{tr(e["btn"], lang)}</a></div>'
            if e["btn"] and not past else "")
     title = f'<h1>{tr(e["title"], lang)}</h1>' if single else f'<h3><a href="{event_url(lang, e)}">{tr(e["title"], lang)}</a></h3>'
+    # an event with a video shows a silent loop in the photo's place, the photo as its poster (Amin, 18 Nov 2026)
+    poster = f' poster="/assets/photos/{e["img"]}"' if e["img"] else ""
+    img = (f'<video class="ev-img autoloop" autoplay muted loop playsinline preload="metadata"{poster} '
+           f'aria-label="{tr(e["title"], lang)}"><source src="/assets/loops/{e["video"]}" type="video/mp4"></video>' if e["video"]
+           else f'<div class="ev-img" style="background-image:url(/assets/photos/{e["img"]})" role="img" aria-label="{tr(e["title"], lang)}"></div>')
     return f"""<article class="ev-item{' past' if past else ''}{' ev-single' if single else ''}"><div class="date-box"><div class="m">{MONTH_SHORT[lang][d.month - 1]}</div><div class="d">{d.day}</div><div class="w">{WEEKDAY[lang][d.weekday()]}</div></div>
   <div>{title}<ul class="meta">{''.join(f'<li>{m}</li>' for m in meta)}</ul>{paras(e['text'], lang)}{btn}</div>
-  <div class="ev-img" style="background-image:url(/assets/photos/{e['img']})" role="img" aria-label="{tr(e['title'], lang)}"></div></article>"""
+  {img}</article>"""
 
 
 def shown_events():
@@ -576,7 +631,11 @@ def events(lang):
             none = f'<p class="ev-empty">{p.get("empty_texts", {}).get(k) or p["empty_text"]}</p>'
             nxt = upcoming_events()
             if nxt:
-                none += f'<p class="ev-upnext"><b>{p["up_next_label"]}:</b></p><div class="ev-list">{event_item(lang, nxt[0])}</div>'
+                # one line with a link, not the whole card again: that card already shows in its own section
+                e = nxt[0]
+                d = e["date"]
+                short = f"{d.day} {MONTH_SHORT[lang][d.month - 1]}" if nl else f"{MONTH_SHORT[lang][d.month - 1]} {d.day}"
+                none += f'<p class="ev-upnext"><b>{p["up_next_label"]}:</b> <a href="#{e["kind"]}">{tr(e["title"], lang)}, {short}</a></p>'
         earlier = (f'<h3 class="ev-earlier">{p["earlier"]}</h3><div class="ev-list">{"".join(event_item(lang, e) for e in past)}</div>' if past else "")
         secs.append(f"""<section class="sec ev-sec{' sec-soft' if len(secs) % 2 else ''}" id="{k}"><div class="wrap">
   <div class="sec-title"><h2><span class="hl">{x['label']}</span></h2></div>
@@ -761,6 +820,7 @@ def page(lang, key, title, desc, body, other_href=None, nav_page=None, path=None
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {GTM_HEAD}
+<noscript><style>.news-card .nc-text{{display:block;-webkit-line-clamp:unset;line-clamp:unset}}</style></noscript>
 {ROBOTS_META}<title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
 <link rel="canonical" href="{SITE}{canonical}">
@@ -927,7 +987,8 @@ def teachers_page(lang):
         pic = (f'<img class="t-photo" src="/assets/photos/{esc(photo)}" alt="{esc(n)}" width="400" height="500" loading="lazy">' if photo
                else f'<div class="ph" aria-hidden="true">{n[0]}</div>')
         taught = teacher_classes(lang, n)
-        cards.append(f'<div class="card teacher">{pic}<div class="t-text"><h2 class="card-h">{n}</h2><div class="role">{r}</div>'
+        # data-teacher: app.js matches it to the first name of the teachers in Bueno's feed
+        cards.append(f'<div class="card teacher" data-teacher="{esc(n)}">{pic}<div class="t-text"><h2 class="card-h">{n}</h2><div class="role">{r}</div>'
                      + (f'<p class="line">{bio}</p>' if bio else "")
                      + (f'<div class="t-foot"><div class="t-label">{T[lang]["foot_classes"]}</div>{taught}</div>' if taught else "") + '</div></div>')
     sec = f'<section class="sec"><div class="wrap"><div class="grid team">{"".join(cards)}</div></div></section>'
@@ -1339,6 +1400,8 @@ def privacy(lang):
         li = "".join(f"<li>{item(x)}</li>" for x in s.get("items", []) if x)
         ul = f"<ul>{li}</ul>" if li else ""
         n = f'<p>{s["note"]}</p>' if s.get("note") else ""
+        if GTM_ID and "ookie" in s["heading"]:  # the cookie section (EN "Cookies", NL "cookies")
+            n += f'<p><button type="button" class="btn ck-reset" data-ck-reset>{dict(en="Change cookie choice", nl="Cookiekeuze wijzigen")[lang]}</button></p>'
         secs.append(f'<section class="policy-sec">{h}{t}{ul}{n}</section>')
     body = page_head(p["title"], p["intro"]) + f"""
 <section class="sec"><div class="wrap policy" style="max-width:820px">{"".join(secs)}</div></section>"""
@@ -1368,6 +1431,19 @@ def root_files():
                   for lang in ("en", "nl") for src in (f"/{lang}/start", f"/{lang}/start/")]
     # browsers that ask for /favicon.ico get the same icon the pages name
     redirects.append({"source": "/favicon.ico", "destination": "/assets/lumos-gem-icon.svg", "permanent": True})
+    # An event page the build no longer makes (an older past event, or a future one before its show_from) goes to the
+    # events page instead of "page not found", so old shared and Google links keep working. Not permanent: the page
+    # can come back. Only for pages that do not exist, because a Vercel redirect wins over a file.
+    ev_dir = os.path.join(ROOT, "..", "content", "events")
+    for name in sorted(os.listdir(ev_dir)):
+        if not name.endswith(".json"):
+            continue
+        slug = name[:-5]
+        for lang in ("en", "nl"):
+            folder = SLUGS[lang]["events"]
+            if not os.path.exists(os.path.join(ROOT, lang, folder, slug, "index.html")):
+                redirects += [{"source": f"/{lang}/{folder}/{slug}{end}", "destination": f"/{lang}/{folder}/", "permanent": False}
+                              for end in ("", "/")]
     vercel = {"cleanUrls": False, "trailingSlash": True, "redirects": redirects}
     if HIDDEN:
         vercel["headers"] = [{"source": "/(.*)", "headers": [{"key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive"}]}]

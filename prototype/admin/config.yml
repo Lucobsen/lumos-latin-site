@@ -160,6 +160,14 @@ collections:
     media_folder: /prototype/assets/photos
     public_folder: ''
     hint: Photos are kept in the site's photo folder. Leave empty for no photo.
+  - name: video
+    label: Video loop
+    widget: file
+    required: false
+    media_folder: /prototype/assets/loops
+    public_folder: ''
+    hint: A short silent video loop (mp4, 4:3) shown in the photo's place. The photo shows while it loads, so use
+      the video's first frame as the photo. Leave empty for a photo only.
   - name: button
     label: Button text
     widget: object
@@ -257,6 +265,14 @@ collections:
     media_folder: /prototype/assets/photos
     public_folder: ''
     hint: Photos are kept in the site's photo folder. Leave empty for no photo.
+  - name: video
+    label: Video loop
+    widget: file
+    required: false
+    media_folder: /prototype/assets/loops
+    public_folder: ''
+    hint: A short silent video loop (mp4, 4:3) shown in the photo's place. The photo shows while it loads, so use
+      the video's first frame as the photo. Leave empty for a photo only.
   - name: badge
     label: Price badge
     widget: object

@@ -1,0 +1,33 @@
+{
+  "date": "2026-12-22",
+  "show_from": "2026-12-09",
+  "hide_after": "2026-12-22",
+  "title": {
+    "en": "Tuesday Social - Salsa & Bachata Night",
+    "nl": "Tuesday Social - Salsa & Bachata avond"
+  },
+  "when": {
+    "en": "Tuesday 22 December · 21:00–23:00",
+    "nl": "Dinsdag 22 december · 21:00–23:00"
+  },
+  "text": {
+    "en": "We are back at Het Ceintuurtheater for another Latin Night on Tuesday, December 22! A perfect mix of Salsa & Bachata in this beautiful location in De Pijp. Dance your dances, catch up with friends and enjoy some drinks.\n\nFree Entrance!",
+    "nl": "We zijn terug in Het Ceintuurtheater voor nog een Latin Night op dinsdag 22 december! Een perfecte mix van Salsa en Bachata op deze prachtige locatie in De Pijp. Dans met vrienden (of vreemden) en geniet van een drankje.\n\nGratis entree!"
+  },
+  "image": "loop-smiles.jpg",
+  "video": "loop-smiles.mp4",
+  "badge": {
+    "en": "",
+    "nl": ""
+  },
+  "big": false,
+  "sticker": {
+    "en": "",
+    "nl": ""
+  },
+  "button": {
+    "en": "More info",
+    "nl": "Meer info"
+  },
+  "link": "events#socials"
+}
