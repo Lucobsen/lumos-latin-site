@@ -916,7 +916,9 @@ html[data-color="Orchid"] { --pink: #9f4ab4; --pink-hover: #8a3e9d; --fade-a: #e
 .sm-cap { display: block; margin-top: 6px; font-size: 13.5px; font-weight: 600; color: var(--muted); text-decoration: none; }
 .sm-cap::after { content: " \2197"; }
 .sm-cap:hover { color: var(--ink); }
-@media (max-width: 760px) {
+/* up to 900px the map sits above the class list: at iPad portrait (768px) map and list side by side left the
+   Book buttons too little room, and they stuck out past the card (site check, 20 Nov 2026) */
+@media (max-width: 900px) {
   .studio-page--maps .sf-body { display: block; }
 }
 
@@ -1072,6 +1074,9 @@ video { display: block; width: 100%; height: 100%; object-fit: cover; }
 .wa-float:hover { background: #1ebe5a; }
 .wa-float--up { bottom: 72px; width: 46px; height: 46px; }
 .wa-float--up .ico { width: 24px; height: 24px; }
+/* on phones the WhatsApp button (16px from the bottom, 52px high) covered "Privacy policy" in the last footer line:
+   room under that line keeps the button below it when the page is scrolled to the end (site check, 20 Nov 2026) */
+@media (max-width: 640px) { .foot-bottom { padding-bottom: 72px; } }
 
 /* Small cookie card, bottom left: Pauline's pick, design 4 (18 Nov 2026). Tag Manager loads only after OK.
    On phones it spans the width and sits above the WhatsApp button (bottom 16px + 52px high). */

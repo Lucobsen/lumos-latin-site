@@ -148,6 +148,26 @@
       "permanent": true
     },
     {
+      "source": "/en/events/2026-11-12-lumos-game-night",
+      "destination": "/en/events/2026-12-10-lumos-game-night/",
+      "permanent": true
+    },
+    {
+      "source": "/en/events/2026-11-12-lumos-game-night/",
+      "destination": "/en/events/2026-12-10-lumos-game-night/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/evenementen/2026-11-12-lumos-game-night",
+      "destination": "/nl/evenementen/2026-12-10-lumos-game-night/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/evenementen/2026-11-12-lumos-game-night/",
+      "destination": "/nl/evenementen/2026-12-10-lumos-game-night/",
+      "permanent": true
+    },
+    {
       "source": "/en/events/2026-07-12-reggaeton-and-salsa-styling-workshops",
       "destination": "/en/events/",
       "permanent": false

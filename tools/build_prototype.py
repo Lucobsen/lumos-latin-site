@@ -446,7 +446,7 @@ def _loop(x, folder):
 def _event(e):
     return dict(kind=e.get("kind", ""), slug=e["slug"], date=day(e["date"]), title=e.get("title", ""), img=e.get("image", ""),
                 video=_loop(e, "events"), time=e.get("time", ""), place=e.get("place", ""), link=e.get("link", ""),
-                btn=_filled(e.get("button")), text=e.get("text", ""))
+                btn=_filled(e.get("button")), text=e.get("text", ""), show_from=day(e.get("show_from")))
 
 
 def _news(n):
@@ -777,8 +777,17 @@ def events_ld(lang, items=None):
                 "url": SITE + event_url(lang, e)}
         if e.get("img"):
             item["image"] = SITE + "/assets/photos/" + e["img"]
-        if e.get("link", "").startswith("http"):
-            item["offers"] = {"@type": "Offer", "url": e["link"]}
+        # Google wants price, currency, availability and validFrom in every offer (Search Console, 20 Nov 2026).
+        # Only a free event gets one, at price 0, because its own text says the entry is free ("Free Entrance!",
+        # "Gratis entree!", "Taking part was free"); a "free drink" on a paid night does not count. A paid event has no
+        # price field in the content, so it gets no offer rather than an invented price.
+        free = r"\bfree (entry|entrance|admission)\b|\bgratis (entree|toegang)\b|\btaking part (is|was) free\b|\bmeedoen (is|was) gratis\b"
+        if any(_re.search(free, tr(e["text"], l), _re.I) for l in ("en", "nl")):
+            link = e.get("link", "")
+            item["offers"] = {"@type": "Offer", "price": 0, "priceCurrency": "EUR",
+                              "availability": "https://schema.org/InStock",
+                              "validFrom": (e.get("show_from") or e["date"] - datetime.timedelta(days=30)).isoformat(),
+                              "url": link if link.startswith("http") else SITE + event_url(lang, e)}
         out.append(item)
     return jsonld(out) if out else ""
 
@@ -1434,6 +1443,14 @@ def root_files():
     # An event page the build no longer makes (an older past event, or a future one before its show_from) goes to the
     # events page instead of "page not found", so old shared and Google links keep working. Not permanent: the page
     # can come back. Only for pages that do not exist, because a Vercel redirect wins over a file.
+    # An event file renamed to its real date: the old address goes to the new page for good.
+    # 2026-11-12-lumos-game-night held the 10 Dec Game Night, so its address showed the wrong date (site check, 20 Nov 2026).
+    renamed = {"2026-11-12-lumos-game-night": "2026-12-10-lumos-game-night"}
+    for old, new in renamed.items():
+        for lang in ("en", "nl"):
+            folder = SLUGS[lang]["events"]
+            redirects += [{"source": f"/{lang}/{folder}/{old}{end}", "destination": f"/{lang}/{folder}/{new}/", "permanent": True}
+                          for end in ("", "/")]
     ev_dir = os.path.join(ROOT, "..", "content", "events")
     for name in sorted(os.listdir(ev_dir)):
         if not name.endswith(".json"):
