@@ -141,6 +141,12 @@ GTM_HEAD = ("<!-- Google Tag Manager, only after consent -->\n<script>(function(
             "var m=d.querySelector('main')||d.body;m.setAttribute('tabindex','-1');m.focus({preventScroll:true});});"
             "d.body.insertBefore(b,d.body.firstChild);});})(window,document);</script>") if GTM_ID else ""  # card goes first in <body>, so Tab reaches it first
 GTM_BODY = ""  # the <noscript> Tag Manager frame is gone: without JavaScript nobody can say yes
+# Cloudflare Web Analytics: counts visits and page views without cookies or local storage, so it needs no cookie
+# card and also counts the visitors who click No. Lumos Cloudflare account, site lumoslatin.nl (added 21 Nov 2026).
+# Left out of the hidden vercel.app copy, so test visits are not counted.
+CF_TOKEN = "c73b906ff928407895adc0bf3398ab25"
+CF_HEAD = ("<script type=\"module\" src=\"https://static.cloudflareinsights.com/beacon.min.js\" "
+           "data-cf-beacon='{\"token\": \"" + CF_TOKEN + "\"}'></script>\n") if CF_TOKEN and not HIDDEN else ""
 SHOW_SWITCHES = "--switches" in sys.argv  # True shows the small switches under the title, for picking
 
 # ---------------------------------------------------------------- data
@@ -829,7 +835,7 @@ def page(lang, key, title, desc, body, other_href=None, nav_page=None, path=None
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {GTM_HEAD}
-<noscript><style>.news-card .nc-text{{display:block;-webkit-line-clamp:unset;line-clamp:unset}}</style></noscript>
+{CF_HEAD}<noscript><style>.news-card .nc-text{{display:block;-webkit-line-clamp:unset;line-clamp:unset}}</style></noscript>
 {ROBOTS_META}<title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
 <link rel="canonical" href="{SITE}{canonical}">
