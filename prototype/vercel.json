@@ -268,26 +268,6 @@
       "permanent": false
     },
     {
-      "source": "/en/events/2026-12-22-tuesday-social",
-      "destination": "/en/events/",
-      "permanent": false
-    },
-    {
-      "source": "/en/events/2026-12-22-tuesday-social/",
-      "destination": "/en/events/",
-      "permanent": false
-    },
-    {
-      "source": "/nl/evenementen/2026-12-22-tuesday-social",
-      "destination": "/nl/evenementen/",
-      "permanent": false
-    },
-    {
-      "source": "/nl/evenementen/2026-12-22-tuesday-social/",
-      "destination": "/nl/evenementen/",
-      "permanent": false
-    },
-    {
       "source": "/en/events/2027-01-05-tuesday-social",
       "destination": "/en/events/",
       "permanent": false
